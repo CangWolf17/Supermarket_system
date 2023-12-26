@@ -5,7 +5,7 @@
 #ifndef SUPERMARKET_SYSTEM_HEAD_H
 #define SUPERMARKET_SYSTEM_HEAD_H
 
-// 鐢ㄤ簬鍖呭惈鍏朵粬澶存枃浠剁殑鍖哄煙
+// 用于包含其他头文件的区域
 #include "login/WelcomePage.h"
 
 #endif //SUPERMARKET_SYSTEM_HEAD_H

@@ -1,2 +1,0 @@
-管理员   Admin   Admin   1
-收银员   Sell   1234   3
