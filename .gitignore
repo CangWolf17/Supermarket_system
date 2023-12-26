@@ -5,3 +5,5 @@
 .idea/Supermarket_system.iml
 .idea/vcs.xml
 cmake-build-debug
+.idea/aws.xml
+.idea
