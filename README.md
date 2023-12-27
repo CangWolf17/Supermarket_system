@@ -16,4 +16,4 @@
 
 # 权限组
 
-关于权限组，请查看[这里](doc\authority.md)
+关于权限组，请查看[这里](doc/authority.md)
