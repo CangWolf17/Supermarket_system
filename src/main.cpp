@@ -9,6 +9,6 @@ using namespace std;
 
 // 主函数，保持为登陆界面模块
 int main(){
-    login();
+    users user = login();
     return 0;
 }

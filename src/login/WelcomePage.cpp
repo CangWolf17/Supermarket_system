@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void welPage(){ // ª∂”≠ΩÁ√Ê
+void loginPage(){ // ª∂”≠ΩÁ√Ê
     // ª∂”≠“≥√Ê£¨Œ¥…Ëº∆
 
 
@@ -40,20 +40,24 @@ users user_login(users user, string login_id, string login_pwd){// ∂¡»°Œƒº˛—È÷§”
     }
     txt_data.close();
 
-    if(sta == 0)
-        cout<<"’À∫≈ªÚ√‹¬Î¥ÌŒÛ£°«Î÷ÿ–¬ ‰»Î";
+    if(sta == 0) {
+        cout << "’À∫≈ªÚ√‹¬Î¥ÌŒÛ£°«Î÷ÿ–¬ ‰»Î";
+        user.name = "NOTFOUND";
+        return user;
+    }
 
     return user;
 }
 
-void login(){
+users login(){
 
-    // ¥¥Ω®–¬µƒusersΩ·ππÃÂ
+    // ¥¥Ω®–¬µƒusers¿‡
     users user = *new users;
 
-    welPage();
+    loginPage();
 
     string id, pwd;
+    do{
     cout<<"«Î ‰»Î”√ªß√˚£∫";
     cin>>id;
     cout<<"«Î ‰»Î√‹¬Î£∫";
@@ -61,6 +65,10 @@ void login(){
 
     // µ˜”√∫Ø ˝≤È’“µ«¬ºƒø±Í
     user = user_login(user,id,pwd);
+    }while(user.name == "NOTFOUND");
+
     cout<<user.name<<" "<<user.userID;
+
+    return user;
 
 }

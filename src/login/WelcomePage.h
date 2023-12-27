@@ -8,13 +8,14 @@
 #include "string"
 using namespace std;
 
-struct users{
+class users{
+public:
     string name;            // 用户真实姓名
-    string userID;        // 用户id
+    string userID;          // 用户id
     string userPwd;         // 密码
     int userLevel;          // 用户权限
 };
 
-void login();
+users login();
 
 #endif //SUPERMARKET_SYSTEM_WELCOMEPAGE_H
