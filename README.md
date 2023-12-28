@@ -3,6 +3,20 @@
 
 
 
+## 在CMD中使用CMake构建
+
+``` bash
+// 如果没有build文件夹的话，请先创建
+mkdir build
+
+cd build
+cmake ..
+cmake --build .
+
+```
+
+
+
 ## 测试账户
 
 | 用户名（userName） | 用户ID（userID） | 用户密码（userPwd） | 用户权限（userLevel） |
