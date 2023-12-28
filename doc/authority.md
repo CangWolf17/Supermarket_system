@@ -3,11 +3,10 @@
 #### 1.管理员
 
 ``` 
-users.edit
-users.create
-users.del
+Users.edit			// 用户编辑权限
+Users.create		// 创建用户权限（如收银员、仓库管理员等用户）
+Users.adminDel		// 用户删除权限
 
-goods.data
 ```
 
 
@@ -15,8 +14,11 @@ goods.data
 #### 2.收银员
 
 ``` 
-goods.sell
-users.reg
+users.del			// 删除权限
+
+Goods.sell			// 销售权限
+
+SellLog.data		// 销售记录的查看
 ```
 
 
@@ -24,18 +26,23 @@ users.reg
 #### 3.仓库管理员
 
 ``` 
-goods.add
-goods.del
+Goods.data			// 仓库数据的查看权限
+Goods.addKind		// 添加商品种类的权限
+Goods.add			// 补货
+Goods.delKind		// 删除商品种类的权限
+Godds.del			// 减货
 ```
 
 #### 4.顾客
 
 ```
-goods.find
-// users.reg
+Users.reg			// 注册用户的权限
 
-private:
-goods.buy
+Goods.buy			// 购买商品
+Goods.find			// 查找商品的权限
+
+SellLog.receipt		// 打印小票
+
 ```
 
 
