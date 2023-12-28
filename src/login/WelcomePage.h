@@ -6,16 +6,12 @@
 #define SUPERMARKET_SYSTEM_WELCOMEPAGE_H
 
 #include "string"
+#include "../head.h"
+
+class Users;
+
 using namespace std;
 
-class users{
-public:
-    string name;            // 用户真实姓名
-    string userID;          // 用户id
-    string userPwd;         // 密码
-    int userLevel;          // 用户权限
-};
-
-users login();
+Users login();
 
 #endif //SUPERMARKET_SYSTEM_WELCOMEPAGE_H

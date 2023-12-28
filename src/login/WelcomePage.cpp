@@ -6,17 +6,12 @@
 #include "fstream"
 #include "windows.h"
 
+#include "..\\head.h"
 #include "WelcomePage.h"
 
 using namespace std;
 
-void loginPage(){ // »¶Ó­½çÃæ
-    // »¶Ó­Ò³Ãæ£¬Î´Éè¼Æ
-
-
-}
-
-users user_login(users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤ÓÃ»§Éí·İĞÅÏ¢
+Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤ÓÃ»§Éí·İĞÅÏ¢
     // ´«ÈëĞÎ²ÎÎªÒ»¸öĞÂµÄusers½á¹¹Ìå£¬µÇÂ¼idºÍµÇÂ½ÃÜÂë
 
     string fname = R"(.\data\users.txt)"; // Ö´ĞĞÎÄ¼şÂ·¾¶ÔÚÏîÄ¿ÎÄ¼ş¼ĞÏÂ£¬Êı¾İÎÄ¼şÖ¸¶¨ÔÚdataÏÂ
@@ -25,7 +20,6 @@ users user_login(users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
 
     if(!txt_data.is_open()){
         cout << "ÎÄ¼ş´ò¿ªÊ§°Ü";
-        cin>>sta;
     }
     else{
         while(!txt_data.eof()){
@@ -41,7 +35,7 @@ users user_login(users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     txt_data.close();
 
     if(sta == 0) {
-        cout << "ÕËºÅ»òÃÜÂë´íÎó£¡ÇëÖØĞÂÊäÈë";
+        cout << "ÕËºÅ»òÃÜÂë´íÎó£¡ÇëÖØĞÂÊäÈë" << endl;
         user.name = "NOTFOUND";
         return user;
     }
@@ -49,12 +43,10 @@ users user_login(users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     return user;
 }
 
-users login(){
+Users login(){
 
     // ´´½¨ĞÂµÄusersÀà
-    users user = *new users;
-
-    loginPage();
+    Users user = *new Users;
 
     string id, pwd;
     do{
