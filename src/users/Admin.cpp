@@ -17,3 +17,7 @@ void Admin::users_create() {
 
 
 }
+
+void Admin::users_adminDel() {
+
+}

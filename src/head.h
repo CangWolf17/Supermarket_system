@@ -101,6 +101,7 @@ public:
 
     void users_edit();
     void users_create();
+    void users_adminDel();
 
 
 
