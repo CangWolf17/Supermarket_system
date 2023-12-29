@@ -30,11 +30,19 @@ int main(){
     usersFunc.read(users);
     sellFunc.read(sellLogs);
 
+
     // 主函数开始执行
     Users user = login();       // 调用login函数实现登录，同时返回一个包含用户数据的users对象
 
+
+
+
+
+
+
+
     // 程序结束自动保存数据
-    // usersFunc.save(users);
+    usersFunc.save(users);
     goodsFunc.save(goods);
     sellFunc.save(sellLogs);
 

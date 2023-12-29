@@ -21,7 +21,7 @@ void SellLog::read(vector<SellLog> &sellLogs) {
     }
     else{
         while(!txt_data.eof()){
-            txt_data >> new_sellLog.transactionID >> new_sellLog.id
+            txt_data >> new_sellLog.transactionID >> new_sellLog.time>> new_sellLog.id
             >> new_sellLog.name >> new_sellLog.species
             >> new_sellLog.sellPrice >> new_sellLog.quantity
             >> new_sellLog.price >> new_sellLog.measure;
@@ -39,11 +39,11 @@ void SellLog::save(vector<SellLog> &sellLogs) {
     if (!txt_data.is_open()) {
         cout << "文件打开失败";
         exit(1);
-    } else while(i<sellLogs.size()-1){
-            txt_data << sellLogs[i].transactionID << BLANKSPACE << sellLogs[i].id << BLANKSPACE
-                     << sellLogs[i].name << BLANKSPACE << sellLogs[i].species << BLANKSPACE
-                    << sellLogs[i].sellPrice << BLANKSPACE << sellLogs[i].quantity << BLANKSPACE
-                    << sellLogs[i].price << BLANKSPACE << sellLogs[i].measure << '\n';
+    } else while(i<sellLogs.size()-1) {
+            txt_data << sellLogs[i].transactionID << BLANKSPACE << sellLogs[i].time << BLANKSPACE << sellLogs[i].id
+                     << BLANKSPACE << sellLogs[i].name << BLANKSPACE << sellLogs[i].species << BLANKSPACE
+                     << sellLogs[i].sellPrice << BLANKSPACE << sellLogs[i].quantity << BLANKSPACE
+                     << sellLogs[i].price << BLANKSPACE << sellLogs[i].measure << '\n';
             i++;
         }
     txt_data.close();

@@ -60,6 +60,7 @@ public:
 class SellLog{
 public:
     long long transactionID;    // 交易编号
+    string time;                // 交易时间
     int id;                     // 商品编号
     string name;                // 商品名称
     string species;             // 商品种类
