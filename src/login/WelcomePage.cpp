@@ -24,7 +24,7 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     else{
         while(!txt_data.eof()){
             txt_data >> user.name >> user.userID >> user.userPwd >> user.userLevel;
-            // ´Ó´ò¿ªµÄÎÄ¼şÖĞÖğ´Î½«Á÷´æÈë½á¹¹Ìå
+            // ´Ó´ò¿ªµÄÎÄ¼şÖĞÖğ´Î½«Á÷´æÈëÀà
 
             if(user.userID == login_id && user.userPwd == login_pwd) {
                 sta = 1;

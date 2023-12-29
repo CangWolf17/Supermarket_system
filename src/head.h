@@ -27,6 +27,9 @@ public:
     int userLevel;          // 用户权限
 
     // 创建成员函数
+    void read(vector<Users> &users);
+    void write(vector<Users> &users);
+
     void reg();
     void del();
     void edit();
@@ -63,6 +66,19 @@ public:
 
 // 创建销售记录的类
 class SellLog{
+public:
+    long long transactionID;    // 交易编号
+    int id;                     // 商品编号
+    string name;                // 商品名称
+    string species;             // 商品种类
+    float sellPrice;            // 商品单价
+    int quantity;               // 交易商品数量
+    float price;                // 交易总价
+    string measure;             // 商品的计量单位
+
+    // 创建成员函数
+    void read(vector<SellLog> &sellLogs);
+    void write(vector<SellLog> &sellLogs);
 
     void receipt();
     void data();

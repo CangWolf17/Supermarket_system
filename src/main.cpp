@@ -16,12 +16,21 @@ int main(){
         customer = 0, keeper, cashier, admin
     };  // 枚举 使用户权限可视为单词
 
-    Display display;            // 实例化一个Display对象
-    Users user = login();       // 调用login函数实现登录，同时返回一个包含用户数据的users对象
-    Goods goodsFunc;    // 创建一个goodsfunc用于调用成员函数
+    // 实例化对象，初始化程序
+    Display display;            // 实例化一个对象用于调用成员函数
+    Goods goodsFunc;
+    Users usersFunc;
+    SellLog sellFunc;
 
-    vector<Goods> goods;            // 申请一个goods数组
+    vector<Users> users;        // 申请类数组
+    vector<Goods> goods;
+    vector<SellLog> sellLogs;
+
     goodsFunc.read(goods);       // 读取goods文件中的数据并存入数组
+    usersFunc.read(users);
+    sellFunc.read(sellLogs);
+
+    Users user = login();       // 调用login函数实现登录，同时返回一个包含用户数据的users对象
 
 
     return 0;
