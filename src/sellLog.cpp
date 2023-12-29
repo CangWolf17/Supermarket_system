@@ -31,7 +31,7 @@ void SellLog::read(vector<SellLog> &sellLogs) {
     txt_data.close();
 }
 
-void SellLog::write(vector<SellLog> &sellLogs) {
+void SellLog::save(vector<SellLog> &sellLogs) {
     string fname = R"(.\data\users.txt)"; // 指定文件地址
     ofstream txt_data(fname, ios::out); // 打开文件
     int i = 0;
@@ -39,7 +39,7 @@ void SellLog::write(vector<SellLog> &sellLogs) {
     if (!txt_data.is_open()) {
         cout << "文件打开失败";
         exit(1);
-    } else while(i<sellLogs.size()){
+    } else while(i<sellLogs.size()-1){
             txt_data << sellLogs[i].transactionID << BLANKSPACE << sellLogs[i].id << BLANKSPACE
                      << sellLogs[i].name << BLANKSPACE << sellLogs[i].species << BLANKSPACE
                     << sellLogs[i].sellPrice << BLANKSPACE << sellLogs[i].quantity << BLANKSPACE
@@ -54,6 +54,10 @@ void SellLog::receipt(){
 }
 
 void SellLog::data() {
+
+}
+
+void SellLog::newLog(){
 
 }
 

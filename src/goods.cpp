@@ -35,16 +35,18 @@ void Goods::read(vector<Goods> &goods){
     txt_data.close();
 }
 
-void Goods::write(vector<Goods> &goods) {
+void Goods::save(vector<Goods> &goods) {
 
     string fname = R"(.\data\goods.txt)"; // 指定文件地址
     ofstream txt_data(fname, ios::out); // 打开文件
     int i = 0;
 
+
     if (!txt_data.is_open()) {
         cout << "文件打开失败";
         exit(1);
-    } else while(i<goods.size()){
+    } else while(i<goods.size()-1){
+
             txt_data << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE
                      << goods[i].species << BLANKSPACE << goods[i].purchasePrice << BLANKSPACE
                      << goods[i].sellPrice << BLANKSPACE << goods[i].quantity << BLANKSPACE
@@ -56,6 +58,10 @@ void Goods::write(vector<Goods> &goods) {
 }
 
 void Goods::buy() {
+    // 调用display函数提示用户购买
+    cout<<"请输入要购买的商品的编号或名称：";
+
+    // 购买的主函数
 
 }
 

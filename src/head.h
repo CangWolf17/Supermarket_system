@@ -10,14 +10,6 @@
 #include "login/WelcomePage.h"
 
 // 创建类
-// 创建用于显示屏幕内容的类
-class Display{
-    void loginPage();           // 登录界面
-    void welcomePage();         // 欢迎界面
-
-
-};
-
 // 创建用户信息的类
 class Users{
 public:
@@ -28,7 +20,7 @@ public:
 
     // 创建成员函数
     void read(vector<Users> &users);
-    void write(vector<Users> &users);
+    void save(vector<Users> &users);
 
     void reg();
     void del();
@@ -52,7 +44,7 @@ public:
 
     // 创建成员函数
     void read(vector<Goods> &goods);           // 传入一个Goods数组，读取文件中的货物信息并存入数组
-    void write(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
+    void save(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
 
     void buy();
     void find();
@@ -78,10 +70,20 @@ public:
 
     // 创建成员函数
     void read(vector<SellLog> &sellLogs);
-    void write(vector<SellLog> &sellLogs);
+    void save(vector<SellLog> &sellLogs);
 
+    void newLog();
     void receipt();
     void data();
+
+};
+
+// 创建用于显示屏幕内容的类
+class Display{
+public:
+    void loginPage();           // 登录界面
+    void welcomePage();         // 欢迎界面
+    void showGoods(vector<Goods> &goods);           // 商品信息展示
 
 };
 

@@ -59,7 +59,7 @@ Users login(){
     user = user_login(user,id,pwd);
     }while(user.name == "NOTFOUND");
 
-    cout<<user.name<<" "<<user.userID;
+    cout<<user.name<<" "<<user.userID<<endl;
 
     return user;
 

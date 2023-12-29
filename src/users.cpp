@@ -29,7 +29,7 @@ void Users::read(vector<Users> &users){
 
 }
 
-void Users::write(vector<Users> &users) {
+void Users::save(vector<Users> &users) {
     string fname = R"(.\data\users.txt)"; // 指定文件地址
     ofstream txt_data(fname, ios::out); // 打开文件
     int i = 0;
@@ -37,7 +37,9 @@ void Users::write(vector<Users> &users) {
     if (!txt_data.is_open()) {
         cout << "文件打开失败";
         exit(1);
-    } else while(i<users.size()){
+    } else while(i<users.size()-1){
+            cout<<users[i].name << BLANKSPACE << users[i].userID << BLANKSPACE
+                << users[i].userPwd << BLANKSPACE << users[i].userLevel <<'\n';
             txt_data << users[i].name << BLANKSPACE << users[i].userID << BLANKSPACE
             << users[i].userPwd << BLANKSPACE << users[i].userLevel <<'\n';
             i++;
