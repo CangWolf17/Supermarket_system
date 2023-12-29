@@ -8,11 +8,8 @@ add_executable(Supermarket_system
         head.h
         login/WelcomePage.h
         login/WelcomePage.cpp
+        users.cpp
         goods.cpp
-        users/Customer.cpp
-        users/Keeper.cpp
-        users/Cashier.cpp
-        users/Admin.cpp
         sellLog.cpp
         display.cpp
 )

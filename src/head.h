@@ -25,6 +25,13 @@ public:
     string userID;          // 用户id
     string userPwd;         // 密码
     int userLevel;          // 用户权限
+
+    // 创建成员函数
+    void reg();
+    void del();
+    void edit();
+    void create();
+    void adminDel();
 };
 
 // 创建货物的类
@@ -44,66 +51,21 @@ public:
     void read(vector<Goods> &goods);           // 传入一个Goods数组，读取文件中的货物信息并存入数组
     void write(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
 
+    void buy();
+    void find();
+    void data();
+    void add();
+    void del();
+    void addKind();
+    void delKind();
+    void sell();
 };
 
 // 创建销售记录的类
 class SellLog{
 
-
-
-
-
-
-};
-
-// 使用类和类继承来控制用户对应的权限组和可执行的权限操作
-class Customer{
-public:
-    // 存放成员函数
-    // Users类权限
-    void users_reg();
-
-    // Goods类权限
-    void goods_buy();
-    void goods_find();
-
-    // SellLog类权限
-    void sellLog_receipt();
-
-};
-
-class Keeper: public Customer{
-public:
-
-    void goods_data();
-    void goods_add();
-    void goods_del();
-    void goods_addKind();
-    void goods_delKind();
-
-};
-
-class Cashier: public Keeper{
-public:
-
-    void users_del();
-
-    void goods_sell();
-
-    void sellLog_data();
-
-};
-
-
-
-class Admin: public Cashier{
-public:
-
-    void users_edit();
-    void users_create();
-    void users_adminDel();
-
-
+    void receipt();
+    void data();
 
 };
 

@@ -23,16 +23,6 @@ int main(){
     vector<Goods> goods;            // 申请一个goods数组
     goodsFunc.read(goods);       // 读取goods文件中的数据并存入数组
 
-    // 根据用户权限创建用于调用函数的对象（无法使用switch语句）
-    if(user.userLevel == admin)
-        Admin func;
-    else if(user.userLevel == cashier)
-        Cashier func;
-    else if(user.userLevel == keeper)
-        Keeper func;
-    else
-        Customer func;
-
 
     return 0;
 }

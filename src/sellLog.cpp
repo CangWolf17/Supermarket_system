@@ -5,3 +5,13 @@
 
 #include "head.h"
 
+using namespace std;
+
+void SellLog::receipt(){
+
+}
+
+void SellLog::data() {
+
+}
+

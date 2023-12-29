@@ -54,3 +54,37 @@ void Goods::write(vector<Goods> &goods) {
     }
     txt_data.close();
 }
+
+void Goods::buy() {
+
+}
+
+void Goods::find() {
+
+}
+
+void Goods::data() {
+
+}
+
+void Goods::add() {
+
+}
+
+void Goods::del() {
+
+}
+
+void Goods::addKind() {
+
+}
+
+void Goods::delKind() {
+
+}
+
+void Goods::sell() {
+
+}
+
+
