@@ -21,10 +21,10 @@ cmake --build .
 
 | 用户名（userName） | 用户ID（userID） | 用户密码（userPwd） | 用户权限（userLevel） |
 | :----------------- | :--------------- | :------------------ | :-------------------- |
-| 管理员             | Admin            | Admin               | 1                     |
+| 管理员             | Admin            | Admin               | 3                     |
 | 仓库管理           | Keeper           | 0000                | 2                     |
-| 收银员             | Cashier          | 1234                | 3                     |
-| 顾客1              | Customer1        | 123456              | 4                     |
+| 收银员             | Cashier          | 1234                | 1                     |
+| 顾客1              | Customer1        | 123456              | 0                     |
 
 
 
