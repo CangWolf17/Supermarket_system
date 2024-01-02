@@ -14,21 +14,21 @@ using namespace std;
 
 void Goods::read(vector<Goods> &goods){
 
-    string fname = R"(.\data\goods.txt)"; // Ö¸¶¨ÎÄ¼þµØÖ·
-    ifstream txt_data(fname, ios::in); // ´ò¿ªÎÄ¼þ
-    Goods new_goods = *new Goods; // ÎªÒ»¸öÐÂµÄGoodsÀàÉêÇëÄÚ´æ
+    string fname = R"(.\data\goods.txt)"; // Ö¸ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ö·
+    ifstream txt_data(fname, ios::in); // ï¿½ï¿½ï¿½Ä¼ï¿½
+    Goods new_goods = *new Goods; // ÎªÒ»ï¿½ï¿½ï¿½Âµï¿½Goodsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
 
     if(!txt_data.is_open()){
-        cout << "ÎÄ¼þ´ò¿ªÊ§°Ü";
+        cout << "ï¿½Ä¼ï¿½ï¿½ï¿½Ê§ï¿½ï¿½";
         exit(1);
     }
     else{
         while(!txt_data.eof()){
-            txt_data >> new_goods.id >> new_goods.name                                     // »ñÈ¡ÉÌÆ·µÄ±àºÅºÍÃû³Æ
-                 >> new_goods.species >> new_goods.purchasePrice                           // »ñÈ¡ÖÖÀàºÍ½ø¼Û
-                 >> new_goods.sellPrice >> new_goods.quantity                              // »ñÈ¡ÊÛ¼ÛºÍÊýÁ¿
-                 >> new_goods.lessLimit >> new_goods.measure >> new_goods.remark;          // »ñÈ¡ÌáÐÑãÐÖµ¡¢µ¥Î»ºÍ±¸×¢
-            // ´Ó´ò¿ªµÄÎÄ¼þÖÐÖð´Î½«Á÷´æÈë½á¹¹Ìå
+            txt_data >> new_goods.id >> new_goods.name                                     // ï¿½ï¿½È¡ï¿½ï¿½Æ·ï¿½Ä±ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½
+                 >> new_goods.species >> new_goods.purchasePrice                           // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½
+                 >> new_goods.sellPrice >> new_goods.quantity                              // ï¿½ï¿½È¡ï¿½Û¼Ûºï¿½ï¿½ï¿½ï¿½ï¿½
+                 >> new_goods.lessLimit >> new_goods.measure >> new_goods.remark;          // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Î»ï¿½Í±ï¿½×¢
+            // ï¿½Ó´ò¿ªµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
             goods.push_back(new_goods);
         }
     }
@@ -37,13 +37,13 @@ void Goods::read(vector<Goods> &goods){
 
 void Goods::save(vector<Goods> &goods) {
 
-    string fname = R"(.\data\goods.txt)"; // Ö¸¶¨ÎÄ¼þµØÖ·
-    ofstream txt_data(fname, ios::out); // ´ò¿ªÎÄ¼þ
+    string fname = R"(.\data\goods.txt)"; // Ö¸ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ö·
+    ofstream txt_data(fname, ios::out); // ï¿½ï¿½ï¿½Ä¼ï¿½
     int i = 0;
 
 
     if (!txt_data.is_open()) {
-        cout << "ÎÄ¼þ´ò¿ªÊ§°Ü";
+        cout << "ï¿½Ä¼ï¿½ï¿½ï¿½Ê§ï¿½ï¿½";
         exit(1);
     } else while(i<goods.size()-1){
 
@@ -58,14 +58,14 @@ void Goods::save(vector<Goods> &goods) {
 }
 
 void Goods::buy() {
-    // µ÷ÓÃdisplayº¯ÊýÌáÊ¾ÓÃ»§¹ºÂò
-    cout<<"ÇëÊäÈëÒª¹ºÂòµÄÉÌÆ·µÄ±àºÅ»òÃû³Æ£º";
+    // ï¿½ï¿½ï¿½ï¿½displayï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+    cout<<"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ä±ï¿½Å»ï¿½ï¿½ï¿½ï¿½Æ£ï¿½";
 
-    // ¹ºÂòµÄÖ÷º¯Êý
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }
 
-void Goods::find() {
+void Goods::search() {
 
 }
 

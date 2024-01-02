@@ -47,7 +47,7 @@ public:
     void save(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
 
     void buy();
-    void find();
+    void search();
     void data();
     void add();
     void del();
