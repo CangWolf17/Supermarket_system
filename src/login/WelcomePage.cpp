@@ -23,10 +23,10 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     }
     else{
         while(!txt_data.eof()){
-            txt_data >> user.name >> user.userID >> user.userPwd >> user.userLevel;
+            txt_data >> user.name >> user.id >> user.pwd >> user.level;
             // ´Ó´ò¿ªµÄÎÄ¼şÖĞÖğ´Î½«Á÷´æÈëÀà
 
-            if(user.userID == login_id && user.userPwd == login_pwd) {
+            if(user.id == login_id && user.pwd == login_pwd) {
                 sta = 1;
                 break; // µ±ÓÃ»§ÃûºÍÃÜÂëÕıÈ·Ê±ÍË³öÑ­»·
             }
@@ -59,7 +59,7 @@ Users login(){
     user = user_login(user,id,pwd);
     }while(user.name == "NOTFOUND");
 
-    cout<<user.name<<" "<<user.userID<<endl;
+    cout << user.name << " " << user.id << endl;
 
     return user;
 

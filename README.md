@@ -19,7 +19,7 @@ cmake --build .
 
 ## 测试账户
 
-| 用户名（userName） | 用户ID（userID） | 用户密码（userPwd） | 用户权限（userLevel） |
+| 用户名（userName） | 用户ID（id） | 用户密码（pwd） | 用户权限（level） |
 | :----------------- | :--------------- | :------------------ | :-------------------- |
 | 管理员             | Admin            | Admin               | 3                     |
 | 仓库管理           | Keeper           | 0000                | 2                     |

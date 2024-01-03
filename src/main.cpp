@@ -32,9 +32,37 @@ int main(){
 
 
     // 主函数开始执行
+
+    // 登录
     Users user = login();       // 调用login函数实现登录，同时返回一个包含用户数据的users对象
 
+    switch (user.level) {
+        case customer: {
+            vector<SellLog> custom_sellLogs;
 
+
+            break;
+        }
+        case keeper:
+
+
+
+
+            break;
+
+        case cashier:
+
+
+
+            break;
+
+
+        case admin:
+
+
+
+            break;
+    }
 
 
 

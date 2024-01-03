@@ -21,7 +21,7 @@ void Users::read(vector<Users> &users){
     }
     else{
         while(!txt_data.eof()){
-            txt_data >> new_user.name >> new_user.userID >> new_user.userPwd >> new_user.userLevel;
+            txt_data >> new_user.name >> new_user.id >> new_user.pwd >> new_user.level;
             users.push_back(new_user);
         }
     }
@@ -38,10 +38,10 @@ void Users::save(vector<Users> &users) {
         cout << "文件打开失败";
         exit(1);
     } else while(i<users.size()-1){
-            cout<<users[i].name << BLANKSPACE << users[i].userID << BLANKSPACE
-                << users[i].userPwd << BLANKSPACE << users[i].userLevel <<'\n';
-            txt_data << users[i].name << BLANKSPACE << users[i].userID << BLANKSPACE
-            << users[i].userPwd << BLANKSPACE << users[i].userLevel <<'\n';
+            cout << users[i].name << BLANKSPACE << users[i].id << BLANKSPACE
+                 << users[i].pwd << BLANKSPACE << users[i].level << '\n';
+            txt_data << users[i].name << BLANKSPACE << users[i].id << BLANKSPACE
+                     << users[i].pwd << BLANKSPACE << users[i].level << '\n';
             i++;
         }
     txt_data.close();

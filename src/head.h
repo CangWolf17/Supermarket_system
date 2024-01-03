@@ -8,15 +8,22 @@
 // 用于包含其他头文件的区域
 #include "vector"
 #include "login/WelcomePage.h"
+#include "string"
+
+// 定义全局函数
+// 目的是为了避免重复造轮子
+
+bool isDigitStr(string s); // 用于检查传入的字符串是否全部为数字，如果是则返回true
+int strTurnNum(string s); // 用于将字符串转换为数字的函数，返回值为转换后的数字
 
 // 创建类
 // 创建用户信息的类
 class Users{
 public:
     string name;            // 用户真实姓名
-    string userID;          // 用户id
-    string userPwd;         // 密码
-    int userLevel;          // 用户权限
+    string id;          // 用户id
+    string pwd;         // 密码
+    int level;          // 用户权限
 
     // 创建成员函数
     void read(vector<Users> &users);
@@ -47,7 +54,7 @@ public:
     void save(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
 
     void buy();
-    void search();
+    void search(vector<Goods> &goods, string s, Goods &find_goods); // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
     void data();
     void add();
     void del();
@@ -67,6 +74,7 @@ public:
     float sellPrice;            // 商品单价
     int quantity;               // 交易商品数量
     float price;                // 交易总价
+    float profit;               // 交易利润
     string measure;             // 商品的计量单位
 
     // 创建成员函数

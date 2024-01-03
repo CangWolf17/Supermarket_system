@@ -12,4 +12,5 @@ add_executable(Supermarket_system
         goods.cpp
         sellLog.cpp
         display.cpp
+        function.cpp
 )

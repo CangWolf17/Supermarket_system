@@ -24,7 +24,7 @@ void SellLog::read(vector<SellLog> &sellLogs) {
             txt_data >> new_sellLog.transactionID >> new_sellLog.time>> new_sellLog.id
             >> new_sellLog.name >> new_sellLog.species
             >> new_sellLog.sellPrice >> new_sellLog.quantity
-            >> new_sellLog.price >> new_sellLog.measure;
+            >> new_sellLog.price >> new_sellLog.profit >> new_sellLog.measure;
             sellLogs.push_back(new_sellLog);
         }
     }
@@ -43,7 +43,8 @@ void SellLog::save(vector<SellLog> &sellLogs) {
             txt_data << sellLogs[i].transactionID << BLANKSPACE << sellLogs[i].time << BLANKSPACE << sellLogs[i].id
                      << BLANKSPACE << sellLogs[i].name << BLANKSPACE << sellLogs[i].species << BLANKSPACE
                      << sellLogs[i].sellPrice << BLANKSPACE << sellLogs[i].quantity << BLANKSPACE
-                     << sellLogs[i].price << BLANKSPACE << sellLogs[i].measure << '\n';
+                     << sellLogs[i].price << BLANKSPACE << sellLogs[i].profit
+                     << BLANKSPACE << sellLogs[i].measure << '\n';
             i++;
         }
     txt_data.close();
