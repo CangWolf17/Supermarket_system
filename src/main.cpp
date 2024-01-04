@@ -20,15 +20,15 @@ int main(){
     Display display;            // 实例化一个对象用于调用成员函数
     Goods goodsFunc;
     Users usersFunc;
-    SellLog sellFunc;
+    Bills billFunc;
 
     vector<Users> users;        // 申请类数组，数组都以s结尾
     vector<Goods> goods;
-    vector<SellLog> sellLogs;
+    vector<Bills> bills;
 
     goodsFunc.read(goods);       // 读取文件中的数据并存入数组
     usersFunc.read(users);
-    sellFunc.read(sellLogs);
+    billFunc.read(bills);
 
 
     // 主函数开始执行
@@ -38,7 +38,7 @@ int main(){
 
     switch (user.level) {
         case customer: {
-            vector<SellLog> custom_sellLogs;
+            vector<Bills> custom_bills;
 
 
             break;
@@ -73,7 +73,7 @@ int main(){
     // 程序结束自动保存数据
     usersFunc.save(users);
     goodsFunc.save(goods);
-    sellFunc.save(sellLogs);
+    billFunc.save(bills);
 
     return 0;
 }

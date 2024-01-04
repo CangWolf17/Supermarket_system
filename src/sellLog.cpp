@@ -10,10 +10,10 @@
 
 using namespace std;
 
-void SellLog::read(vector<SellLog> &sellLogs) {
-    string fname = R"(.\data\sellLogs.txt)"; // 执行文件路径在项目文件夹下，数据文件指定在data下
+void Bills::read(vector<Bills> &bills) {
+    string fname = R"(.\data\bills.txt)"; // 执行文件路径在项目文件夹下，数据文件指定在data下
     ifstream txt_data(fname, ios::in);
-    SellLog new_sellLog;
+    Bills new_bill;
 
     if(!txt_data.is_open()){
         cout << "文件打开失败";
@@ -21,44 +21,44 @@ void SellLog::read(vector<SellLog> &sellLogs) {
     }
     else{
         while(!txt_data.eof()){
-            txt_data >> new_sellLog.transactionID >> new_sellLog.time>> new_sellLog.id
-            >> new_sellLog.name >> new_sellLog.species
-            >> new_sellLog.sellPrice >> new_sellLog.quantity
-            >> new_sellLog.price >> new_sellLog.profit >> new_sellLog.measure;
-            sellLogs.push_back(new_sellLog);
+            txt_data >> new_bill.transactionID >> new_bill.time>> new_bill.id
+            >> new_bill.name >> new_bill.species
+            >> new_bill.sellPrice >> new_bill.quantity
+            >> new_bill.price >> new_bill.profit >> new_bill.measure;
+            bills.push_back(new_bill);
         }
     }
     txt_data.close();
 }
 
-void SellLog::save(vector<SellLog> &sellLogs) {
-    string fname = R"(.\data\users.txt)"; // 指定文件地址
+void Bills::save(vector<Bills> &bills) {
+    string fname = R"(.\data\bills.txt)"; // 指定文件地址
     ofstream txt_data(fname, ios::out); // 打开文件
     int i = 0;
 
     if (!txt_data.is_open()) {
         cout << "文件打开失败";
         exit(1);
-    } else while(i<sellLogs.size()-1) {
-            txt_data << sellLogs[i].transactionID << BLANKSPACE << sellLogs[i].time << BLANKSPACE << sellLogs[i].id
-                     << BLANKSPACE << sellLogs[i].name << BLANKSPACE << sellLogs[i].species << BLANKSPACE
-                     << sellLogs[i].sellPrice << BLANKSPACE << sellLogs[i].quantity << BLANKSPACE
-                     << sellLogs[i].price << BLANKSPACE << sellLogs[i].profit
-                     << BLANKSPACE << sellLogs[i].measure << '\n';
+    } else while(i<bills.size()-1) {
+            txt_data << bills[i].transactionID << BLANKSPACE << bills[i].time << BLANKSPACE << bills[i].id
+                     << BLANKSPACE << bills[i].name << BLANKSPACE << bills[i].species << BLANKSPACE
+                     << bills[i].sellPrice << BLANKSPACE << bills[i].quantity << BLANKSPACE
+                     << bills[i].price << BLANKSPACE << bills[i].profit
+                     << BLANKSPACE << bills[i].measure << '\n';
             i++;
         }
     txt_data.close();
 }
 
-void SellLog::receipt(){
+void Bills::receipt(){
 
 }
 
-void SellLog::data() {
+void Bills::data() {
 
 }
 
-void SellLog::newLog(){
+void Bills::newLog(){
 
 }
 

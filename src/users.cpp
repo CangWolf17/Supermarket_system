@@ -49,7 +49,7 @@ void Users::save(vector<Users> &users) {
 }
 
 
-void Users::reg() {
+void Users::add() {
 
 }
 

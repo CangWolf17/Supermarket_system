@@ -57,12 +57,6 @@ void Goods::save(vector<Goods> &goods) {
     txt_data.close();
 }
 
-void Goods::buy() {
-
-    // ¹ºÂòµÄÖ÷º¯Êý
-
-}
-
 void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     int i = 0;
 
@@ -88,7 +82,18 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     }
 }
 
+void Goods::trade() {
+
+
+
+}
+
 void Goods::data() {
+
+}
+
+void Goods::edit() {
+
 
 }
 
@@ -100,16 +105,6 @@ void Goods::del() {
 
 }
 
-void Goods::addKind() {
 
-}
-
-void Goods::delKind() {
-
-}
-
-void Goods::sell() {
-
-}
 
 
