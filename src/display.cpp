@@ -21,6 +21,10 @@ void Display::welcomePage() {
 
 }
 
+void Display::users_data() {
+
+}
+
 void Display::goods_data(vector<Goods> &goods) {
     // 界面未设计
 

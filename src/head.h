@@ -15,12 +15,13 @@
 
 bool isDigitStr(string s); // 用于检查传入的字符串是否全部为数字，如果是则返回true
 int strTurnNum(string s); // 用于将字符串转换为数字的函数，返回值为转换后的数字
+float strTurnFloatNum(string s); // 用于将字符串转换为小数的函数
 
 // 创建类
 // 创建用户信息的类
 class Users{
 public:
-    string name;            // 用户真实姓名
+    string name;        // 用户真实姓名
     string id;          // 用户id
     string pwd;         // 密码
     int level;          // 用户权限
@@ -29,9 +30,10 @@ public:
     void read(vector<Users> &users);
     void save(vector<Users> &users);
 
-    void add();         // 添加用户函数，用于将指定的users类添加入数组
-    void del();
-    void edit();
+    void search(vector<Users> &users, string s, Users &find_user); // 查找用户
+    bool add(vector<Users> &users, Users new_user); // 添加用户函数，执行安全检查并用于将指定的users类添加入数组，若用户已存在则返回false
+    void del(vector<Users> &users, string id);
+    void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素，种类，值
 };
 
 // 创建货物的类
@@ -89,6 +91,7 @@ public:
     void loginPage();           // 登录界面
     void welcomePage();         // 欢迎界面
 
+    void users_data();
     void goods_data(vector<Goods> &goods);           // 所有的商品信息展示
 
 };
