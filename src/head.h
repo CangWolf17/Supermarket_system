@@ -54,10 +54,10 @@ public:
     void save(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
 
     void search(vector<Goods> &goods, string s, Goods &find_goods); // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
-    void trade();       // 交易函数，无论买卖操作都进行调用，用于扣除库存
-    void edit();        // 商品编辑函数，用于编辑商品指定内容
-    void add();         // 商品添加函数
-    void del();         // 商品删除函数
+    void trade(vector<Goods> &goods);       // 交易函数，无论买卖操作都进行调用，用于扣除库存
+    void edit(vector<Goods> &goods);        // 商品编辑函数，用于编辑商品指定内容
+    void add(vector<Goods> &goods);         // 商品添加函数
+    void del(vector<Goods> &goods);         // 商品删除函数
 
 };
 
@@ -79,10 +79,10 @@ public:
     void read(vector<Bills> &bills);
     void save(vector<Bills> &bills);
 
-    void newLog();
-    void receipt();
-    void data();
 
+    void receipt(vector<Bills> &bills);
+    void data(vector<Bills> &bills);
+    void newLog(vector<Bills> &bills);
 };
 
 // 创建用于显示屏幕内容的类

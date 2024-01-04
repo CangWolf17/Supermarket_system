@@ -82,27 +82,57 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     }
 }
 
-void Goods::trade() {
+void Goods::trade(vector<Goods> &goods) {
+    // 购买的主函数
+    int choice;
+    cout << "请选择要购买的商品：" << endl;
+    for (int i = 0; i < goods.size(); i++) {
+        cout << i+1 << ". " << goods[i].id << " - " << goods[i].name << endl;
+    }
+    cin >> choice;
+    if (choice < 1 || choice > goods.size()) {
+        cout << "无效的选择！" << endl;
+        return;
+    }
+    Goods selectedGoods = goods[choice-1];
+    cout << "您选择了编号为 " << selectedGoods.id << " 的商品：" << selectedGoods.name << endl;
+    double amount;
+    cout << "请输入购买数量：";
+    cin >> amount;
+    double totalPrice = selectedGoods.quantity * selectedGoods.sellPrice;
+    cout << "总价为：" << totalPrice * amount << endl;
+    cout << "购买成功！" << endl;
 
+}
+
+
+void Goods::edit(vector<Goods> &goods) {
 
 
 }
 
-void Goods::data() {
-
+void Goods::add(vector<Goods> &goods) {
+    Goods newGoods = *new Goods; // 创建新的 Goods 对象
+    cout << "请输入新商品的编号、名称、种类、进价、售价、数量、提醒阈值、单位和备注：" << endl;
+    cin >> newGoods.id >> newGoods.name >> newGoods.species >> newGoods.purchasePrice >> newGoods.sellPrice >> newGoods.quantity >> newGoods.lessLimit >> newGoods.measure >> newGoods.remark; // 获取用户输入的商品信息并存入新商品对象中
+    goods.push_back(newGoods); // 将新商品添加到商品列表中
+    cout << "添加成功！" << endl;
 }
 
-void Goods::edit() {
-
-
-}
-
-void Goods::add() {
-
-}
-
-void Goods::del() {
-
+void Goods::del(vector<Goods> &goods) {
+    int choice;
+    cout << "请选择要删除的商品：" << endl;
+    for (int i = 0; i < goods.size(); i++) {
+        cout << i+1 << ". " << goods[i].id << " - " << goods[i].name << endl;
+    }
+    cin >> choice;
+    if (choice < 1 || choice > goods.size()) {
+        cout << "无效的选择！" << endl;
+        return;
+    }
+    int index = choice - 1; // 获取选择的商品的索引
+    goods.erase(goods.begin() + index); // 删除选中的商品
+    cout << "删除成功！" << endl;
 }
 
 
