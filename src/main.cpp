@@ -18,17 +18,14 @@ int main(){
 
     // 实例化对象，初始化程序
     Display display;            // 实例化一个对象用于调用成员函数
-    Goods goodsFunc;
-    Users usersFunc;
-    Bills billFunc;
 
     vector<Users> users;        // 申请类数组，数组都以s结尾
     vector<Goods> goods;
     vector<Bills> bills;
 
-    goodsFunc.read(goods);       // 读取文件中的数据并存入数组
-    usersFunc.read(users);
-    billFunc.read(bills);
+    Goods::read(goods);       // 读取文件中的数据并存入数组
+    Users::read(users);
+    Bills::read(bills);
 
 
     // 主函数开始执行
@@ -40,20 +37,17 @@ int main(){
 
     switch (user.level) {
         case customer: {
-            vector<Bills> custom_bills; // 一个bills数组用来当作购物车
+            vector<Bills> market; // 一个bills数组用来当作购物车
             while(menuChoice[0]){
-                display.customMenu();
+                display.customMenu(goods);
                 cin>>menuChoice[0];
                 switch (menuChoice[0]) {
                     case 1: { // 1 商品目录
-                        display.customGoodsData();
+                        display.customGoodsData(goods);
                         break;
                     }
-                    case 2: {
-                        Goods find_goods;
-                        string find_name = display.customSearch();
-                        goodsFunc.search(goods,find_name,find_goods);
-                        display.customSearchResult();
+                    case 2: { // 2 搜索商品
+                        display.customSearch(goods,market);
                         break;
                     }
                     case 3:
@@ -100,9 +94,9 @@ int main(){
 
 
     // 程序结束自动保存数据
-    usersFunc.save(users);
-    goodsFunc.save(goods);
-    billFunc.save(bills);
+    Users::save(users);
+    Goods::save(goods);
+    Bills::save(bills);
 
     return 0;
 }

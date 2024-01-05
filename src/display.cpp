@@ -39,6 +39,47 @@ void Display::goods_data(vector<Goods> &goods) {
     }
 }
 
-void Display::customMenu() {
-        system("cls");
+void Display::customMenu(vector<Goods> &goods) {
+    system("cls");
+
+
 }
+
+void Display::customGoodsData(vector<Goods> &goods) {
+
+}
+
+void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
+
+    string s;
+    Goods find_goods;
+
+    // 询问客户要搜索的内容
+    cout<<" ";
+
+    cin>>s;
+
+    Goods::search(goods,s,find_goods);
+    if(find_goods.id != -1){
+        char buy_choice;
+        cout<<"y/n ?";
+        cin>>buy_choice;
+        if(buy_choice == 'y') {
+            Bills new_bills;
+            cout << "数量";
+            cin>>new_bills.quantity;
+
+            // 产生销售记录
+            //...
+
+            // 销售记录推入购物车
+            market.push_back(new_bills);
+        }
+    }else{
+        cout<<"找到的商品不存在！";
+    }
+
+}
+
+
+
