@@ -82,7 +82,7 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     }
 }
 
-void Goods::trade() {
+void Goods::trade(vector<Goods> &goods, Bills &new_bills) {
 
 
 
