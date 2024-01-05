@@ -49,6 +49,8 @@ Users login(){
     Users user = *new Users;
 
     string id, pwd;
+
+    // 输出部分
     do{
     cout<<"请输入用户名：";
     cin>>id;

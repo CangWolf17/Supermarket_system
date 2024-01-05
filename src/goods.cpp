@@ -60,7 +60,7 @@ void Goods::save(vector<Goods> &goods) {
 void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     int i = 0;
 
-    if(isDigitStr(s)) {
+    if(isDigitStr(s)) { //判断给定字符串是否为纯数字，如果是纯数字则为商品id，如果不是则为商品名
         int num = strTurnNum(s);
 
         for(i=0;i<goods.size();i++)
@@ -82,13 +82,9 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     }
 }
 
-void Goods::trade() {
+void Goods::trade(vector<Goods> &goods, Bills &new_bills) {
 
 
-
-}
-
-void Goods::data() {
 
 }
 
