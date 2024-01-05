@@ -47,11 +47,21 @@ int main(){
                         break;
                     }
                     case 2: { // 2 搜索商品
-                        display.customSearch(goods,market);
+                        display.customSearch(bills,goods,market);
                         break;
                     }
                     case 3:{
-
+                        cout<<"是否确认结算？(y/n)：";
+                        char choice;
+                        cin>>choice;
+                        if(choice == 'y')
+                            Goods::trade(goods,market);
+                        else
+                            menuChoice[0] = -1;
+                        cout<<"是否打印小票？(y/n)：";
+                        cin >> choice;
+                        if(choice == 'y')
+                            Bills::receipt(market);
                     }
                     case 4:
                     case 5:

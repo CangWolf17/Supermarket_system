@@ -2,13 +2,7 @@
 // Created by calfVong on 2023/12/27.
 //
 
-#include "fstream"
-#include "iostream"
-#include "vector"
-
 #include "head.h"
-
-#define BLANKSPACE "   "
 
 using namespace std;
 
@@ -82,9 +76,18 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     }
 }
 
-void Goods::trade(vector<Goods> &goods, Bills &new_bills) {
+void Goods::trade(vector<Bills> bills, vector<Goods> &goods, vector<Bills> &new_bills) {
+    int marketSize = new_bills.size();
 
+    SYSTEMTIME tradetime;
+    GetLocalTime(&tradetime);
+    // 获取交易时间
 
+    int i;
+    for(i=0;i<marketSize;i++) {
+        new_bills[i].time = tradetime; // 写入交易时间
+        bills.push_back(new_bills[i]); // 推入交易
+    }
 
 }
 

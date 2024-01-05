@@ -6,9 +6,15 @@
 #define SUPERMARKET_SYSTEM_HEAD_H
 
 // 用于包含其他头文件的区域
+#include "fstream"
+#include "iostream"
+#include "vector"
 #include "vector"
 #include "login/WelcomePage.h"
 #include "string"
+#include "sysinfoapi.h"
+
+#define BLANKSPACE "   "
 
 // 定义全局函数
 // 目的是为了避免重复造轮子
@@ -40,7 +46,7 @@ public:
 class Bills{
 public:
     long long transactionID;    // 交易编号
-    string time;                // 交易时间
+    SYSTEMTIME time;            // 交易时间
     int id;                     // 商品编号
     string name;                // 商品名称
     string species;             // 商品种类
@@ -55,7 +61,7 @@ public:
     static void save(vector<Bills> &bills);
 
     static void newLog();
-    static void receipt();
+    static void receipt(vector<Bills> market);
     static void data();
 
 };
@@ -80,7 +86,7 @@ public:
     static void search(vector<Goods> &goods, string s, Goods &find_goods);
     // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
     // 传入的string s可以是商品id也可以是商品名
-    static void trade(vector<Goods> &goods, Bills &new_bills);       // 交易函数，无论买卖操作都进行调用，用于扣除库存
+    static void trade(vector<Bills> bills, vector<Goods> &goods, vector<Bills> &new_bills);       // 交易函数，无论买卖操作都进行调用，用于扣除库存
     static void edit();        // 商品编辑函数，用于编辑商品指定内容
     static void add();         // 商品添加函数
     static void del();         // 商品删除函数

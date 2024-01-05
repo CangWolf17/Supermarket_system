@@ -1,12 +1,8 @@
 //
 // Created by calfVong on 2023/12/29.
 //
-#include "iostream"
-#include "fstream"
 
 #include "head.h"
-
-#define BLANKSPACE "   "
 
 using namespace std;
 
