@@ -27,38 +27,13 @@ public:
     int level;          // 用户权限
 
     // 创建成员函数
-    void read(vector<Users> &users);
-    void save(vector<Users> &users);
+    static void read(vector<Users> &users);
+    static void save(vector<Users> &users);
 
-    void search(vector<Users> &users, string s, Users &find_user); // 查找用户
-    bool add(vector<Users> &users, Users new_user); // 添加用户函数，执行安全检查并用于将指定的users类添加入数组，若用户已存在则返回false
-    void del(vector<Users> &users, string id);
-    void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素，种类，值
-};
-
-// 创建货物的类
-class Goods{
-public:
-    int id;                     // 商品编号
-    string name;                // 商品名称
-    string species;             // 商品种类
-    float purchasePrice;        // 商品进价
-    float sellPrice;            // 商品单价
-    int quantity;               // 商品数量
-    int lessLimit;              // 商品数量提醒阈值
-    string measure;             // 商品的计量单位
-    string remark = "无";       // 备注
-
-    // 创建成员函数
-    void read(vector<Goods> &goods);           // 传入一个Goods数组，读取文件中的货物信息并存入数组
-    void save(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
-
-    void search(vector<Goods> &goods, string s, Goods &find_goods); // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
-    void trade();       // 交易函数，无论买卖操作都进行调用，用于扣除库存
-    void edit();        // 商品编辑函数，用于编辑商品指定内容
-    void add();         // 商品添加函数
-    void del();         // 商品删除函数
-
+    static void search(vector<Users> &users, string s, Users &find_user); // 查找用户
+    static bool add(vector<Users> &users, Users& new_user); // 添加用户函数，执行安全检查并用于将指定的users类添加入数组，若用户已存在则返回false
+    static void del(vector<Users> &users, string userid); // 删除用户，需要传入用户id
+    static void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素下标，种类，值
 };
 
 // 创建销售记录的类
@@ -76,12 +51,39 @@ public:
     string measure;             // 商品的计量单位
 
     // 创建成员函数
-    void read(vector<Bills> &bills);
-    void save(vector<Bills> &bills);
+    static void read(vector<Bills> &bills);
+    static void save(vector<Bills> &bills);
 
-    void newLog();
-    void receipt();
-    void data();
+    static void newLog();
+    static void receipt();
+    static void data();
+
+};
+
+// 创建货物的类
+class Goods{
+public:
+    int id;                     // 商品编号
+    string name;                // 商品名称
+    string species;             // 商品种类
+    float purchasePrice;        // 商品进价
+    float sellPrice;            // 商品单价
+    int quantity;               // 商品数量
+    int lessLimit;              // 商品数量提醒阈值
+    string measure;             // 商品的计量单位
+    string remark = "无";       // 备注
+
+    // 创建成员函数
+    static void read(vector<Goods> &goods);           // 传入一个Goods数组，读取文件中的货物信息并存入数组
+    static void save(vector<Goods> &goods);          // 传入一个Goods数组，将数组覆盖存储到文件中
+
+    static void search(vector<Goods> &goods, string s, Goods &find_goods);
+    // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
+    // 传入的string s可以是商品id也可以是商品名
+    static void trade(vector<Goods> &goods, Bills &new_bills);       // 交易函数，无论买卖操作都进行调用，用于扣除库存
+    static void edit();        // 商品编辑函数，用于编辑商品指定内容
+    static void add();         // 商品添加函数
+    static void del();         // 商品删除函数
 
 };
 
@@ -90,6 +92,11 @@ class Display{
 public:
     void loginPage();           // 登录界面
     void welcomePage();         // 欢迎界面
+
+    void customMenu(vector<Goods> &goods);          // 顾客菜单界面
+    void customGoodsData(vector<Goods> &goods, vector<Bills> &market);     // 顾客商品目录
+    void customSearch(vector<Goods> &goods, vector<Bills> &market);        // 顾客搜索商品
+
 
     void users_data();
     void goods_data(vector<Goods> &goods);           // 所有的商品信息展示
