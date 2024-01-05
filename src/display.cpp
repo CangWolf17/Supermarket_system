@@ -45,8 +45,32 @@ void Display::customMenu(vector<Goods> &goods) {
 
 }
 
-void Display::customGoodsData(vector<Goods> &goods) {
+void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market) {
+    char buy_choice;
+    cout << "是否确认加入购物车？（请输入y/n）：";
+    cin >> buy_choice;
+    if (buy_choice == 'y') {
+        Bills new_bills;
+        cout << "数量";
+        cin >> new_bills.quantity;
 
+        // 产生销售记录
+        //...
+
+        // 销售记录推入购物车
+        market.push_back(new_bills);
+    }
+}
+
+void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
+    // 输出商品内容
+    cout<<" ";
+
+    // 输入购买商品编号
+    int id;
+    cin>>id;
+    Goods buy_goods = goods[id];
+    customTrade(buy_goods,goods,market);
 }
 
 void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
@@ -61,20 +85,7 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
 
     Goods::search(goods,s,find_goods);
     if(find_goods.id != -1){
-        char buy_choice;
-        cout<<"y/n ?";
-        cin>>buy_choice;
-        if(buy_choice == 'y') {
-            Bills new_bills;
-            cout << "数量";
-            cin>>new_bills.quantity;
-
-            // 产生销售记录
-            //...
-
-            // 销售记录推入购物车
-            market.push_back(new_bills);
-        }
+        customTrade(find_goods,goods, market);
     }else{
         cout<<"找到的商品不存在！";
     }

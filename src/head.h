@@ -94,7 +94,7 @@ public:
     void welcomePage();         // 欢迎界面
 
     void customMenu(vector<Goods> &goods);          // 顾客菜单界面
-    void customGoodsData(vector<Goods> &goods);     // 顾客商品目录
+    void customGoodsData(vector<Goods> &goods, vector<Bills> &market);     // 顾客商品目录
     void customSearch(vector<Goods> &goods, vector<Bills> &market);        // 顾客搜索商品
 
 

@@ -43,14 +43,16 @@ int main(){
                 cin>>menuChoice[0];
                 switch (menuChoice[0]) {
                     case 1: { // 1 商品目录
-                        display.customGoodsData(goods);
+                        display.customGoodsData(goods,market);
                         break;
                     }
                     case 2: { // 2 搜索商品
                         display.customSearch(goods,market);
                         break;
                     }
-                    case 3:
+                    case 3:{
+                        
+                    }
                     case 4:
                     case 5:
                     case 0:
