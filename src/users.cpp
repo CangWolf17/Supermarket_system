@@ -74,7 +74,7 @@ void Users::search(vector<Users> &users, string s, Users &find_user){
     }
 }
 
-bool Users::add(vector<Users> &users, Users new_user) {
+bool Users::add(vector<Users> &users, Users& new_user) {
 
     // °²È«¼ì²é
     int i;
@@ -86,11 +86,11 @@ bool Users::add(vector<Users> &users, Users new_user) {
     return true;
 }
 
-void Users::del(vector<Users> &users, string id) {
+void Users::del(vector<Users> &users, string userid) {
     int i;
 
     for(i=0;i<users.size();i++)
-        if(users[i].id == id)
+        if(users[i].id == userid)
             break;
 }
 
