@@ -18,7 +18,7 @@ users.del			// 删除权限
 
 Goods.sell			// 销售权限
 
-SellLog.data		// 销售记录的查看
+Bills.data		// 销售记录的查看
 ```
 
 
@@ -39,14 +39,14 @@ Goods.edit			// 编辑商品
 #### 4.顾客
 
 ```
-Users.reg			// 注册用户的权限
+Users.add			// 注册用户的权限
 users.pwdedit		// 修改密码的权限（程序中还未添加）
 
-Goods.buy			// 购买商品
+Goods.trade			// 购买商品
 Goods.search		// 查找商品的权限
 Goods.customData	// 商品目录
 
-SellLog.receipt		// 打印小票
+Bills.receipt		// 打印小票
 
 ```
 

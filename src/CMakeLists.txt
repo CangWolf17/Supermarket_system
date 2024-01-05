@@ -10,7 +10,7 @@ add_executable(Supermarket_system
         login/WelcomePage.cpp
         users.cpp
         goods.cpp
-        sellLog.cpp
+        bills.cpp
         display.cpp
         function.cpp
 )

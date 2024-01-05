@@ -49,23 +49,66 @@ void Users::save(vector<Users> &users) {
 }
 
 
-void Users::reg() {
+void Users::search(vector<Users> &users, string s, Users &find_user){
+    int i = 0;
 
+    if(isDigitStr(s)) {
+        int num = strTurnNum(s);
+
+        for(i=0;i<users.size();i++)
+            if(i == num) {
+                find_user = users[i];
+                return;
+            }
+
+        find_user.id = -1;
+    }
+    else{
+        for(i=0;i<users.size();i++)
+            if(users[i].name == s) {
+                find_user = users[i];
+                return;
+            }
+
+        find_user.id = "-1";
+    }
 }
 
-void Users::del() {
+bool Users::add(vector<Users> &users, Users new_user) {
 
+    // °²È«¼ì²é
+    int i;
+    for(i=0;i<users.size();i++)
+        if(users[i].name == new_user.name || users[i].id == new_user.id)
+            return false;
+
+    users.push_back(new_user);
+    return true;
 }
 
-void Users::edit() {
+void Users::del(vector<Users> &users, string id) {
+    int i;
 
+    for(i=0;i<users.size();i++)
+        if(users[i].id == id)
+            break;
 }
 
-void Users::create() {
+void Users::edit(vector<Users> &users, int i, int kind, string new_value) {
 
-}
-
-void Users::adminDel() {
-
+    switch (kind) {
+        case 1:
+            users[i].name = new_value;
+            break;
+        case 2:
+            users[i].id = new_value;
+            break;
+        case 3:
+            users[i].pwd = new_value;
+            break;
+        case 4:
+            users[i].level = strTurnNum(new_value);
+            break;
+    }
 }
 
