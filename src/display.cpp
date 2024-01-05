@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+#include <conio.h>
+#include <cstdlib>
 
 #include "head.h"
 
@@ -35,4 +37,8 @@ void Display::goods_data(vector<Goods> &goods) {
         cout << goods[i].id << "   " << goods[i].name << "   " << goods[i].species
              << "   " << goods[i].sellPrice << "   " << goods[i].quantity << endl;
     }
+}
+
+void Display::customMenu() {
+        system("cls");
 }

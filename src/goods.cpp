@@ -88,10 +88,6 @@ void Goods::trade() {
 
 }
 
-void Goods::data() {
-
-}
-
 void Goods::edit() {
 
 

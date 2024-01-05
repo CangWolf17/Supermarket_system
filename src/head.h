@@ -31,9 +31,9 @@ public:
     void save(vector<Users> &users);
 
     void search(vector<Users> &users, string s, Users &find_user); // 查找用户
-    bool add(vector<Users> &users, Users new_user); // 添加用户函数，执行安全检查并用于将指定的users类添加入数组，若用户已存在则返回false
-    void del(vector<Users> &users, string id);
-    void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素，种类，值
+    bool add(vector<Users> &users, Users& new_user); // 添加用户函数，执行安全检查并用于将指定的users类添加入数组，若用户已存在则返回false
+    void del(vector<Users> &users, string userid); // 删除用户，需要传入用户id
+    void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素下标，种类，值
 };
 
 // 创建货物的类
@@ -90,6 +90,11 @@ class Display{
 public:
     void loginPage();           // 登录界面
     void welcomePage();         // 欢迎界面
+
+    void customMenu();          // 顾客菜单界面
+    void customGoodsData();     // 顾客商品目录
+    string customSearch();        // 顾客搜索商品，返回值为string
+    void customSearchResult();      // 顾客搜索商品的输出结果
 
     void users_data();
     void goods_data(vector<Goods> &goods);           // 所有的商品信息展示

@@ -35,33 +35,62 @@ int main(){
 
     // 登录
     Users user = login();       // 调用login函数实现登录，同时返回一个包含用户数据的users对象
+    // 菜单选择
+    int menuChoice[3] = {-1,0,0};
 
     switch (user.level) {
         case customer: {
-            vector<Bills> custom_bills;
+            vector<Bills> custom_bills; // 一个bills数组用来当作购物车
+            while(menuChoice[0]){
+                display.customMenu();
+                cin>>menuChoice[0];
+                switch (menuChoice[0]) {
+                    case 1: { // 1 商品目录
+                        display.customGoodsData();
+                        break;
+                    }
+                    case 2: {
+                        Goods find_goods;
+                        string find_name = display.customSearch();
+                        goodsFunc.search(goods,find_name,find_goods);
+                        display.customSearchResult();
+                        break;
+                    }
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 0:
+                        break;
+                    default:
+                        cout<<"请输入有效值！ ";
+                        cin>>menuChoice[0];
+                        menuChoice[0] = -1;
+                }
+
+
+            }
+
 
 
             break;
         }
-        case keeper:
+        case keeper: {
 
+
+            break;
+        }
+        case cashier: {
+
+
+            break;
+        }
+
+        case admin:{
 
 
 
             break;
-
-        case cashier:
-
-
-
-            break;
-
-
-        case admin:
-
-
-
-            break;
+        }
     }
 
 
