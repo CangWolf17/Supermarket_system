@@ -10,119 +10,118 @@
 
 using namespace std;
 
-void Display::loginPage(){ // µÇÂ¼½çÃæ
-    // µÇÂ¼Ò³Ãæ£¬Î´Éè¼Æ
-
-
+void Display::loginPage()
+{ // ç™»å½•ç•Œé¢
+  // ç™»å½•é¡µé¢ï¼Œæœªè®¾è®¡
 }
 
 void Display::welcomePage() {
 
 
-
-
 }
 
-void Display::users_data() {
+void Display::users_data() {}
 
-}
-
-void Display::goods_data(vector<Goods> &goods) {
-    // ½çÃæÎ´Éè¼Æ
+void Display::goods_data(vector<Goods> &goods)
+{
+    // ç•Œé¢æœªè®¾è®¡
 
     static int i = 0;
 
 
     for (i; i < goods.size() - 1; i++) {
-        cout << goods[i].id << "   " << goods[i].name << "   " << goods[i].species
-             << "   " << goods[i].sellPrice << "   " << goods[i].quantity << endl;
+        cout << goods[i].id << "   " << goods[i].name << "   " << goods[i].species << "   " << goods[i].sellPrice <<
+            "   " << goods[i].quantity << endl;
     }
 }
 
-void Display::customMenu(vector<Goods> &goods) {
+void Display::customMenu(vector<Goods> &goods)
+{
     system("cls");
-    // Ìí¼Ó´úÂëÒÔÏÔÊ¾¹Ë¿Í²Ëµ¥½çÃæ
-    cout << "²Ëµ¥Ñ¡Ïî£º" << endl;
-    cout << "1. ÉÌÆ·Ä¿Â¼" << endl;
-    cout << "2. ËÑË÷ÉÌÆ·" << endl;
+    // æ·»åŠ ä»£ç ä»¥æ˜¾ç¤ºé¡¾å®¢èœå•ç•Œé¢
+    cout << "èœå•é€‰é¡¹ï¼š" << endl;
+    cout << "1. å•†å“ç›®å½•" << endl;
+    cout << "2. æœç´¢å•†å“" << endl;
     cout << "3. " << endl;
     cout << "4. " << endl;
     cout << "5. " << endl;
     cout << "0. " << endl;
 }
 
-void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market) {
+void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market)
+{
     char buy_choice;
-    cout << "ÊÇ·ñÈ·ÈÏ¼ÓÈë¹ºÎï³µ£¿£¨ÇëÊäÈëy/n£©£º";
+    cout << "æ˜¯å¦ç¡®è®¤åŠ å…¥è´­ç‰©è½¦ï¼Ÿï¼ˆè¯·è¾“å…¥y/nï¼‰ï¼š";
     cin >> buy_choice;
     if (buy_choice == 'y') {
         Bills new_bills;
-        cout << "ÊıÁ¿";
+        cout << "æ•°é‡";
         cin >> new_bills.quantity;
-        // ¶Ô¹Ë¿ÍÊäÈëµÄÉÌÆ·ÊıÁ¿½øĞĞ¼ì²é
+        // å¯¹é¡¾å®¢è¾“å…¥çš„å•†å“æ•°é‡è¿›è¡Œæ£€æŸ¥
         for (const auto& bill : market) {
             if (bill.quantity <= 0) {
-                cout << "ÉÌÆ·ÊıÁ¿²»ÄÜÎª¸ºÊı»òÁã¡£" << endl;
+                cout << "å•†å“æ•°é‡ä¸èƒ½ä¸ºè´Ÿæ•°æˆ–é›¶ã€‚" << endl;
                 return;
             }
         }
-        // ¼ì²éÉÌÆ·ÊıÁ¿ÊÇ·ñ³¬¹ıÁË¿â´æ
+        // æ£€æŸ¥å•†å“æ•°é‡æ˜¯å¦è¶…è¿‡äº†åº“å­˜
         for (const auto& bill : market) {
             int i=0;
             if (bill.quantity > 0) {
                     if (bill.quantity > goods[i].lessLimit) {
-                        cout << "¹ºÎï³µÖĞµÄÉÌÆ·ÊıÁ¿³¬¹ıÁË¿â´æ¡£" << endl;
+                        cout << "è´­ç‰©è½¦ä¸­çš„å•†å“æ•°é‡è¶…è¿‡äº†åº“å­˜ã€‚" << endl;
                         return;
                     }
             }
         }
-        // ²úÉúÏúÊÛ¼ÇÂ¼
+        // äº§ç”Ÿé”€å”®è®°å½•
         new_bills.id = buy_goods.id;
         new_bills.name = buy_goods.name;
         new_bills.species = buy_goods.species;
         new_bills.sellPrice = buy_goods.sellPrice;
         new_bills.quantity = buy_goods.quantity;
-        new_bills.price = new_bills.sellPrice * new_bills.quantity;  // ¼ÆËã×Ü¼Û
-        new_bills.measure = "¼ş";
+        new_bills.price = new_bills.sellPrice * new_bills.quantity;  // è®¡ç®—æ€»ä»·
+        new_bills.measure = buy_goods.measure;
+        
 
-        // ÏúÊÛ¼ÇÂ¼ÍÆÈë¹ºÎï³µ
+        // é”€å”®è®°å½•æ¨å…¥è´­ç‰©è½¦
         market.push_back(new_bills);
-        std::cout << "¹ºÂò³É¹¦£¡" << std::endl;
+        std::cout << "è´­ä¹°æˆåŠŸï¼" << std::endl;
     }
 }
 
-void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
-    // Êä³öÉÌÆ·ÄÚÈİ
-    // Ìí¼Ó´úÂëÒÔÏÔÊ¾¹Ë¿ÍÉÌÆ·Ä¿Â¼
-    cout << "ÒÔÏÂÊÇËùÓĞÉÌÆ·Ä¿Â¼£º" << endl;
+void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market)
+{
+    // è¾“å‡ºå•†å“å†…å®¹
+
+    // æ·»åŠ ä»£ç ä»¥æ˜¾ç¤ºé¡¾å®¢å•†å“ç›®å½•
+    cout << "ä»¥ä¸‹æ˜¯æ‰€æœ‰å•†å“ç›®å½•ï¼š" << endl;
     for (const auto& goods : goods) {
         cout << goods.id << "   " << goods.name<<"   "<< goods.species<< "   " << goods.sellPrice
-        <<"   "<< goods.quantity << "   " << goods.lessLimit<<"   "<< goods.measure<< "   " << goods.remark<< endl;
-    }//Î´°üº¬¡°ÉÌÆ·½ø¼Û¡±
-    cout<<" ";
-    // ÊäÈë¹ºÂòÉÌÆ·±àºÅ
+        <<"   "<< goods.quantity <<"   "<< goods.measure<< "   "<< endl;
+    }//æœªåŒ…å«â€œå•†å“è¿›ä»·â€ã€â€œé˜ˆå€¼æé†’â€å’Œâ€œå¤‡æ³¨â€
+  
+    cout << "è¯·è¾“å…¥è¦è´­ä¹°çš„å•†å“ç¼–å·ï¼ˆæ— åˆ™è¯·è¾“å…¥nï¼‰ï¼š";
+    // è¾“å…¥è´­ä¹°å•†å“ç¼–å·
     int id;
-    cin>>id;
+    cin >> id;
     Goods buy_goods = goods[id];
-    customTrade(buy_goods,goods,market);
+    customTrade(buy_goods, goods, market);
 }
 
-void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
-
+void Display::customSearch(vector<Goods> &goods, vector<Bills> &market)
+{
     string s;
     Goods find_goods;
-    // Ñ¯ÎÊ¿Í»§ÒªËÑË÷µÄÄÚÈİ
-    cout << "ÇëÊäÈëÒªËÑË÷µÄÉÌÆ·Ãû³Æ£º";
-    cout<<" ";
+  
+    // è¯¢é—®å®¢æˆ·è¦æœç´¢çš„å†…å®¹
+    cout << "è¯·è¾“å…¥è¦æœç´¢çš„å•†å“åç§°ï¼š";
     cin>>s;
+  
     Goods::search(goods,s,find_goods);
     if(find_goods.id != -1){
         customTrade(find_goods,goods, market);
     }else{
-        cout<<"ÕÒµ½µÄÉÌÆ·²»´æÔÚ£¡";
-    }
+        cout<<"æŸ¥æ‰¾çš„å•†å“ä¸å­˜åœ¨ï¼å³å°†è¿”å›ä¸Šä¸€çº§...";
 
 }
-
-
-
