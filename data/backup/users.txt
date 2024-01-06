@@ -1,0 +1,4 @@
+管理员   Admin   Admin   3
+仓库管理   Keeper   0000   2
+收银员   Cashier   1234   1
+顾客1   Customer1   123456   0
