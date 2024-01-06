@@ -96,8 +96,13 @@ void Goods::edit() {
 
 }
 
-void Goods::add() {
+void Goods::add(vector<Goods> goods, Goods new_goods) {
+    // °²È«¼ì²é
+    int i;
+    for(i=0;i<goods.size();i++)
+        if(goods[i].name == new_goods.name || goods[i].id == new_goods.id)
 
+    goods.push_back(new_goods);
 }
 
 void Goods::del() {

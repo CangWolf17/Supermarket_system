@@ -90,6 +90,34 @@ void Users::del(vector<Users> &users, string userid) {
             break;
 }
 
+void Users::pwdedit(vector<Users> &users, Users currentUser){
+    int i, size = users.size();
+
+    for(i=0;i<size;i++)
+        if(users[i].id == currentUser.id)
+            break;
+
+    string old_pwd, new_pwd;
+    cout<<"请输入原密码：";
+    cin>>old_pwd;
+    if(old_pwd == users[i].pwd) {
+        cout << "请输入新密码：";
+        cin>>new_pwd;
+        string tmp;
+        cout<<"请再次输入新密码：";
+        cin>>tmp;
+        if(new_pwd == tmp){
+            users[i].pwd = new_pwd;
+            cout<<"密码修改成功！"<<endl;
+        }else
+            cout<<"二次密码输入错误，程序即将返回";
+    }
+    else{
+        cout<<"原密码错误！"<<endl;
+    }
+
+}
+
 void Users::edit(vector<Users> &users, int i, int kind, string new_value) {
 
     switch (kind) {
