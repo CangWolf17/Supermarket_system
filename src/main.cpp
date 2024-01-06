@@ -50,11 +50,20 @@ int main(){
                         display.customSearch(goods,market);
                         break;
                     }
-                    case 3:{
+                    case 3:{// 3 购物车
+                        cout << "您的购物车内容：" << endl;
+                        for (const auto& bill : market) {
+                            cout << "商品名称: " << bill.name << ", 商品数量: " << bill.quantity << ", 商品单价: "
+                            << bill.sellPrice << ", 总价: " << bill.price << ", 计量单位: " << bill.measure << endl;
+                        }
+                        break;
+                    }
+                    case 4:{
 
                     }
-                    case 4:
-                    case 5:
+                    case 5:{
+
+                    }
                     case 0:
                         break;
                     default:

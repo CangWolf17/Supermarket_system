@@ -82,8 +82,8 @@ public:
     // 传入的string s可以是商品id也可以是商品名
     static void trade(vector<Goods> &goods, Bills &new_bills);       // 交易函数，无论买卖操作都进行调用，用于扣除库存
     static void edit();        // 商品编辑函数，用于编辑商品指定内容
-    static void add();         // 商品添加函数
-    static void del();         // 商品删除函数
+    static void add(vector<Goods> &goods);         // 商品添加函数
+    static void del(vector<Goods> &goods);         // 商品删除函数
 
 };
 
