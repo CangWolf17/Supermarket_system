@@ -51,6 +51,7 @@ void Bills::save(vector<Bills> &bills) {
     txt_data.close();
 }
 
+
 void Bills::receipt(vector<Bills> market){
     int i, size = market.size();
 
@@ -64,11 +65,8 @@ void Bills::receipt(vector<Bills> market){
     <<market[0].time.wHour<<":"<<market[0].time.wMinute<<endl;
 }
 
+// 销售数据的函数还没写
 void Bills::data() {
-
-}
-
-void Bills::newLog(){
 
 }
 

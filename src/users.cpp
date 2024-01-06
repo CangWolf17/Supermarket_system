@@ -46,7 +46,7 @@ void Users::save(vector<Users> &users) {
 
 
 void Users::search(vector<Users> &users, string s, Users &find_user){
-    int i = 0;
+    int i;
 
     if(isDigitStr(s)) {
         int num = strTurnNum(s);
@@ -70,20 +70,80 @@ void Users::search(vector<Users> &users, string s, Users &find_user){
     }
 }
 
-bool Users::add(vector<Users> &users, Users& new_user) {
+void Users::add(vector<Users> &users, int level) {
+
+
+    // 前端询问
+    int i;
+    Users new_user;
+    new_user.level = 0;
+    cout<<"请输入新用户姓名：";
+    cin>>new_user.name;
+    cout<<"请输入新用户id：";
+    cin>>new_user.id;
+    while(new_user.id == "reg"  || new_user.id == "0"){
+        cout<<"用户id非法！"<<endl;
+        cout<<"请再次输入："<<endl;
+        cin>>new_user.id;
+    }
 
     // 安全检查
-    int i;
     for(i=0;i<users.size();i++)
-        if(users[i].name == new_user.name || users[i].id == new_user.id)
-            return false;
+        if (users[i].name == new_user.name || users[i].id == new_user.id) {
+            cout << "输入的用户姓名或id已存在" << endl;
+            pause();
+            return;
+        }
+
+    cout<<"请输入新用户密码：";
+    cin>>new_user.pwd;
+    cout<<"请再次输入新用户密码以确认：";
+    string tmp;
+    cin>>tmp;
+
+    i = 3; // 三次重复输入机会
+    while (i>0 && (new_user.pwd != tmp)) {
+            cout << "两次密码输入不一致！请重新输入：" << endl;
+            cin >> new_user.pwd;
+            cout<<endl;
+            cin >> tmp;
+            i--;
+    }
+
+    // 三次后两次密码仍然错误的话，返回
+    if(new_user.pwd != tmp){
+        cout<<"程序即将返回..."<<endl;
+        pause();
+        return;
+    }else{
+        if(level == 3) {
+            cout << "请输入新用户权限（顾客0，仓库管理员1，收银员2，管理员3）：";
+            cin >> new_user.level;
+        }
+    }
 
     users.push_back(new_user);
-    return true;
+    cout<<"创建新用户成功。";
+    pause();
 }
 
 void Users::del(vector<Users> &users, string userid) {
     int i;
+
+    for(i=0;i<users.size();i++){
+        cout<<"用户姓名："<<users[i].name<<"用户id："<<users[i].id<<"用户权限：";
+        switch (users[i].level) {
+            case 0:
+                cout<<"Customer"<<endl;
+            case 1:
+                cout<<"keeper"<<endl;
+            case 2:
+                cout<<"Cashier"<<endl;
+            case 3:
+                cout<<"Admin"<<endl;
+        }
+
+    }
 
     for(i=0;i<users.size();i++)
         if(users[i].id == userid)
@@ -110,7 +170,7 @@ void Users::pwdedit(vector<Users> &users, Users currentUser){
             users[i].pwd = new_pwd;
             cout<<"密码修改成功！"<<endl;
         }else
-            cout<<"二次密码输入错误，程序即将返回";
+            cout<<"二次密码输入错误，程序即将返回...";
     }
     else{
         cout<<"原密码错误！"<<endl;
