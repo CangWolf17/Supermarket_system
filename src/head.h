@@ -5,7 +5,7 @@
 #ifndef SUPERMARKET_SYSTEM_HEAD_H
 #define SUPERMARKET_SYSTEM_HEAD_H
 
-// ÓÃÓÚ°üº¬ÆäËûÍ·ÎÄ¼şµÄÇøÓò
+// ç”¨äºåŒ…å«å…¶ä»–å¤´æ–‡ä»¶çš„åŒºåŸŸ
 #include "fstream"
 #include "iostream"
 #include "vector"
@@ -16,49 +16,49 @@
 
 #define BLANKSPACE "   "
 
-// ¶¨ÒåÈ«¾Öº¯Êı
-// Ä¿µÄÊÇÎªÁË±ÜÃâÖØ¸´ÔìÂÖ×Ó
+// å®šä¹‰å…¨å±€å‡½æ•°
+// ç›®çš„æ˜¯ä¸ºäº†é¿å…é‡å¤é€ è½®å­
 
-bool isDigitStr(string s);       // ÓÃÓÚ¼ì²é´«ÈëµÄ×Ö·û´®ÊÇ·ñÈ«²¿ÎªÊı×Ö£¬Èç¹ûÊÇÔò·µ»Øtrue
-int strTurnNum(string s);        // ÓÃÓÚ½«×Ö·û´®×ª»»ÎªÊı×ÖµÄº¯Êı£¬·µ»ØÖµÎª×ª»»ºóµÄÊı×Ö
-float strTurnFloatNum(string s); // ÓÃÓÚ½«×Ö·û´®×ª»»ÎªĞ¡ÊıµÄº¯Êı
+bool isDigitStr(string s);       // ç”¨äºæ£€æŸ¥ä¼ å…¥çš„å­—ç¬¦ä¸²æ˜¯å¦å…¨éƒ¨ä¸ºæ•°å­—ï¼Œå¦‚æœæ˜¯åˆ™è¿”å›true
+int strTurnNum(string s);        // ç”¨äºå°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•°å­—çš„å‡½æ•°ï¼Œè¿”å›å€¼ä¸ºè½¬æ¢åçš„æ•°å­—
+float strTurnFloatNum(string s); // ç”¨äºå°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºå°æ•°çš„å‡½æ•°
 
-// ´´½¨Àà
-// ´´½¨ÓÃ»§ĞÅÏ¢µÄÀà
+// åˆ›å»ºç±»
+// åˆ›å»ºç”¨æˆ·ä¿¡æ¯çš„ç±»
 class Users {
 public:
-    string name; // ÓÃ»§ÕæÊµĞÕÃû
-    string id;   // ÓÃ»§id
-    string pwd;  // ÃÜÂë
-    int level;   // ÓÃ»§È¨ÏŞ
+    string name; // ç”¨æˆ·çœŸå®å§“å
+    string id;   // ç”¨æˆ·id
+    string pwd;  // å¯†ç 
+    int level;   // ç”¨æˆ·æƒé™
 
-    // ´´½¨³ÉÔ±º¯Êı
+    // åˆ›å»ºæˆå‘˜å‡½æ•°
     static void read(vector<Users> &users);
     static void save(vector<Users> &users);
 
-    static void search(vector<Users> &users, string s, Users &find_user); // ²éÕÒÓÃ»§
+    static void search(vector<Users> &users, string s, Users &find_user); // æŸ¥æ‰¾ç”¨æˆ·
     static bool add(vector<Users> &users,
-        Users &new_user); // Ìí¼ÓÓÃ»§º¯Êı£¬Ö´ĞĞ°²È«¼ì²é²¢ÓÃÓÚ½«Ö¸¶¨µÄusersÀàÌí¼ÓÈëÊı×é£¬ÈôÓÃ»§ÒÑ´æÔÚÔò·µ»Øfalse
-    static void del(vector<Users> &users, string userid);                      // É¾³ıÓÃ»§£¬ĞèÒª´«ÈëÓÃ»§id
-    static void pwdedit(vector<Users> &users, Users currentUser);              // ĞŞ¸ÄÃÜÂë
-    static void edit(vector<Users> &users, int i, int kind, string new_value); // Ö¸¶¨´ıĞŞ¸ÄµÄÔªËØÏÂ±ê£¬ÖÖÀà£¬Öµ
+        Users &new_user); // æ·»åŠ ç”¨æˆ·å‡½æ•°ï¼Œæ‰§è¡Œå®‰å…¨æ£€æŸ¥å¹¶ç”¨äºå°†æŒ‡å®šçš„usersç±»æ·»åŠ å…¥æ•°ç»„ï¼Œè‹¥ç”¨æˆ·å·²å­˜åœ¨åˆ™è¿”å›false
+    static void del(vector<Users> &users, string userid);                      // åˆ é™¤ç”¨æˆ·ï¼Œéœ€è¦ä¼ å…¥ç”¨æˆ·id
+    static void pwdedit(vector<Users> &users, Users currentUser);              // ä¿®æ”¹å¯†ç 
+    static void edit(vector<Users> &users, int i, int kind, string new_value); // æŒ‡å®šå¾…ä¿®æ”¹çš„å…ƒç´ ä¸‹æ ‡ï¼Œç§ç±»ï¼Œå€¼
 };
 
-// ´´½¨ÏúÊÛ¼ÇÂ¼µÄÀà
+// åˆ›å»ºé”€å”®è®°å½•çš„ç±»
 class Bills {
 public:
-    long long transactionID; // ½»Ò×±àºÅ
-    SYSTEMTIME time;         // ½»Ò×Ê±¼ä
-    int id;                  // ÉÌÆ·±àºÅ
-    string name;             // ÉÌÆ·Ãû³Æ
-    string species;          // ÉÌÆ·ÖÖÀà
-    float sellPrice;         // ÉÌÆ·µ¥¼Û
-    int quantity;            // ½»Ò×ÉÌÆ·ÊıÁ¿
-    float price;             // ½»Ò××Ü¼Û
-    float profit;            // ½»Ò×ÀûÈó
-    string measure;          // ÉÌÆ·µÄ¼ÆÁ¿µ¥Î»
+    long long transactionID; // äº¤æ˜“ç¼–å·
+    SYSTEMTIME time;         // äº¤æ˜“æ—¶é—´
+    int id;                  // å•†å“ç¼–å·
+    string name;             // å•†å“åç§°
+    string species;          // å•†å“ç§ç±»
+    float sellPrice;         // å•†å“å•ä»·
+    int quantity;            // äº¤æ˜“å•†å“æ•°é‡
+    float price;             // äº¤æ˜“æ€»ä»·
+    float profit;            // äº¤æ˜“åˆ©æ¶¦
+    string measure;          // å•†å“çš„è®¡é‡å•ä½
 
-    // ´´½¨³ÉÔ±º¯Êı
+    // åˆ›å»ºæˆå‘˜å‡½æ•°
     static void read(vector<Bills> &bills);
     static void save(vector<Bills> &bills);
 
@@ -67,46 +67,48 @@ public:
     static void data();
 };
 
-// ´´½¨»õÎïµÄÀà
+// åˆ›å»ºè´§ç‰©çš„ç±»
 class Goods {
 public:
-    int id;               // ÉÌÆ·±àºÅ
-    string name;          // ÉÌÆ·Ãû³Æ
-    string species;       // ÉÌÆ·ÖÖÀà
-    float purchasePrice;  // ÉÌÆ·½ø¼Û
-    float sellPrice;      // ÉÌÆ·µ¥¼Û
-    int quantity;         // ÉÌÆ·ÊıÁ¿
-    int lessLimit;        // ÉÌÆ·ÊıÁ¿ÌáĞÑãĞÖµ
-    string measure;       // ÉÌÆ·µÄ¼ÆÁ¿µ¥Î»
-    string remark = "ÎŞ"; // ±¸×¢
+    int id;               // å•†å“ç¼–å·
+    string name;          // å•†å“åç§°
+    string species;       // å•†å“ç§ç±»
+    float purchasePrice;  // å•†å“è¿›ä»·
+    float sellPrice;      // å•†å“å•ä»·
+    int quantity;         // å•†å“æ•°é‡
+    int lessLimit;        // å•†å“æ•°é‡æé†’é˜ˆå€¼
+    string measure;       // å•†å“çš„è®¡é‡å•ä½
+    string remark = "æ— "; // å¤‡æ³¨
 
-    // ´´½¨³ÉÔ±º¯Êı
-    static void read(vector<Goods> &goods); // ´«ÈëÒ»¸öGoodsÊı×é£¬¶ÁÈ¡ÎÄ¼şÖĞµÄ»õÎïĞÅÏ¢²¢´æÈëÊı×é
-    static void save(vector<Goods> &goods); // ´«ÈëÒ»¸öGoodsÊı×é£¬½«Êı×é¸²¸Ç´æ´¢µ½ÎÄ¼şÖĞ
+    // åˆ›å»ºæˆå‘˜å‡½æ•°
+    static void read(vector<Goods> &goods); // ä¼ å…¥ä¸€ä¸ªGoodsæ•°ç»„ï¼Œè¯»å–æ–‡ä»¶ä¸­çš„è´§ç‰©ä¿¡æ¯å¹¶å­˜å…¥æ•°ç»„
+    static void save(vector<Goods> &goods); // ä¼ å…¥ä¸€ä¸ªGoodsæ•°ç»„ï¼Œå°†æ•°ç»„è¦†ç›–å­˜å‚¨åˆ°æ–‡ä»¶ä¸­
 
     static void search(vector<Goods> &goods, string s, Goods &find_goods);
-    // ²éÕÒÉÌÆ·£¬ÄÜÕÒµ½¾Í°ÑÉÌÆ·ĞÅÏ¢´æÈëĞÎ²Îfind_goods£¬ÕÒ²»µ½¾Í½«ÆäµÄidÉèÖÃÎª-1
-    // ´«ÈëµÄstring s¿ÉÒÔÊÇÉÌÆ·idÒ²¿ÉÒÔÊÇÉÌÆ·Ãû
+    // æŸ¥æ‰¾å•†å“ï¼Œèƒ½æ‰¾åˆ°å°±æŠŠå•†å“ä¿¡æ¯å­˜å…¥å½¢å‚find_goodsï¼Œæ‰¾ä¸åˆ°å°±å°†å…¶çš„idè®¾ç½®ä¸º-1
+    // ä¼ å…¥çš„string så¯ä»¥æ˜¯å•†å“idä¹Ÿå¯ä»¥æ˜¯å•†å“å
+
     static void trade(vector<Bills> bills, vector<Goods> &goods,
-        vector<Bills> &new_bills);                         // ½»Ò×º¯Êı£¬ÎŞÂÛÂòÂô²Ù×÷¶¼½øĞĞµ÷ÓÃ£¬ÓÃÓÚ¿Û³ı¿â´æ
-    static void edit();                                    // ÉÌÆ·±à¼­º¯Êı£¬ÓÃÓÚ±à¼­ÉÌÆ·Ö¸¶¨ÄÚÈİ
-    static void add(vector<Goods> goods, Goods new_goods); // ÉÌÆ·Ìí¼Óº¯Êı
-    static void del();                                     // ÉÌÆ·É¾³ıº¯Êı
+        vector<Bills> &new_bills);                         // äº¤æ˜“å‡½æ•°ï¼Œæ— è®ºä¹°å–æ“ä½œéƒ½è¿›è¡Œè°ƒç”¨ï¼Œç”¨äºæ‰£é™¤åº“å­˜
+    static void edit();                                    // å•†å“ç¼–è¾‘å‡½æ•°ï¼Œç”¨äºç¼–è¾‘å•†å“æŒ‡å®šå†…å®¹
+    static void add(vector<Goods> goods, Goods new_goods); // å•†å“æ·»åŠ å‡½æ•°
+    static void del();                                     // å•†å“åˆ é™¤å‡½æ•°
+
 };
 
-// ´´½¨ÓÃÓÚÏÔÊ¾ÆÁÄ»ÄÚÈİµÄÀà
+// åˆ›å»ºç”¨äºæ˜¾ç¤ºå±å¹•å†…å®¹çš„ç±»
 class Display {
 public:
-    void loginPage();   // µÇÂ¼½çÃæ
-    void welcomePage(); // »¶Ó­½çÃæ
+    void loginPage();   // ç™»å½•ç•Œé¢
+    void welcomePage(); // æ¬¢è¿ç•Œé¢
 
-    void customMenu(vector<Goods> &goods);                             // ¹Ë¿Í²Ëµ¥½çÃæ
-    void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // ¹Ë¿ÍÉÌÆ·Ä¿Â¼
-    void customSearch(vector<Goods> &goods, vector<Bills> &market);    // ¹Ë¿ÍËÑË÷ÉÌÆ·
+    void customMenu(vector<Goods> &goods);                             // é¡¾å®¢èœå•ç•Œé¢
+    void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // é¡¾å®¢å•†å“ç›®å½•
+    void customSearch(vector<Goods> &goods, vector<Bills> &market);    // é¡¾å®¢æœç´¢å•†å“
 
 
     void users_data();
-    void goods_data(vector<Goods> &goods); // ËùÓĞµÄÉÌÆ·ĞÅÏ¢Õ¹Ê¾
+    void goods_data(vector<Goods> &goods); // æ‰€æœ‰çš„å•†å“ä¿¡æ¯å±•ç¤º
 };
 
 #endif // SUPERMARKET_SYSTEM_HEAD_H

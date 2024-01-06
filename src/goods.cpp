@@ -8,21 +8,21 @@ using namespace std;
 
 void Goods::read(vector<Goods> &goods){
 
-    string fname = R"(.\data\goods.txt)"; // Ö¸¶¨ÎÄ¼şµØÖ·
-    ifstream txt_data(fname, ios::in); // ´ò¿ªÎÄ¼ş
-    Goods new_goods = *new Goods; // ÎªÒ»¸öĞÂµÄGoodsÀàÉêÇëÄÚ´æ
+    string fname = R"(.\data\goods.txt)"; // æŒ‡å®šæ–‡ä»¶åœ°å€
+    ifstream txt_data(fname, ios::in); // æ‰“å¼€æ–‡ä»¶
+    Goods new_goods = *new Goods; // ä¸ºä¸€ä¸ªæ–°çš„Goodsç±»ç”³è¯·å†…å­˜
 
     if(!txt_data.is_open()){
-        cout << "ÎÄ¼ş´ò¿ªÊ§°Ü";
+        cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥";
         exit(1);
     }
     else{
         while(!txt_data.eof()){
-            txt_data >> new_goods.id >> new_goods.name                                     // »ñÈ¡ÉÌÆ·µÄ±àºÅºÍÃû³Æ
-                     >> new_goods.species >> new_goods.purchasePrice                           // »ñÈ¡ÖÖÀàºÍ½ø¼Û
-                     >> new_goods.sellPrice >> new_goods.quantity                              // »ñÈ¡ÊÛ¼ÛºÍÊıÁ¿
-                     >> new_goods.lessLimit >> new_goods.measure >> new_goods.remark;          // »ñÈ¡ÌáĞÑãĞÖµ¡¢µ¥Î»ºÍ±¸×¢
-            // ´Ó´ò¿ªµÄÎÄ¼şÖĞÖğ´Î½«Á÷´æÈë½á¹¹Ìå
+            txt_data >> new_goods.id >> new_goods.name                                     // è·å–å•†å“çš„ç¼–å·å’Œåç§°
+                     >> new_goods.species >> new_goods.purchasePrice                           // è·å–ç§ç±»å’Œè¿›ä»·
+                     >> new_goods.sellPrice >> new_goods.quantity                              // è·å–å”®ä»·å’Œæ•°é‡
+                     >> new_goods.lessLimit >> new_goods.measure >> new_goods.remark;          // è·å–æé†’é˜ˆå€¼ã€å•ä½å’Œå¤‡æ³¨
+            // ä»æ‰“å¼€çš„æ–‡ä»¶ä¸­é€æ¬¡å°†æµå­˜å…¥ç»“æ„ä½“
             goods.push_back(new_goods);
         }
     }
@@ -31,13 +31,13 @@ void Goods::read(vector<Goods> &goods){
 
 void Goods::save(vector<Goods> &goods) {
 
-    string fname = R"(.\data\goods.txt)"; // Ö¸¶¨ÎÄ¼şµØÖ·
-    ofstream txt_data(fname, ios::out); // ´ò¿ªÎÄ¼ş
+    string fname = R"(.\data\goods.txt)"; // æŒ‡å®šæ–‡ä»¶åœ°å€
+    ofstream txt_data(fname, ios::out); // æ‰“å¼€æ–‡ä»¶
     int i = 0;
 
 
     if (!txt_data.is_open()) {
-        cout << "ÎÄ¼ş´ò¿ªÊ§°Ü";
+        cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥";
         exit(1);
     } else while(i<goods.size()-1){
 
@@ -54,7 +54,7 @@ void Goods::save(vector<Goods> &goods) {
 void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
     int i = 0;
 
-    if(isDigitStr(s)) { //ÅĞ¶Ï¸ø¶¨×Ö·û´®ÊÇ·ñÎª´¿Êı×Ö£¬Èç¹ûÊÇ´¿Êı×ÖÔòÎªÉÌÆ·id£¬Èç¹û²»ÊÇÔòÎªÉÌÆ·Ãû
+    if(isDigitStr(s)) { //åˆ¤æ–­ç»™å®šå­—ç¬¦ä¸²æ˜¯å¦ä¸ºçº¯æ•°å­—ï¼Œå¦‚æœæ˜¯çº¯æ•°å­—åˆ™ä¸ºå•†å“idï¼Œå¦‚æœä¸æ˜¯åˆ™ä¸ºå•†å“å
         int num = strTurnNum(s);
 
         for(i=0;i<goods.size();i++)
@@ -81,12 +81,12 @@ void Goods::trade(vector<Bills> bills, vector<Goods> &goods, vector<Bills> &new_
 
     SYSTEMTIME tradetime;
     GetLocalTime(&tradetime);
-    // »ñÈ¡½»Ò×Ê±¼ä
+    // è·å–äº¤æ˜“æ—¶é—´
 
     int i;
     for(i=0;i<marketSize;i++) {
-        new_bills[i].time = tradetime; // Ğ´Èë½»Ò×Ê±¼ä
-        bills.push_back(new_bills[i]); // ÍÆÈë½»Ò×
+        new_bills[i].time = tradetime; // å†™å…¥äº¤æ˜“æ—¶é—´
+        bills.push_back(new_bills[i]); // æ¨å…¥äº¤æ˜“
     }
 
 }
@@ -96,17 +96,29 @@ void Goods::edit() {
 
 }
 
-void Goods::add(vector<Goods> goods, Goods new_goods) {
-    // °²È«¼ì²é
-    int i;
-    for(i=0;i<goods.size();i++)
-        if(goods[i].name == new_goods.name || goods[i].id == new_goods.id)
-
-    goods.push_back(new_goods);
+void Goods::add(vector<Goods> &goods) {
+    Goods newGoods = *new Goods; // åˆ›å»ºæ–°çš„ Goods å¯¹è±¡
+    cout << "è¯·è¾“å…¥æ–°å•†å“çš„ç¼–å·ã€åç§°ã€ç§ç±»ã€è¿›ä»·ã€å”®ä»·ã€æ•°é‡ã€æé†’é˜ˆå€¼ã€å•ä½å’Œå¤‡æ³¨ï¼š" << endl;
+    cin >> newGoods.id >> newGoods.name >> newGoods.species >>newGoods.purchasePrice
+    >> newGoods.sellPrice >> newGoods.quantity >> newGoods.lessLimit >> newGoods.measure >> newGoods.remark; // è·å–ç”¨æˆ·è¾“å…¥çš„å•†å“ä¿¡æ¯å¹¶å­˜å…¥æ–°å•†å“å¯¹è±¡ä¸­
+    goods.push_back(newGoods); // å°†æ–°å•†å“æ·»åŠ åˆ°å•†å“åˆ—è¡¨ä¸­
+    cout << "æ·»åŠ æˆåŠŸï¼" << endl;
 }
 
-void Goods::del() {
-
+void Goods::del(vector<Goods> &goods) {
+    int choice;
+    cout << "è¯·é€‰æ‹©è¦åˆ é™¤çš„å•†å“ï¼š" << endl;
+    for (int i = 0; i < goods.size(); i++) {
+        cout << i+1 << ". " << goods[i].id << " - " << goods[i].name << endl;
+    }
+    cin >> choice;
+    if (choice < 1 || choice > goods.size()) {
+        cout << "æ— æ•ˆçš„é€‰æ‹©ï¼" << endl;
+        return;
+    }
+    int index = choice - 1; // è·å–é€‰æ‹©çš„å•†å“çš„ç´¢å¼•
+    goods.erase(goods.begin() + index); // åˆ é™¤é€‰ä¸­çš„å•†å“
+    cout << "åˆ é™¤æˆåŠŸï¼" << endl;
 }
 
 
