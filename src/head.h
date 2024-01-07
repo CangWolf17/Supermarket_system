@@ -8,6 +8,8 @@
 // 用于包含其他头文件的区域
 #include "fstream"
 #include "iostream"
+#include "algorithm"
+#include "windows.h"
 #include "sstream"
 #include "vector"
 #include "vector"
@@ -23,8 +25,8 @@
 
 bool isDigitStr(string s);       // 用于检查传入的字符串是否全部为数字，如果是则返回true
 int strTurnNum(string s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
-inline void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
-inline void cls();               // 清屏函数
+void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
+void cls();               // 清屏函数
 
 // 创建类
 // 创建用户信息的类
@@ -42,7 +44,7 @@ public:
 
     static void search(vector<Users> &users, string s, Users &find_user);      // 查找用户
     static void add(vector<Users> &users, int level);                    // 添加用户函数
-    static void del(vector<Users> &users, string userid);                      // 删除用户，需要传入用户id
+    static void del(vector<Users> &users);                      // 删除用户，需要传入用户id
     static void pwdedit(vector<Users> &users, Users currentUser);              // 修改密码
     static void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素下标，种类，值
 };
@@ -66,7 +68,7 @@ public:
     static void save(vector<Bills> &bills);
 
     static void receipt(vector<Bills> market);
-    static void data();
+    static void data(vector<Bills> market,const Bills& bill, int pageNumber, const string& name, const string& species);
 };
 
 // 创建货物的类
@@ -80,7 +82,6 @@ public:
     int quantity;         // 商品数量
     int lessLimit;        // 商品数量提醒阈值
     string measure;       // 商品的计量单位
-    string remark = "无"; // 备注
 
     // 创建成员函数
     static void read(vector<Goods> &goods); // 传入一个Goods数组，读取文件中的货物信息并存入数组
@@ -110,13 +111,17 @@ public:
     void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
     void customMarket(vector<Bills> market);                           // 顾客购物车
 
-
     void keeperMenu();
+    void keeperSearch(vector<Goods> &goods);
+    void keeperLimit(vector<Goods> &goods);
 
     void cashierMenu();
+    void cashierMarket(vector<Bills> &market);
+    void cashierTrade(vector<Goods> &goods, vector<Bills> &market);
 
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示
+    void goods_edit(vector<Goods> &goods); // 商品编辑
 };
 
 #endif // SUPERMARKET_SYSTEM_HEAD_H

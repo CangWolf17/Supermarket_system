@@ -23,11 +23,11 @@ int main()
     // 实例化对象，初始化程序
     Display display; // 实例化一个对象用于调用成员函数
 
-    vector<Users> users; // 申请类数组，数组都以s结尾
+    vector<Users> users; // 读取文件中的数据并存入数组
     vector<Goods> goods;
     vector<Bills> bills;
 
-    Goods::read(goods); // 读取文件中的数据并存入数组
+    Goods::read(goods); //
     Users::read(users);
     Bills::read(bills);
 
@@ -43,6 +43,7 @@ int main()
         display.welcomePage();
         case customer: {
             vector<Bills> market; // 一个bills数组用来当作购物车
+            system("title customer");
             // 用while保持菜单
             while (menuChoice[0]) {
                 display.customMenu();
@@ -159,33 +160,33 @@ int main()
             break;
         }
 
-
         case keeper:{
-            system("cls");
             system("title keeper");
 
             while (menuChoice[0]) {
-
+                cls();
+                display.keeperLimit(goods);
+                cout<<endl;
                 display.keeperMenu();
 
                 cin >> menuChoice[0];
                 switch (menuChoice[0]) {
-                    case 1: { // 1 商品详情
+                    case 1: {
                         display.goods_data(goods);
                         break;
-                    }
-                    case 2: { // 2 搜索商品
-
+                    } // 1 商品详情
+                    case 2: {
+                        display.keeperSearch(goods);
                         break;
-                    }
-                    case 3:{// 3 编辑商品
-
+                    } // 2 搜索商品
+                    case 3: {
+                        display.goods_edit(goods);
                         break;
-                    }
-                    case 4: { // 4 添加商品
+                    } // 3 编辑商品
+                    case 4: {
                         Goods::add(goods);
                         break;
-                    }
+                    } // 4 添加商品
                     case 5: {
                         Goods::del(goods);
                         break;
@@ -205,30 +206,71 @@ int main()
             }
             break;
         }
-        case cashier: {
 
-            cin >> menuChoice[0];
-            switch (menuChoice[0]) {
-                case 1: { // 1 销售
-                    break;
+        case cashier: {
+            system("title cashier");
+            vector<Bills> market; // 创建market作为购物测
+
+            while(menuChoice[0]) {
+                if(market.empty())
+                    cout<<"当前购物车为空。"<<endl;
+                else
+                    display.cashierMarket(market);
+
+                display.cashierMenu();
+                cin >> menuChoice[0];
+
+                switch (menuChoice[0]) {
+                    case 1: {
+                        display.cashierTrade(goods,market);
+                        break;
+                    } // 1 销售商品
+                    case 2: {
+                        cls();
+                        if (market.empty()) {
+                            cout << "购物车中还未添加商品哦！";
+                        } else {
+                            // 展示购物车内容
+                            display.cashierMarket(market);
+
+                            // 结算
+                            cout << endl << "是否确认结算？(y/n)：";
+                            char choice;
+                            cin >> choice;
+                            if (choice == 'y')
+                                Goods::trade(bills, goods, market);
+                            else
+                                menuChoice[0] = -1;
+
+                            // 小票打印
+                            cout << "是否打印小票？(y/n)：";
+                            cin >> choice;
+                            if (choice == 'y')
+                                Bills::receipt(market);
+                        }
+                        menuChoice[0] = -1;
+                        break;
+                    } // 2 购物结算
+                    case 3: {
+
+                        break;
+                    } // 3 查看销售记录
+                    case 4: {
+                        Users::pwdedit(users, user);
+                        menuChoice[0] = -1;
+                        break;
+                    } // 4 修改密码
+                    case 0:
+                        break;
+                    default:
+                        cout << "输入值无效！请重新输入：";
+                        cin >> menuChoice[0];
+                        menuChoice[0] = -1;
                 }
-                case 2: { // 2 查看销售记录
-                    break;
-                }
-                case 3: {// 3 删除顾客账户
-                    break;
-                }
-                case 4: { // 4 修改密码
-                }
-                case 0:
-                    break;
-                default:
-                    cout << "输入值无效！请重新输入：";
-                    cin >> menuChoice[0];
-                    menuChoice[0] = -1;
             }
             break;
         }
+
 
         case admin: {
             cin >> menuChoice[0];
@@ -243,12 +285,12 @@ int main()
     }
 
 
-    // 程序结束自动保存数据
+    // 程序结束，保存数据
     Users::save(users);
     Goods::save(goods);
     Bills::save(bills);
 
-    cout<<"感谢您的使用，再见！";
+    cout<<"感谢您的使用，下次再见！";
     system ("pause");
     return 0;
 }

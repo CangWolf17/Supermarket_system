@@ -3,6 +3,7 @@
 //
 
 #include "head.h"
+#include "algorithm"
 
 using namespace std;
 
@@ -12,7 +13,8 @@ void Bills::read(vector<Bills> &bills) {
     Bills new_bill;
 
     if(!txt_data.is_open()){
-        cout << "文件打开失败";
+        cout << "账单信息文件打开失败！";
+        pause();
         exit(1);
     }
     else{
@@ -35,7 +37,8 @@ void Bills::save(vector<Bills> &bills) {
     int i = 0;
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "账单信息文件打开失败！";
+        pause();
         exit(1);
     } else while(i<bills.size()-1) {
             txt_data << bills[i].transactionID << BLANKSPACE
@@ -65,10 +68,89 @@ void Bills::receipt(vector<Bills> market){
     <<market[0].time.wHour<<":"<<market[0].time.wMinute<<endl;
 }
 
-// 销售数据的函数还没写
-void Bills::data() {
+// 销售数据的函数
+void Bills::data(vector<Bills> market,const Bills& bill, int pageNumber, const string& name, const string& species) {
 
+    // 每页显示的销售记录数量
+    int pageSize = 10;
+
+    // 计算起始和结束
+    int startIndex = (pageNumber - 1) * pageSize;
+    int endIndex = pageNumber * pageSize;
+
+    // 遍历指定范围内的销售记录
+    for (int i = startIndex; i < endIndex && i < market.size(); i++) {
+        // 打印当前销售记录的信息
+        cout << " 交易编号: " << market[i].transactionID ;
+        cout << " 时间: " << market[i].time.wYear << "/" << market[i].time.wMonth << "/" << market[i].time.wDay << " "
+             << market[i].time.wHour << ":" << market[i].time.wMinute ;
+        cout << " 商品编号: " << market[i].id ;
+        cout << " 商品名称: " << market[i].name ;
+        cout << " 商品种类: " << market[i].species ;
+        cout << " 商品单价: " << market[i].sellPrice ;
+        cout << " 交易数量: " << market[i].quantity ;
+        cout << " 计量单位: " << market[i].measure ;
+        cout << " 交易总价: " << market[i].price ;
+        cout << " 交易利润: " << market[i].profit ;
+        cout << endl; // 便于区分每条销售数据
+    }
+    // 显示管理员销售记录的界面
+    cout << "其他选项：" << endl;
+    cout << "1. 按类别查看" << endl;
+    cout << "2. 按商品名称查看" << endl;
+    cout << "0. 退出" << endl;
+
+    int choice = 1;
+    cin >> choice;
+    switch (choice) {
+
+        case 1: {   //按类别
+            for (int i = startIndex; i < endIndex && i < market.size(); i++) {
+                // 检查商品种类是否符合条件
+                if (market[i].species == species) {
+                    // 打印当前销售记录的信息
+                    cout << " 交易编号: " << market[i].transactionID ;
+                    cout << " 时间: " << market[i].time.wYear << "/" << market[i].time.wMonth << "/" << market[i].time.wDay << " "
+                         << market[i].time.wHour << ":" << market[i].time.wMinute ;
+                    cout << " 商品编号: " << market[i].id ;
+                    cout << " 商品名称: " << market[i].name ;
+                    cout << " 商品种类: " << market[i].species ;
+                    cout << " 商品单价: " << market[i].sellPrice ;
+                    cout << " 交易数量: " << market[i].quantity ;
+                    cout << " 计量单位: " << market[i].measure ;
+                    cout << " 交易总价: " << market[i].price ;
+                    cout << " 交易利润: " << market[i].profit ;
+                    cout << endl; // 便于区分每条销售数据
+                }
+            }
+            break;
+        }
+        case 2: {   //按名称
+            for (int i = startIndex; i < endIndex && i < market.size(); i++) {
+                // 检查商品种类是否符合条件
+                if (market[i].name == name) {
+                    // 打印当前销售记录的信息
+                    cout << " 交易编号: " << market[i].transactionID ;
+                    cout << " 时间: " << market[i].time.wYear << "/" << market[i].time.wMonth << "/" << market[i].time.wDay << " "
+                         << market[i].time.wHour << ":" << market[i].time.wMinute ;
+                    cout << " 商品编号: " << market[i].id ;
+                    cout << " 商品名称: " << market[i].name ;
+                    cout << " 商品种类: " << market[i].species ;
+                    cout << " 商品单价: " << market[i].sellPrice ;
+                    cout << " 交易数量: " << market[i].quantity ;
+                    cout << " 计量单位: " << market[i].measure ;
+                    cout << " 交易总价: " << market[i].price ;
+                    cout << " 交易利润: " << market[i].profit ;
+                    cout << endl; // 便于区分每条销售数据
+                }
+            }
+            break;
+        }
+        case 0:
+            break;
+        default:
+            cout << "请输入有效值！ ";
+            return;
+
+    }
 }
-
-
-
