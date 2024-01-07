@@ -25,8 +25,8 @@
 
 bool isDigitStr(string s);       // 用于检查传入的字符串是否全部为数字，如果是则返回true
 int strTurnNum(string s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
-inline void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
-inline void cls();               // 清屏函数
+void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
+void cls();               // 清屏函数
 
 // 创建类
 // 创建用户信息的类
@@ -117,6 +117,7 @@ public:
 
     void cashierMenu();
     void cashierMarket(vector<Bills> &market);
+    void cashierTrade(vector<Goods> &goods, vector<Bills> &market);
 
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示
