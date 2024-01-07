@@ -12,7 +12,8 @@ void Users::read(vector<Users> &users){
     Users new_user;
 
     if(!txt_data.is_open()){
-        cout << "文件打开失败";
+        cout << "用户信息文件打开失败！";
+        pause();
         exit(1);
     }
     else{
@@ -31,7 +32,8 @@ void Users::save(vector<Users> &users) {
     int i = 0;
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "用户信息文件打开失败！";
+        pause();
         exit(1);
     } else while(i<users.size()-1){
             cout << users[i].name << BLANKSPACE << users[i].id << BLANKSPACE

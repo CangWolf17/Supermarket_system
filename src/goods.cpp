@@ -12,7 +12,8 @@ void Goods::read(vector<Goods> &goods){
     Goods new_goods = *new Goods;         // 为一个新的Goods类申请内存
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "货物信息文件打开失败！";
+        pause();
         exit(1);
     } else {
         while (!txt_data.eof()) {
@@ -34,7 +35,8 @@ void Goods::save(vector<Goods> &goods){
 
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "货物信息文件打开失败！";
+        pause();
         exit(1);
     } else
         while (i < goods.size() - 1) {
