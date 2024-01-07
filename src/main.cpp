@@ -155,13 +155,16 @@ int main()
             break;
         }
         case keeper: {
+
             break;
         }
         case cashier: {
+
             break;
         }
 
         case admin: {
+
             break;
         }
     }
