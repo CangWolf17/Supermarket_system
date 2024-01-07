@@ -165,27 +165,29 @@ int main()
             system("title keeper");
 
             while (menuChoice[0]) {
-
+                cls();
+                display.keeperLimit(goods);
+                cout<<endl;
                 display.keeperMenu();
 
                 cin >> menuChoice[0];
                 switch (menuChoice[0]) {
-                    case 1: { // 1 商品详情
+                    case 1: {
                         display.goods_data(goods);
                         break;
-                    }
-                    case 2: { // 2 搜索商品
-
+                    } // 1 商品详情
+                    case 2: {
+                        display.keeperSearch(goods);
                         break;
-                    }
-                    case 3:{// 3 编辑商品
-
+                    } // 2 搜索商品
+                    case 3:{
+                        display.goods_edit(goods);
                         break;
-                    }
-                    case 4: { // 4 添加商品
+                    } // 3 编辑商品
+                    case 4: {
                         Goods::add(goods);
                         break;
-                    }
+                    } // 4 添加商品
                     case 5: {
                         Goods::del(goods);
                         break;

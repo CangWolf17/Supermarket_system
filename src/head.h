@@ -80,7 +80,6 @@ public:
     int quantity;         // 商品数量
     int lessLimit;        // 商品数量提醒阈值
     string measure;       // 商品的计量单位
-    string remark = "无"; // 备注
 
     // 创建成员函数
     static void read(vector<Goods> &goods); // 传入一个Goods数组，读取文件中的货物信息并存入数组
@@ -110,13 +109,15 @@ public:
     void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
     void customMarket(vector<Bills> market);                           // 顾客购物车
 
-
     void keeperMenu();
+    void keeperSearch(vector<Goods> &goods);
+    void keeperLimit(vector<Goods> &goods);
 
     void cashierMenu();
 
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示
+    void goods_edit(vector<Goods> &goods); // 商品编辑
 };
 
 #endif // SUPERMARKET_SYSTEM_HEAD_H
