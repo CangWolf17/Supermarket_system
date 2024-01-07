@@ -4,7 +4,6 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
-#include <algorithm>
 
 #include "head.h"
 
@@ -285,14 +284,28 @@ int main()
 
 
         case admin: {
+            system("title admin");
             cin >> menuChoice[0];
+<<<<<<< HEAD
+
+            while(menuChoice[0]){
+
+                switch (menuChoice[0]) {
+                    default:
+                        cout << "杈撳叆鍊兼棤鏁堬紒璇烽噸鏂拌緭鍏ワ細";
+                        cin >> menuChoice[0];
+                        menuChoice[0] = -1;
+                }
+                break;
+=======
             switch (menuChoice[0]) {
                 default:
                     cout << "输入值无效！请重新输入：";
                     cin >> menuChoice[0];
                     menuChoice[0] = -1;
+>>>>>>> d1d3310630a856d53c8ec3808e895a8fe6641b7b
             }
-            break;
+
         }
     }
 
