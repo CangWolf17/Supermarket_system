@@ -224,9 +224,33 @@ int main()
 
                 switch (menuChoice[0]) {
                     case 1: {
+                        display.cashierTrade(goods,market);
                         break;
                     } // 1 销售商品
                     case 2: {
+                        cls();
+                        if (market.empty()) {
+                            cout << "购物车中还未添加商品哦！";
+                        } else {
+                            // 展示购物车内容
+                            display.cashierMarket(market);
+
+                            // 结算
+                            cout << endl << "是否确认结算？(y/n)：";
+                            char choice;
+                            cin >> choice;
+                            if (choice == 'y')
+                                Goods::trade(bills, goods, market);
+                            else
+                                menuChoice[0] = -1;
+
+                            // 小票打印
+                            cout << "是否打印小票？(y/n)：";
+                            cin >> choice;
+                            if (choice == 'y')
+                                Bills::receipt(market);
+                        }
+                        menuChoice[0] = -1;
                         break;
                     } // 2 购物结算
                     case 3: {

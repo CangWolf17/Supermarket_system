@@ -118,7 +118,7 @@ void Users::add(vector<Users> &users, int level) {
 
 void Users::del(vector<Users> &users) {
     int i;
-    string userid
+    string userid;
 
     for (i = 0; i < users.size(); i++) {
         cout << "用户姓名：" << users[i].name << "用户id：" << users[i].id << "用户权限：";

@@ -39,22 +39,16 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         cout << "请输入购买数量：";
         cin >> new_bills.quantity;
         // 对顾客输入的商品数量进行检查
-        for (const auto &bill: market) {
-            if (bill.quantity <= 0) {
-                cout << "商品数量不能为负数或零。" << endl;
-                return;
-            }
+        while (new_bills.quantity <= 0) {
+            cout << "商品数量不能为负数或零。" << endl;
+            cin >> new_bills.quantity;
         }
         // 检查商品数量是否超过了库存
-        for (const auto &bill: market) {
-            int i = 0;
-            if (bill.quantity > 0) {
-                if (bill.quantity > goods[i].lessLimit) {
-                    cout << "购物车中的商品数量超过了库存。" << endl;
-                    return;
-                }
-            }
+        while (new_bills.quantity > buy_goods.lessLimit) {
+            cout << "购物车中的商品数量超过了库存。" << endl;
+            cin >> new_bills.quantity;
         }
+
         // 产生销售记录
         new_bills.id = buy_goods.id;
         new_bills.name = buy_goods.name;
@@ -67,7 +61,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
 
         // 销售记录推入购物车
         market.push_back(new_bills);
-        std::cout << "购买成功！" << std::endl;
+        std::cout << "添加成功！" << std::endl;
     }
 }
 void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
@@ -185,7 +179,7 @@ void Display::cashierMarket(vector<Bills> &market) {
                  << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
         }
 }
-void cashierTrade(vector<Goods> &goods, vector<Bills> market) {
+void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
 
     int j = 1;
     // 添加代码以显示顾客商品目录
@@ -196,55 +190,44 @@ void cashierTrade(vector<Goods> &goods, vector<Bills> market) {
              << " 数量：" << tmp_goods.quantity << endl;
     } // 未包含“商品进价”、“阈值提醒”和“备注”
 
-
     cout << "请输入要销售的商品编号（无则请输入0）：";
     // 输入购买商品编号
     int id, i;
     cin >> id;
-    if (id != 0)
+    if (id != 0) {
         for (i = 0; i < goods.size(); i++)
             if (goods[i].id == id)
                 break;
-
-    Goods buy_goods = goods[i];
-    char buy_choice;
-    cout << "是否确认加入购物车？（请输入y/n）：";
-    cin >> buy_choice;
-    if (buy_choice == 'y') {
-        Bills new_bills;
-        cout << "请输入购买数量：";
-        cin >> new_bills.quantity;
-        // 对顾客输入的商品数量进行检查
-        for (const auto &bill: market) {
-            if (bill.quantity <= 0) {
-                cout << "商品数量不能为负数或零。" << endl;
-                return;
-            }
-        }
-        // 检查商品数量是否超过了库存
-        for (const auto &bill: market) {
-            int i = 0;
-            if (bill.quantity > 0) {
-                if (bill.quantity > goods[i].lessLimit) {
-                    cout << "购物车中的商品数量超过了库存。" << endl;
-                    return;
-                }
-            }
-        }
-        // 产生销售记录
-        new_bills.id = buy_goods.id;
-        new_bills.name = buy_goods.name;
-        new_bills.species = buy_goods.species;
-        new_bills.sellPrice = buy_goods.sellPrice;
-        new_bills.quantity = buy_goods.quantity;
-        new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
-        new_bills.measure = buy_goods.measure;
-
-
-        // 销售记录推入购物车
-        market.push_back(new_bills);
-        std::cout << "购买成功！" << std::endl;
+    } else {
+        pause();
+        return;
     }
+
+    Bills new_bills;
+    cout << "请输入购买数量：";
+    // 对顾客输入的商品数量进行检查
+    while (new_bills.quantity <= 0) {
+        cout << "商品数量不能为负数或零。" << endl;
+        cin >> new_bills.quantity;
+    }
+    // 检查商品数量是否超过了库存
+    while (new_bills.quantity > goods[i].lessLimit) {
+        cout << "购物车中的商品数量超过了库存。" << endl;
+        cin >> new_bills.quantity;
+    }
+    // 产生销售记录
+    new_bills.id = goods[i].id;
+    new_bills.name = goods[i].name;
+    new_bills.species = goods[i].species;
+    new_bills.sellPrice = goods[i].sellPrice;
+    new_bills.quantity = goods[i].quantity;
+    new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
+    new_bills.measure = goods[i].measure;
+
+
+    // 销售记录推入购物车
+    market.push_back(new_bills);
+    std::cout << "添加成功！" << std::endl;
 }
 
 void Display::users_data() {
