@@ -115,6 +115,7 @@ public:
 
     void cashierMenu();
     void cashierMarket(vector<Bills> &market);
+    void cashierTrade(vector<Goods> &goods, );
 
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示

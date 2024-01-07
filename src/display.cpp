@@ -73,28 +73,29 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
 void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     cls();
 
+    int j = 1;
     // 添加代码以显示顾客商品目录
     cout << "以下是所有商品目录：" << endl;
     for (const auto &tmp_goods: goods) {
-        cout << tmp_goods.id << "   " << tmp_goods.name << "   " << tmp_goods.species << "   " << tmp_goods.sellPrice
-             << "   " << tmp_goods.quantity << "   " << tmp_goods.measure << "   " << endl;
+        cout << j++ << ".商品编号：" << tmp_goods.id << " 名称：" << tmp_goods.name
+             << " 种类：" << tmp_goods.species << " 价格：" << tmp_goods.sellPrice << "/" << tmp_goods.measure
+             << " 数量：" << tmp_goods.quantity << endl;
     } // 未包含“商品进价”、“阈值提醒”和“备注”
 
     cout << "请输入要购买的商品编号（无则请输入0）：";
     // 输入购买商品编号
     int id, i;
     cin >> id;
-    if (id != 0) {
+    if (id != 0)
         for (i = 0; i < goods.size(); i++)
             if (goods[i].id == id)
                 break;
 
-        Goods buy_goods = goods[i];
-        char buy_choice;
-        cout << "是否确认加入购物车？（请输入y/n）：";
-        cin >> buy_choice;
-        customTrade(buy_goods, goods, market, buy_choice);
-    }
+    Goods buy_goods = goods[i];
+    char buy_choice;
+    cout << "是否确认加入购物车？（请输入y/n）：";
+    cin >> buy_choice;
+    customTrade(buy_goods, goods, market, buy_choice);
 }
 void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
     cls();
@@ -183,6 +184,67 @@ void Display::cashierMarket(vector<Bills> &market) {
             cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
                  << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
         }
+}
+void cashierTrade(vector<Goods> &goods, vector<Bills> market) {
+
+    int j = 1;
+    // 添加代码以显示顾客商品目录
+    cout << "以下是所有商品目录：" << endl;
+    for (const auto &tmp_goods: goods) {
+        cout << j++ << ".商品编号：" << tmp_goods.id << " 名称：" << tmp_goods.name
+             << " 种类：" << tmp_goods.species << " 价格：" << tmp_goods.sellPrice << "/" << tmp_goods.measure
+             << " 数量：" << tmp_goods.quantity << endl;
+    } // 未包含“商品进价”、“阈值提醒”和“备注”
+
+
+    cout << "请输入要销售的商品编号（无则请输入0）：";
+    // 输入购买商品编号
+    int id, i;
+    cin >> id;
+    if (id != 0)
+        for (i = 0; i < goods.size(); i++)
+            if (goods[i].id == id)
+                break;
+
+    Goods buy_goods = goods[i];
+    char buy_choice;
+    cout << "是否确认加入购物车？（请输入y/n）：";
+    cin >> buy_choice;
+    if (buy_choice == 'y') {
+        Bills new_bills;
+        cout << "请输入购买数量：";
+        cin >> new_bills.quantity;
+        // 对顾客输入的商品数量进行检查
+        for (const auto &bill: market) {
+            if (bill.quantity <= 0) {
+                cout << "商品数量不能为负数或零。" << endl;
+                return;
+            }
+        }
+        // 检查商品数量是否超过了库存
+        for (const auto &bill: market) {
+            int i = 0;
+            if (bill.quantity > 0) {
+                if (bill.quantity > goods[i].lessLimit) {
+                    cout << "购物车中的商品数量超过了库存。" << endl;
+                    return;
+                }
+            }
+        }
+        // 产生销售记录
+        new_bills.id = buy_goods.id;
+        new_bills.name = buy_goods.name;
+        new_bills.species = buy_goods.species;
+        new_bills.sellPrice = buy_goods.sellPrice;
+        new_bills.quantity = buy_goods.quantity;
+        new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
+        new_bills.measure = buy_goods.measure;
+
+
+        // 销售记录推入购物车
+        market.push_back(new_bills);
+        std::cout << "购买成功！" << std::endl;
+    }
 }
 
 void Display::users_data() {
