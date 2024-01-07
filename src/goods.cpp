@@ -12,14 +12,15 @@ void Goods::read(vector<Goods> &goods){
     Goods new_goods = *new Goods;         // 为一个新的Goods类申请内存
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "货物信息文件打开失败！";
+        pause();
         exit(1);
     } else {
         while (!txt_data.eof()) {
             txt_data >> new_goods.id >> new_goods.name                           // 获取商品的编号和名称
                 >> new_goods.species >> new_goods.purchasePrice                  // 获取种类和进价
                 >> new_goods.sellPrice >> new_goods.quantity                     // 获取售价和数量
-                >> new_goods.lessLimit >> new_goods.measure >> new_goods.remark; // 获取提醒阈值、单位和备注
+                >> new_goods.lessLimit >> new_goods.measure; // 获取提醒阈值、单位和备注
             // 从打开的文件中逐次将流存入结构体
             goods.push_back(new_goods);
         }
@@ -34,14 +35,14 @@ void Goods::save(vector<Goods> &goods){
 
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "货物信息文件打开失败！";
+        pause();
         exit(1);
     } else
         while (i < goods.size() - 1) {
             txt_data << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species << BLANKSPACE <<
                 goods[i].purchasePrice << BLANKSPACE << goods[i].sellPrice << BLANKSPACE << goods[i].quantity <<
-                BLANKSPACE << goods[i].lessLimit << BLANKSPACE << goods[i].measure << BLANKSPACE << goods[i].remark <<
-                '\n';
+                BLANKSPACE << goods[i].lessLimit << BLANKSPACE << goods[i].measure << '\n';
             i++;
         }
     txt_data.close();
@@ -55,7 +56,7 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods){
         int num = strTurnNum(s);
 
         for (i = 0; i < goods.size(); i++)
-            if (i == num) {
+            if (goods[i].id == num) {
                 find_goods = goods[i];
                 return;
             }
@@ -98,7 +99,6 @@ void Goods::trade(vector<Bills> bills, vector<Goods> &goods, vector<Bills> &new_
     }
 }
 
-
 void Goods::edit(vector<Goods> &goods, int i, int kind, string new_value) {
     switch (kind) {
         case 1:
@@ -111,22 +111,19 @@ void Goods::edit(vector<Goods> &goods, int i, int kind, string new_value) {
             goods[i].species = new_value;
             break;
         case 4:
-            goods[i].purchasePrice = stof(new_value);
-            break;
-        case 5:
-            goods[i].sellPrice = stof(new_value);
-            break;
-        case 6:
             goods[i].quantity = strTurnNum(new_value);
             break;
-        case 7:
-            goods[i].lessLimit = strTurnNum(new_value);
+        case 5:
+            goods[i].purchasePrice = stof(new_value);
             break;
-        case 8:
+        case 6:
+            goods[i].sellPrice = stof(new_value);
+            break;
+        case 7:
             goods[i].measure = new_value;
             break;
-        case 9:
-            goods[i].remark = new_value;
+        case 8:
+            goods[i].lessLimit = strTurnNum(new_value);
             break;
     }
 }
@@ -164,8 +161,6 @@ void Goods::add(vector<Goods> & goods){
         cin >> newGoods.quantity;
         cout<<"提醒阈值";
         cin >> newGoods.lessLimit;
-        cout<<"备注（没有请输入无）：" << endl;
-        cin >> newGoods.remark;    // 获取用户输入的商品信息并存入新商品对象中
         goods.push_back(newGoods); // 将新商品添加到商品列表中
         cout << "添加成功！" << endl;
     }
