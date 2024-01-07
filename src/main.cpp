@@ -10,7 +10,7 @@
 
 using namespace std;
 
-// ä¸»å‡½æ•°ï¼Œä¿æŒä¸ºç™»é™†ç•Œé¢æ¨¡å—
+// Ö÷º¯Êı£¬±£³ÖÎªµÇÂ½½çÃæÄ£¿é
 int main()
 {
     enum authority {
@@ -18,63 +18,63 @@ int main()
         keeper,
         cashier,
         admin
-    }; // æšä¸¾ ä½¿ç”¨æˆ·æƒé™å¯è§†ä¸ºå•è¯
+    }; // Ã¶¾Ù Ê¹ÓÃ»§È¨ÏŞ¿ÉÊÓÎªµ¥´Ê
 
-    // å®ä¾‹åŒ–å¯¹è±¡ï¼Œåˆå§‹åŒ–ç¨‹åº
-    Display display; // å®ä¾‹åŒ–ä¸€ä¸ªå¯¹è±¡ç”¨äºè°ƒç”¨æˆå‘˜å‡½æ•°
+    // ÊµÀı»¯¶ÔÏó£¬³õÊ¼»¯³ÌĞò
+    Display display; // ÊµÀı»¯Ò»¸ö¶ÔÏóÓÃÓÚµ÷ÓÃ³ÉÔ±º¯Êı
 
-    vector<Users> users; // ç”³è¯·ç±»æ•°ç»„ï¼Œæ•°ç»„éƒ½ä»¥sç»“å°¾
+    vector<Users> users; // ¶ÁÈ¡ÎÄ¼şÖĞµÄÊı¾İ²¢´æÈëÊı×é
     vector<Goods> goods;
     vector<Bills> bills;
 
-    Goods::read(goods); // è¯»å–æ–‡ä»¶ä¸­çš„æ•°æ®å¹¶å­˜å…¥æ•°ç»„
+    Goods::read(goods); //
     Users::read(users);
     Bills::read(bills);
 
 
-    // ä¸»å‡½æ•°å¼€å§‹æ‰§è¡Œ
+    // Ö÷º¯Êı¿ªÊ¼Ö´ĞĞ
 
-    // ç™»å½•
-    Users user = login(); // è°ƒç”¨loginå‡½æ•°å®ç°ç™»å½•ï¼ŒåŒæ—¶è¿”å›ä¸€ä¸ªåŒ…å«ç”¨æˆ·æ•°æ®çš„userså¯¹è±¡
-    // èœå•é€‰æ‹©
+    // µÇÂ¼
+    Users user = login(); // µ÷ÓÃloginº¯ÊıÊµÏÖµÇÂ¼£¬Í¬Ê±·µ»ØÒ»¸ö°üº¬ÓÃ»§Êı¾İµÄusers¶ÔÏó
+    // ²Ëµ¥Ñ¡Ôñ
     int menuChoice[3] = {-1, 0, 0};
 
     switch (user.level) {
         display.welcomePage();
         case customer: {
-            vector<Bills> market; // ä¸€ä¸ªbillsæ•°ç»„ç”¨æ¥å½“ä½œè´­ç‰©è½¦
+            vector<Bills> market; // Ò»¸öbillsÊı×éÓÃÀ´µ±×÷¹ºÎï³µ
             system("title customer");
-            // ç”¨whileä¿æŒèœå•
+            // ÓÃwhile±£³Ö²Ëµ¥
             while (menuChoice[0]) {
                 display.customMenu();
                 cin >> menuChoice[0];
 
                 switch (menuChoice[0]) {
-                    case 1: { // 1 å•†å“ç›®å½•
+                    case 1: { // 1 ÉÌÆ·Ä¿Â¼
                         display.customGoodsData(goods, market);
                         break;
                     }
-                    case 2: { // 2 æœç´¢å•†å“
+                    case 2: { // 2 ËÑË÷ÉÌÆ·
                         display.customSearch(goods, market);
                         break;
                     }
-                    case 3: {// 3 è´­ç‰©è½¦
+                    case 3: {// 3 ¹ºÎï³µ
                         display.customMarket(market);
 
-                        cout << "æ˜¯å¦è¦ä¿®æ”¹æˆ–åˆ é™¤å†…å®¹ï¼Ÿï¼ˆå–æ¶ˆï¼š0ï¼Œä¿®æ”¹ï¼š1ï¼Œåˆ é™¤ï¼š2ï¼‰ï¼š";
+                        cout << "ÊÇ·ñÒªĞŞ¸Ä»òÉ¾³ıÄÚÈİ£¿£¨È¡Ïû£º0£¬ĞŞ¸Ä£º1£¬É¾³ı£º2£©£º";
                         int choice;
                         cin >> choice;
 
-                        // è´­ç‰©è½¦æ“ä½œ
+                        // ¹ºÎï³µ²Ù×÷
                         switch (choice) {
                             case 1: {
                                 int goodsChoice, quantityChoice;
-                                cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„å•†å“ç¼–å·ï¼š";
+                                cout << "ÇëÊäÈëÒªĞŞ¸ÄµÄÉÌÆ·±àºÅ£º";
                                 cin >> goodsChoice;
                                 bool cond = false;
                                 for (int i = 0; i < market.size(); i++) {
                                     if (market[i].id == goodsChoice) {
-                                        market.erase(market.begin() + i); // ç›´æ¥åˆ é™¤ï¼Œé‡æ–°åˆ›å»º
+                                        market.erase(market.begin() + i); // Ö±½ÓÉ¾³ı£¬ÖØĞÂ´´½¨
                                         Goods buy_goods;
                                         buy_goods.id = goodsChoice;
                                         for (int j = 0; j < goods.size(); j++)
@@ -86,7 +86,7 @@ int main()
                                     }
                                 }
                                 if (!cond) {
-                                    cout << "è¾“å…¥çš„å•†å“ç¼–å·æœ‰è¯¯..." << endl;
+                                    cout << "ÊäÈëµÄÉÌÆ·±àºÅÓĞÎó..." << endl;
                                     choice = 0;
                                 }
                                 menuChoice[0] = -1;
@@ -94,19 +94,19 @@ int main()
                             }
                             case 2: {
                                 int goodsChoice;
-                                cout << "è¯·è¾“å…¥è¦åˆ é™¤çš„å•†å“ç¼–å·ï¼š";
+                                cout << "ÇëÊäÈëÒªÉ¾³ıµÄÉÌÆ·±àºÅ£º";
                                 cin >> goodsChoice;
                                 bool cond = false;
                                 for (int i = 0; i < market.size(); i++) {
                                     if (market[i].id == goodsChoice) {
                                         market.erase(market.begin() + i);
-                                        cout << "è´­ç‰©è½¦ä¸­çš„å•†å“å·²åˆ é™¤" << endl;
+                                        cout << "¹ºÎï³µÖĞµÄÉÌÆ·ÒÑÉ¾³ı" << endl;
                                         cond = true;
                                     }
                                 }
 
                                 if (!cond) {
-                                    cout << "è¾“å…¥çš„å•†å“ç¼–å·æœ‰è¯¯..." << endl;
+                                    cout << "ÊäÈëµÄÉÌÆ·±àºÅÓĞÎó..." << endl;
                                     choice = 0;
                                 }
                                 menuChoice[0] = -1;
@@ -118,16 +118,16 @@ int main()
                             }
                         }
                     }
-                    case 4: { // 4 ç»“ç®—
+                    case 4: { // 4 ½áËã
                         cls();
                         if (market.empty()) {
-                            cout << "è´­ç‰©è½¦ä¸­è¿˜æœªæ·»åŠ å•†å“å“¦ï¼";
+                            cout << "¹ºÎï³µÖĞ»¹Î´Ìí¼ÓÉÌÆ·Å¶£¡";
                         } else {
-                            // å±•ç¤ºè´­ç‰©è½¦å†…å®¹
+                            // Õ¹Ê¾¹ºÎï³µÄÚÈİ
                             display.customMarket(market);
 
-                            // ç»“ç®—
-                            cout << endl << "æ˜¯å¦ç¡®è®¤ç»“ç®—ï¼Ÿ(y/n)ï¼š";
+                            // ½áËã
+                            cout << endl << "ÊÇ·ñÈ·ÈÏ½áËã£¿(y/n)£º";
                             char choice;
                             cin >> choice;
                             if (choice == 'y')
@@ -135,8 +135,8 @@ int main()
                             else
                                 menuChoice[0] = -1;
 
-                            // å°ç¥¨æ‰“å°
-                            cout << "æ˜¯å¦æ‰“å°å°ç¥¨ï¼Ÿ(y/n)ï¼š";
+                            // Ğ¡Æ±´òÓ¡
+                            cout << "ÊÇ·ñ´òÓ¡Ğ¡Æ±£¿(y/n)£º";
                             cin >> choice;
                             if (choice == 'y')
                                 Bills::receipt(market);
@@ -144,7 +144,7 @@ int main()
                         menuChoice[0] = -1;
                         break;
                     }
-                    case 5: { // 5 ä¿®æ”¹å¯†ç 
+                    case 5: { // 5 ĞŞ¸ÄÃÜÂë
                         Users::pwdedit(users, user);
                         menuChoice[0] = -1;
                         break;
@@ -152,7 +152,7 @@ int main()
                     case 0:
                         break;
                     default:
-                        cout << "è¯·è¾“å…¥æœ‰æ•ˆå€¼ï¼ ";
+                        cout << "ÇëÊäÈëÓĞĞ§Öµ£¡ ";
                         menuChoice[0] = -1;
                         cin >> menuChoice[0];
                 }
@@ -174,32 +174,32 @@ int main()
                     case 1: {
                         display.goods_data(goods);
                         break;
-                    } // 1 å•†å“è¯¦æƒ…
+                    } // 1 ÉÌÆ·ÏêÇé
                     case 2: {
                         display.keeperSearch(goods);
                         break;
-                    } // 2 æœç´¢å•†å“
+                    } // 2 ËÑË÷ÉÌÆ·
                     case 3: {
                         display.goods_edit(goods);
                         break;
-                    } // 3 ç¼–è¾‘å•†å“
+                    } // 3 ±à¼­ÉÌÆ·
                     case 4: {
                         Goods::add(goods);
                         break;
-                    } // 4 æ·»åŠ å•†å“
+                    } // 4 Ìí¼ÓÉÌÆ·
                     case 5: {
                         Goods::del(goods);
                         break;
-                    } // 5 åˆ é™¤å•†å“
-                    case 6: { // 6 ä¿®æ”¹å¯†ç 
+                    } // 5 É¾³ıÉÌÆ·
+                    case 6: { // 6 ĞŞ¸ÄÃÜÂë
                         Users::pwdedit(users, user);
                         menuChoice[0] = -1;
                         break;
-                    } // 6 ä¿®æ”¹å¯†ç 
+                    } // 6 ĞŞ¸ÄÃÜÂë
                     case 0:
                         break;
                     default:
-                        cout << "è¾“å…¥å€¼æ— æ•ˆï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                        cout << "ÊäÈëÖµÎŞĞ§£¡ÇëÖØĞÂÊäÈë£º";
                         cin >> menuChoice[0];
                         break;
                 }
@@ -210,11 +210,11 @@ int main()
 
         case cashier: {
             system("title cashier");
-            vector<Bills> market; // ä¸€ä¸ªbillsæ•°ç»„ç”¨æ¥å½“ä½œè´­ç‰©è½¦
+            vector<Bills> market; // ´´½¨market×÷Îª¹ºÎï²â
 
             while(menuChoice[0]) {
                 if(market.empty())
-                    cout<<"å½“å‰è´­ç‰©è½¦ä¸ºç©ºã€‚"<<endl;
+                    cout<<"å½“å‰è´­ç‰©è½¦ä¸ºç©ºã??"<<endl;
                 else
                     display.cashierMarket(market);
 
@@ -225,7 +225,7 @@ int main()
                     case 1: {
                         display.cashierTrade(goods,market);
                         break;
-                    } // 1 é”€å”®å•†å“
+                    } // 1 ÏúÊÛÉÌÆ·
                     case 2: {
                         cls();
                         if (market.empty()) {
@@ -251,19 +251,19 @@ int main()
                         }
                         menuChoice[0] = -1;
                         break;
-                    } // 2 è´­ç‰©ç»“ç®—
+                    } // 2 ¹ºÎï½áËã
                     case 3: {
                         break;
-                    } // 3 æŸ¥çœ‹é”€å”®è®°å½•
+                    } // 3 ²é¿´ÏúÊÛ¼ÇÂ¼
                     case 4: {
                         Users::pwdedit(users, user);
                         menuChoice[0] = -1;
                         break;
-                    } // 4 ä¿®æ”¹å¯†ç 
+                    } // 4 ĞŞ¸ÄÃÜÂë
                     case 0:
                         break;
                     default:
-                        cout << "è¾“å…¥å€¼æ— æ•ˆï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                        cout << "ÊäÈëÖµÎŞĞ§£¡ÇëÖØĞÂÊäÈë£º";
                         cin >> menuChoice[0];
                         menuChoice[0] = -1;
                 }
@@ -276,7 +276,7 @@ int main()
             cin >> menuChoice[0];
             switch (menuChoice[0]) {
                 default:
-                    cout << "è¾“å…¥å€¼æ— æ•ˆï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                    cout << "ÊäÈëÖµÎŞĞ§£¡ÇëÖØĞÂÊäÈë£º";
                     cin >> menuChoice[0];
                     menuChoice[0] = -1;
             }
