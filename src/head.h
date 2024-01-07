@@ -35,6 +35,7 @@ public:
     string pwd;  // 密码
     int level;   // 用户权限
 
+
     // 创建成员函数
     static void read(vector<Users> &users);
     static void save(vector<Users> &users);
@@ -103,12 +104,16 @@ public:
     void loginPage();   // 登录界面
     void welcomePage(); // 欢迎界面
 
-    void customMenu(vector<Goods> &goods);                             // 顾客菜单界面
+    void customMenu();                             // 顾客菜单界面
     void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
     void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // 顾客商品目录
     void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
     void customMarket(vector<Bills> market);                           // 顾客购物车
 
+
+    void keeperMenu();
+
+    void cashierMenu();
 
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示
