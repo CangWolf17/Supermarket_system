@@ -12,7 +12,7 @@ void Display::loginPage() { // 登录界面
     // 登录页面，未设计
 }
 
-void Display::welcomePage() {
+void Display::welcomePage(Users user) {
     system("cls");
     system("title 欢迎使用超市管理系统");
     system("color 0C");

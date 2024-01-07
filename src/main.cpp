@@ -36,11 +36,21 @@ int main()
 
     // 登录
     Users user = login(); // 调用login函数实现登录，同时返回一个包含用户数据的users对象
+    if(user.name == "NOTFOUND")
+        user = login();
+    if(user.id == "reg")
+        Users::add(users,0);
+    else if(user.id == "0"){
+        user.name = "visitor";
+        user.level = 0;
+    }
+
+    // 欢迎页面展示
+    display.welcomePage(user);
     // 菜单选择
     int menuChoice[3] = {-1, 0, 0};
 
     switch (user.level) {
-        display.welcomePage();
         case customer: {
             vector<Bills> market; // 一个bills数组用来当作购物车
             system("title customer");
@@ -145,8 +155,10 @@ int main()
                         break;
                     }
                     case 5: { // 5 修改密码
-                        Users::pwdedit(users, user);
-                        menuChoice[0] = -1;
+                        if(user.id != "0") {
+                            Users::pwdedit(users, user);
+                            menuChoice[0] = -1;
+                        }
                         break;
                     }
                     case 0:

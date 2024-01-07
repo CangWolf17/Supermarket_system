@@ -103,7 +103,7 @@ public:
 class Display {
 public:
     void loginPage();   // 登录界面
-    void welcomePage(); // 欢迎界面
+    void welcomePage(Users user); // 欢迎界面
 
     void customMenu();                             // 顾客菜单界面
     void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
