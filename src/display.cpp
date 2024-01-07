@@ -8,13 +8,19 @@
 
 using namespace std;
 
-void Display::loginPage()
-{ // 登录界面
-  // 登录页面，未设计
+void Display::loginPage() { // 登录界面
+    // 登录页面，未设计
 }
 
 void Display::welcomePage() {
-
+    system("cls");
+    system("title 欢迎使用超市管理系统");
+    system("color 0C");
+    //cout << "娆㈣繋鍏夐【Mr.wang鐨勫皬搴?" << endl;
+    //cout << "鎮ㄧ殑璐︽埛锛? " << endl;
+    //cout << "鎮ㄧ殑鏉冮檺涓猴細 " << endl;
+    cout << endl;
+    system("pause");
 
 }
 
@@ -23,8 +29,7 @@ void Display::users_data() {
 
 }
 
-void Display::goods_data(vector<Goods> &goods)
-{
+void Display::goods_data(vector<Goods> &goods) {
     // 界面未设计
 
     static int i = 0;
@@ -32,13 +37,13 @@ void Display::goods_data(vector<Goods> &goods)
 
     for (i; i < goods.size() - 1; i++) {
         cout << goods[i].id << "   " << goods[i].name << "   " << goods[i].species << "   " << goods[i].sellPrice <<
-            "   " << goods[i].quantity << endl;
+             "   " << goods[i].quantity << endl;
     }
 }
 
-void Display::customMenu(vector<Goods> &goods)
-{
+void Display::customMenu() {
     cls();
+    system("title customer");
     // 添加代码以显示顾客菜单界面
     cout << "菜单选项：" << endl;
     cout << "1. 商品目录" << endl;
@@ -49,27 +54,26 @@ void Display::customMenu(vector<Goods> &goods)
     cout << "0. 退出" << endl;
 }
 
-void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice)
-{
+void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice) {
     if (buy_choice == 'y') {
         Bills new_bills;
         cout << "请输入购买数量：";
         cin >> new_bills.quantity;
         // 对顾客输入的商品数量进行检查
-        for (const auto& bill : market) {
+        for (const auto &bill: market) {
             if (bill.quantity <= 0) {
                 cout << "商品数量不能为负数或零。" << endl;
                 return;
             }
         }
         // 检查商品数量是否超过了库存
-        for (const auto& bill : market) {
-            int i=0;
+        for (const auto &bill: market) {
+            int i = 0;
             if (bill.quantity > 0) {
-                    if (bill.quantity > goods[i].lessLimit) {
-                        cout << "购物车中的商品数量超过了库存。" << endl;
-                        return;
-                    }
+                if (bill.quantity > goods[i].lessLimit) {
+                    cout << "购物车中的商品数量超过了库存。" << endl;
+                    return;
+                }
             }
         }
         // 产生销售记录
@@ -80,7 +84,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         new_bills.quantity = buy_goods.quantity;
         new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
         new_bills.measure = buy_goods.measure;
-        
+
 
         // 销售记录推入购物车
         market.push_back(new_bills);
@@ -103,8 +107,8 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     int id, i;
     cin >> id;
     if (id != 0) {
-        for(i=0;i<goods.size();i++)
-            if(goods[i].id == id)
+        for (i = 0; i < goods.size(); i++)
+            if (goods[i].id == id)
                 break;
 
         Goods buy_goods = goods[i];
@@ -129,7 +133,7 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
         char buy_choice;
         cout << "是否确认加入购物车？（请输入y/n）：";
         cin >> buy_choice;
-        customTrade(find_goods, goods, market,buy_choice);
+        customTrade(find_goods, goods, market, buy_choice);
     } else {
         cout << "查找的商品不存在！即将返回上一级...";
 
@@ -139,8 +143,28 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
 void Display::customMarket(vector<Bills> market) {
     cls();
     cout << "您的购物车内容：" << endl;
-    for (const auto& bill : market) {
+    for (const auto &bill: market) {
         cout << "商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
              << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
     }
+}
+
+void Display::keeperMenu() {
+    cout<<"1.库存详情"<<endl;
+    cout<<"2.搜索商品"<<endl;
+    cout<<"3.编辑商品"<<endl;
+    cout<<"4.添加商品"<<endl;
+    cout<<"5.删除商品"<<endl;
+    cout<<"6.修改密码"<<endl;
+    cout<<"0.退出"<<endl;
+}
+
+void Display::cashierMenu() {
+    system("cls");
+    system("title cashier");
+    cout<<"1销售"<<endl;
+    cout<<"2查看销售记录"<<endl;
+    cout<<"3删除顾客用户"<<endl;
+    cout<<"4修改密码"<<endl;
+    cout<<"0退出"<<endl;
 }
