@@ -42,12 +42,10 @@ int main()
     switch (user.level) {
         display.welcomePage();
         case customer: {
-
             vector<Bills> market; // 一个bills数组用来当作购物车
-
             // 用while保持菜单
             while (menuChoice[0]) {
-                display.customMenu(goods);
+                display.customMenu();
                 cin >> menuChoice[0];
 
                 switch (menuChoice[0]) {
@@ -90,11 +88,12 @@ int main()
                                     cout << "输入的商品编号有误..." << endl;
                                     choice = 0;
                                 }
+                                menuChoice[0] = -1;
                                 break;
                             }
                             case 2: {
                                 int goodsChoice;
-                                cout << "请输入要修改的商品编号：";
+                                cout << "请输入要删除的商品编号：";
                                 cin >> goodsChoice;
                                 bool cond = false;
                                 for (int i = 0; i < market.size(); i++) {
@@ -109,6 +108,11 @@ int main()
                                     cout << "输入的商品编号有误..." << endl;
                                     choice = 0;
                                 }
+                                menuChoice[0] = -1;
+                                break;
+                            }
+                            default:{
+                                menuChoice[0] = -1;
                                 break;
                             }
                         }
@@ -154,14 +158,86 @@ int main()
             }
             break;
         }
-        case keeper: {
+
+
+        case keeper:{
+            system("cls");
+            system("title keeper");
+
+            while (menuChoice[0]) {
+
+                display.keeperMenu();
+
+                cin >> menuChoice[0];
+                switch (menuChoice[0]) {
+                    case 1: { // 1 商品详情
+                        display.goods_data(goods);
+                        break;
+                    }
+                    case 2: { // 2 搜索商品
+
+                        break;
+                    }
+                    case 3:{// 3 编辑商品
+
+                        break;
+                    }
+                    case 4: { // 4 添加商品
+                        Goods::add(goods);
+                        break;
+                    }
+                    case 5: {
+                        Goods::del(goods);
+                        break;
+                    } // 5 删除商品
+                    case 6: { // 6 修改密码
+                        Users::pwdedit(users, user);
+                        menuChoice[0] = -1;
+                        break;
+                    } // 6 修改密码
+                    case 0:
+                        break;
+                    default:
+                        cout << "输入值无效！请重新输入：";
+                        cin >> menuChoice[0];
+                        break;
+                }
+            }
             break;
         }
         case cashier: {
+
+            cin >> menuChoice[0];
+            switch (menuChoice[0]) {
+                case 1: { // 1 销售
+                    break;
+                }
+                case 2: { // 2 查看销售记录
+                    break;
+                }
+                case 3: {// 3 删除顾客账户
+                    break;
+                }
+                case 4: { // 4 修改密码
+                }
+                case 0:
+                    break;
+                default:
+                    cout << "输入值无效！请重新输入：";
+                    cin >> menuChoice[0];
+                    menuChoice[0] = -1;
+            }
             break;
         }
 
         case admin: {
+            cin >> menuChoice[0];
+            switch (menuChoice[0]) {
+                default:
+                    cout << "输入值无效！请重新输入：";
+                    cin >> menuChoice[0];
+                    menuChoice[0] = -1;
+            }
             break;
         }
     }
@@ -172,5 +248,7 @@ int main()
     Goods::save(goods);
     Bills::save(bills);
 
+    cout<<"感谢您的使用，再见！";
+    system ("pause");
     return 0;
 }
