@@ -16,9 +16,6 @@ void Display::welcomePage() {
     system("cls");
     system("title 欢迎使用超市管理系统");
     system("color 0C");
-    //cout << "娆㈣繋鍏夐【Mr.wang鐨勫皬搴?" << endl;
-    //cout << "鎮ㄧ殑璐︽埛锛? " << endl;
-    //cout << "鎮ㄧ殑鏉冮檺涓猴細 " << endl;
     cout << endl;
     system("pause");
 
@@ -121,14 +118,16 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
 }
 void Display::customMarket(vector<Bills> market) {
     cls();
+    int j=1;
     cout << "您的购物车内容：" << endl;
     for (const auto &bill: market) {
-        cout << "商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
+        cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
              << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
     }
 }
 
 void Display::keeperMenu() {
+    system("title cashier");
     cout<<"1.库存详情"<<endl;
     cout<<"2.搜索商品"<<endl;
     cout<<"3.编辑商品"<<endl;
@@ -170,15 +169,21 @@ void Display::keeperLimit(vector<Goods> &goods) {
 }
 
 void Display::cashierMenu() {
-    system("cls");
-    system("title cashier");
-    cout<<"1销售"<<endl;
-    cout<<"2查看销售记录"<<endl;
-    cout<<"3删除顾客用户"<<endl;
-    cout<<"4修改密码"<<endl;
-    cout<<"0退出"<<endl;
+    cout<<"1.销售商品"<<endl;
+    cout<<"2.购物结算"<<endl;
+    cout<<"3.查看记录"<<endl;
+    cout<<"4.修改密码"<<endl;
+    cout<<"0.退出"<<endl;
 }
-
+void Display::cashierMarket(vector<Bills> &market) {
+        cls();
+        int j=1;
+        cout << "购物车中的内容：" << endl;
+        for (const auto &bill: market) {
+            cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
+                 << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
+        }
+}
 
 void Display::users_data() {
 

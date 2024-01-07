@@ -42,7 +42,7 @@ public:
 
     static void search(vector<Users> &users, string s, Users &find_user);      // 查找用户
     static void add(vector<Users> &users, int level);                    // 添加用户函数
-    static void del(vector<Users> &users, string userid);                      // 删除用户，需要传入用户id
+    static void del(vector<Users> &users);                      // 删除用户，需要传入用户id
     static void pwdedit(vector<Users> &users, Users currentUser);              // 修改密码
     static void edit(vector<Users> &users, int i, int kind, string new_value); // 指定待修改的元素下标，种类，值
 };
@@ -114,6 +114,7 @@ public:
     void keeperLimit(vector<Goods> &goods);
 
     void cashierMenu();
+    void cashierMarket(vector<Bills> &market);
 
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示

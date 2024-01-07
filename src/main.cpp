@@ -43,6 +43,7 @@ int main()
         display.welcomePage();
         case customer: {
             vector<Bills> market; // 一个bills数组用来当作购物车
+            system("title customer");
             // 用while保持菜单
             while (menuChoice[0]) {
                 display.customMenu();
@@ -161,7 +162,6 @@ int main()
 
 
         case keeper:{
-            system("cls");
             system("title keeper");
 
             while (menuChoice[0]) {
@@ -180,7 +180,7 @@ int main()
                         display.keeperSearch(goods);
                         break;
                     } // 2 搜索商品
-                    case 3:{
+                    case 3: {
                         display.goods_edit(goods);
                         break;
                     } // 3 编辑商品
@@ -210,26 +210,40 @@ int main()
 
 
         case cashier: {
+            system("title cashier");
+            vector<Bills> market; // 一个bills数组用来当作购物车
 
-            cin >> menuChoice[0];
-            switch (menuChoice[0]) {
-                case 1: { // 1 销售
-                    break;
+            while(menuChoice[0]) {
+                if(market.empty())
+                    cout<<"当前购物车为空。"<<endl;
+                else
+                    display.cashierMarket(market);
+
+                display.cashierMenu();
+                cin >> menuChoice[0];
+
+                switch (menuChoice[0]) {
+                    case 1: {
+                        break;
+                    } // 1 销售商品
+                    case 2: {
+                        break;
+                    } // 2 购物结算
+                    case 3: {
+                        break;
+                    } // 3 查看销售记录
+                    case 4: {
+                        Users::pwdedit(users, user);
+                        menuChoice[0] = -1;
+                        break;
+                    } // 4 修改密码
+                    case 0:
+                        break;
+                    default:
+                        cout << "输入值无效！请重新输入：";
+                        cin >> menuChoice[0];
+                        menuChoice[0] = -1;
                 }
-                case 2: { // 2 查看销售记录
-                    break;
-                }
-                case 3: {// 3 删除顾客账户
-                    break;
-                }
-                case 4: { // 4 修改密码
-                }
-                case 0:
-                    break;
-                default:
-                    cout << "输入值无效！请重新输入：";
-                    cin >> menuChoice[0];
-                    menuChoice[0] = -1;
             }
             break;
         }
