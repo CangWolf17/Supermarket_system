@@ -13,7 +13,8 @@ void Bills::read(vector<Bills> &bills) {
     Bills new_bill;
 
     if(!txt_data.is_open()){
-        cout << "文件打开失败";
+        cout << "账单信息文件打开失败！";
+        pause();
         exit(1);
     }
     else{
@@ -36,7 +37,8 @@ void Bills::save(vector<Bills> &bills) {
     int i = 0;
 
     if (!txt_data.is_open()) {
-        cout << "文件打开失败";
+        cout << "账单信息文件打开失败！";
+        pause();
         exit(1);
     } else while(i<bills.size()-1) {
             txt_data << bills[i].transactionID << BLANKSPACE
