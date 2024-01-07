@@ -8,6 +8,8 @@
 // 用于包含其他头文件的区域
 #include "fstream"
 #include "iostream"
+#include "algorithm"
+#include "windows.h"
 #include "sstream"
 #include "vector"
 #include "vector"
@@ -66,7 +68,7 @@ public:
     static void save(vector<Bills> &bills);
 
     static void receipt(vector<Bills> market);
-    static void data();
+    static void data(vector<Bills> market,const Bills& bill, int pageNumber, const string& name, const string& species);
 };
 
 // 创建货物的类
