@@ -205,6 +205,8 @@ int main()
             }
             break;
         }
+
+
         case cashier: {
 
             cin >> menuChoice[0];
@@ -229,6 +231,7 @@ int main()
             }
             break;
         }
+
 
         case admin: {
             cin >> menuChoice[0];

@@ -31,13 +31,18 @@ void Display::users_data() {
 
 void Display::goods_data(vector<Goods> &goods) {
     // 界面未设计
+    cout<<"商品列表如下，输入 u：上一页 d：下一页 e：修改 0：退出";
 
-    static int i = 0;
+    int i = 0, limit = i;
+    char choice;
+
+    while (choice!=0) {
+        for (i; i < 10; i++) {
+            cout << goods[i].id << "   " << goods[i].name << "   " << goods[i].species << "   " << goods[i].sellPrice <<
+                 "   " << goods[i].quantity << endl;
+        }
 
 
-    for (i; i < goods.size() - 1; i++) {
-        cout << goods[i].id << "   " << goods[i].name << "   " << goods[i].species << "   " << goods[i].sellPrice <<
-             "   " << goods[i].quantity << endl;
     }
 }
 

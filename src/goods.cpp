@@ -57,7 +57,7 @@ void Goods::search(vector<Goods> &goods, string s, Goods &find_goods){
         int num = strTurnNum(s);
 
         for (i = 0; i < goods.size(); i++)
-            if (i == num) {
+            if (goods[i].id == num) {
                 find_goods = goods[i];
                 return;
             }
