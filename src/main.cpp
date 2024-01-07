@@ -207,14 +207,13 @@ int main()
             break;
         }
 
-
         case cashier: {
             system("title cashier");
             vector<Bills> market; // 创建market作为购物测
 
             while(menuChoice[0]) {
                 if(market.empty())
-                    cout<<"褰撳墠璐墿杞︿负绌恒??"<<endl;
+                    cout<<"当前购物车为空。"<<endl;
                 else
                     display.cashierMarket(market);
 
@@ -253,6 +252,7 @@ int main()
                         break;
                     } // 2 购物结算
                     case 3: {
+
                         break;
                     } // 3 查看销售记录
                     case 4: {
@@ -285,12 +285,12 @@ int main()
     }
 
 
-    // 绋嬪簭缁撴潫鑷姩淇濆瓨鏁版嵁
+    // 程序结束，保存数据
     Users::save(users);
     Goods::save(goods);
     Bills::save(bills);
 
-    cout<<"鎰熻阿鎮ㄧ殑浣跨敤锛屽啀瑙侊紒";
+    cout<<"感谢您的使用，下次再见！";
     system ("pause");
     return 0;
 }

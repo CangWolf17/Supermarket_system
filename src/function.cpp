@@ -20,10 +20,10 @@ int strTurnNum(string s){
     return num;
 }
 
-inline void pause(){
+void pause(){
     system("pause");
 }
 
-inline void cls(){
+void cls(){
     system("cls");
 }
