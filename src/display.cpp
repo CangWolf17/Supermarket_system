@@ -12,7 +12,7 @@ void Display::loginPage() { // 登录界面
     // 登录页面，未设计
 }
 
-void Display::welcomePage() {
+void Display::welcomePage(Users user) {
     system("cls");
     system("title 欢迎使用超市管理系统");
     system("color 0C");
@@ -33,6 +33,7 @@ void Display::customMenu() {
     cout << "5. 修改密码" << endl;
     cout << "0. 退出" << endl;
 }
+
 void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice) {
     if (buy_choice == 'y') {
         Bills new_bills;
@@ -64,6 +65,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         std::cout << "添加成功！" << std::endl;
     }
 }
+
 void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     cls();
 
@@ -80,10 +82,13 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     // 输入购买商品编号
     int id, i;
     cin >> id;
-    if (id != 0)
+    if (id != 0) {
         for (i = 0; i < goods.size(); i++)
             if (goods[i].id == id)
                 break;
+    }
+    else
+        return;
 
     Goods buy_goods = goods[i];
     char buy_choice;
@@ -91,6 +96,7 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     cin >> buy_choice;
     customTrade(buy_goods, goods, market, buy_choice);
 }
+
 void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
     cls();
     string s;
@@ -111,9 +117,10 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
         pause();
     }
 }
+
 void Display::customMarket(vector<Bills> market) {
     cls();
-    int j=1;
+    int j = 1;
     cout << "您的购物车内容：" << endl;
     for (const auto &bill: market) {
         cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
@@ -123,14 +130,15 @@ void Display::customMarket(vector<Bills> market) {
 
 void Display::keeperMenu() {
     system("title cashier");
-    cout<<"1.库存详情"<<endl;
-    cout<<"2.搜索商品"<<endl;
-    cout<<"3.编辑商品"<<endl;
-    cout<<"4.添加商品"<<endl;
-    cout<<"5.删除商品"<<endl;
-    cout<<"6.修改密码"<<endl;
-    cout<<"0.退出"<<endl;
+    cout << "1.库存详情" << endl;
+    cout << "2.搜索商品" << endl;
+    cout << "3.编辑商品" << endl;
+    cout << "4.添加商品" << endl;
+    cout << "5.删除商品" << endl;
+    cout << "6.修改密码" << endl;
+    cout << "0.退出" << endl;
 }
+
 void Display::keeperSearch(vector<Goods> &goods) {
     cls();
     string s;
@@ -142,10 +150,10 @@ void Display::keeperSearch(vector<Goods> &goods) {
 
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
-        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值"<<endl;
-        cout << setw(5)<< find_goods.id << setw(9) << find_goods.name
+        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
+        cout << setw(5) << find_goods.id << setw(9) << find_goods.name
              << setw(9) << find_goods.species << setw(9) << find_goods.quantity
-             << setw(9) << find_goods.purchasePrice  << setw(9) << find_goods.sellPrice
+             << setw(9) << find_goods.purchasePrice << setw(9) << find_goods.sellPrice
              << setw(9) << find_goods.measure << setw(9) << find_goods.lessLimit << endl;
         pause();
     } else {
@@ -153,10 +161,11 @@ void Display::keeperSearch(vector<Goods> &goods) {
         pause();
     }
 }
+
 void Display::keeperLimit(vector<Goods> &goods) {
     int j = 1;
-    for(auto & igoods : goods){
-        if(igoods.quantity <= igoods.lessLimit){
+    for (auto &igoods: goods) {
+        if (igoods.quantity <= igoods.lessLimit) {
             cout << j++ << ".商品 " << igoods.name << " (编号 " << igoods.id << " ）" << "数量低于设置阈值（"
                  << igoods.lessLimit << "），当前库存为：" << igoods.quantity << "，请及时补货。" << endl;
         }
@@ -164,21 +173,23 @@ void Display::keeperLimit(vector<Goods> &goods) {
 }
 
 void Display::cashierMenu() {
-    cout<<"1.销售商品"<<endl;
-    cout<<"2.购物结算"<<endl;
-    cout<<"3.查看记录"<<endl;
-    cout<<"4.修改密码"<<endl;
-    cout<<"0.退出"<<endl;
+    cout << "1.销售商品" << endl;
+    cout << "2.购物结算" << endl;
+    cout << "3.查看记录" << endl;
+    cout << "4.修改密码" << endl;
+    cout << "0.退出" << endl;
 }
+
 void Display::cashierMarket(vector<Bills> &market) {
-        cls();
-        int j=1;
-        cout << "购物车中的内容：" << endl;
-        for (const auto &bill: market) {
-            cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
-                 << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
-        }
+    cls();
+    int j = 1;
+    cout << "购物车中的内容：" << endl;
+    for (const auto &bill: market) {
+        cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
+             << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
+    }
 }
+
 void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
 
     int j = 1;
@@ -230,23 +241,31 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     std::cout << "添加成功！" << std::endl;
 }
 
-void Display::users_data() {
-
-
+void goodsPrint(Goods goods){
+    cout << setw(5) << goods.id << setw(9) << goods.name
+         << setw(9) << goods.species << setw(9) << goods.quantity
+         << setw(9) << goods.purchasePrice << setw(9) << goods.sellPrice
+         << setw(9) << goods.measure << setw(9) << goods.lessLimit << endl;
 }
 
 void Display::goods_data(vector<Goods> &goods) {
-    // 界面未设计
-    cout << "商品列表如下，输入0：退出";
+    int pageSize = 10, pageNumber = 1;
 
-    int i;
-
-    cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值"<<endl;
-    for (i = 0; i < goods.size(); i++) {
-        cout << setw(5)<< goods[i].id << setw(9) << goods[i].name
-             << setw(9) << goods[i].species << setw(9) << goods[i].quantity
-             << setw(9) << goods[i].purchasePrice  << setw(9) << goods[i].sellPrice
-             << setw(9) << goods[i].measure << setw(9) << goods[i].lessLimit << endl;
+    int choice = 1;
+    cin >> choice;
+    while (pageNumber) {
+        // 计算起始和结束
+        int startIndex = (pageNumber - 1) * pageSize;
+        int endIndex = pageNumber * pageSize;
+        cout << "商品详情页面" << endl;
+        cout << "当前页数： 第 " << pageNumber << " 页" << endl;
+        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
+        for (int j = startIndex, i = startIndex; j < endIndex && i < goods.size(); i++, j++) {
+            // 打印当前销售记录的信息
+            goodsPrint(goods[i]);
+        }
+        cout << "请输入查看页数（0退出）：" << endl;
+        cin >> pageNumber;
     }
 }
 
@@ -260,10 +279,10 @@ void Display::goods_edit(vector<Goods> &goods) {
     cin >> s;
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
-        cout << "   1.编号   2.名称   3.种类   4.数量   5.进价   6.售价   7.单位   8.提醒阈值"<<endl;
-        cout << setw(5)<< find_goods.id << setw(9) << find_goods.name
+        cout << "   1.编号   2.名称   3.种类   4.数量   5.进价   6.售价   7.单位   8.提醒阈值" << endl;
+        cout << setw(5) << find_goods.id << setw(9) << find_goods.name
              << setw(9) << find_goods.species << setw(9) << find_goods.quantity
-             << setw(9) << find_goods.purchasePrice  << setw(9) << find_goods.sellPrice
+             << setw(9) << find_goods.purchasePrice << setw(9) << find_goods.sellPrice
              << setw(9) << find_goods.measure << setw(9) << find_goods.lessLimit << endl;
         pause();
     } else {
@@ -272,37 +291,113 @@ void Display::goods_edit(vector<Goods> &goods) {
         return;
     }
 
-    cout<< "请指定要修改的商品信息对应的数字：";
+    cout << "请指定要修改的商品信息对应的数字：";
     int kind;
     cin >> kind;
-    
+
     // 安全检查
-    if(kind>=1&&kind<=8){
+    if (kind >= 1 && kind <= 8) {
         int i;
-        for(i=0;i<goods.size();i++)
-            if(find_goods.id == goods[i].id)
+        for (i = 0; i < goods.size(); i++)
+            if (find_goods.id == goods[i].id)
                 break;
         string new_value;
-        cout<<"请输入新的商品信息：";
+        cout << "请输入新的商品信息：";
         cin >> new_value; // 输入数据的安全检查没做
-        Goods::edit(goods,i,kind,new_value);
+        Goods::edit(goods, i, kind, new_value);
         cls();
-        cout<<"修改完成，结果如下："<<endl;
-        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值"<<endl;
-        cout << setw(5)<< goods[i].id << setw(9) << goods[i].name
+        cout << "修改完成，结果如下：" << endl;
+        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
+        cout << setw(5) << goods[i].id << setw(9) << goods[i].name
              << setw(9) << goods[i].species << setw(9) << goods[i].quantity
-             << setw(9) << goods[i].purchasePrice  << setw(9) << goods[i].sellPrice
+             << setw(9) << goods[i].purchasePrice << setw(9) << goods[i].sellPrice
              << setw(9) << goods[i].measure << setw(9) << goods[i].lessLimit << endl;
         pause();
         return;
-    } else{
-        cout<<"输入数字无效，程序即将返回...";
+    } else {
+        cout << "输入数字无效，程序即将返回...";
         pause();
         return;
     }
-    
-
 }
 
+void Display::adminMenu() {
+    cout << "1.用户操作" << endl;
+    cout << "2.货物操作" << endl;
+    cout << "3.销售记录" << endl;
+    cout << "4.修改密码" << endl;
+    cout << "0.退出" << endl;
+}
 
+void Display::adminUsers(vector<Users> users) {//管理员用户操作
 
+// 遍历指定范围内的用户信息
+    for (auto & user : users) {
+        // 打印当前用户的姓名和ID
+        cout << " 姓名: " << user.name << " id: " << user.id;
+        switch (user.level) {
+            case 0:
+                cout<<" 权限：顾客"<<endl;
+                break;
+            case 1:
+                cout<<" 权限：仓库管理员"<<endl;
+                break;
+            case 2:
+                cout<<" 权限：收银员"<<endl;
+                break;
+            case 3:
+                cout<<" 权限：管理员"<<endl;
+                break;
+        }
+    }
+
+// 显示管理员查看用户信息的界面
+    cout << "其他选项：" << endl;
+    cout << "1. 创建用户" << endl;
+    cout << "2. 编辑用户" << endl;
+    cout << "3. 删除用户" << endl;
+    cout << "0. 返回" << endl;
+
+    int choice = 1;
+    string verify_pwd;
+    cin >> choice;
+    switch (choice) {
+        case 1: {
+            int level;
+            Users::add(users, level);
+            break;
+        } // 创建用户
+        case 2: {
+            int kind;
+            int i;
+            string new_value;
+            Users::edit(users, i, kind, new_value);
+            break;
+        } // 编辑用户
+        case 3: {
+            cout << "请输入密码以确认身份：" << endl;
+            cin >> verify_pwd;
+            for (int i = 0; i < users.size(); i++) {
+                if (verify_pwd == users[i].pwd) {
+                    if (users[i].level == 3) {
+                        int level;
+                        Users::del(users);
+                        break;
+                    }
+                }
+            }
+            break;
+        } // 删除用户
+        case 0:
+            break;
+        default:
+            cout << "输入值无效！请重新输入：";
+    }
+}
+
+void Display::adminGoodsMenu() {
+    cout << "1.库存详情" << endl;
+    cout << "2.编辑商品" << endl;
+    cout << "3.删除商品" << endl;
+    cout << "0.退出" << endl;
+}

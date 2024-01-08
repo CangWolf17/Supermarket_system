@@ -8,7 +8,8 @@
 // 用于包含其他头文件的区域
 #include "fstream"
 #include "iostream"
-#include "algorithm"
+#include "map"
+#include "ctime"
 #include "windows.h"
 #include "sstream"
 #include "vector"
@@ -17,6 +18,7 @@
 #include "string"
 #include "sysinfoapi.h"
 #include "iomanip"
+#include "algorithm"
 
 #define BLANKSPACE "   "
 
@@ -40,6 +42,7 @@ public:
 
     // 创建成员函数
     static void read(vector<Users> &users);
+
     static void save(vector<Users> &users);
 
     static void search(vector<Users> &users, string s, Users &find_user);      // 查找用户
@@ -65,10 +68,14 @@ public:
 
     // 创建成员函数
     static void read(vector<Bills> &bills);
+
     static void save(vector<Bills> &bills);
 
     static void receipt(vector<Bills> market);
-    static void data(vector<Bills> market,const Bills& bill, int pageNumber, const string& name, const string& species);
+
+    static void data(vector<Bills> &bills);
+
+    static void analyzeSales(vector<Bills> &bills);
 };
 
 // 创建货物的类
@@ -92,7 +99,7 @@ public:
     // 传入的string s可以是商品id也可以是商品名
 
     static void trade(vector<Bills> bills, vector<Goods> &goods,
-        vector<Bills> &new_bills); // 交易函数，无论买卖操作都进行调用，用于扣除库存
+                      vector<Bills> &new_bills); // 交易函数，无论买卖操作都进行调用，用于扣除库存
     static void edit(vector<Goods> &goods, int i, int kind, string new_value); // 商品编辑函数，用于编辑商品指定内容
     static void add(vector<Goods> &goods); // 商品添加函数
     static void del(vector<Goods> &goods); // 商品删除函数
@@ -102,26 +109,30 @@ public:
 // 创建用于显示屏幕内容的类
 class Display {
 public:
-    void loginPage();   // 登录界面
-    void welcomePage(); // 欢迎界面
+    static void loginPage();   // 登录界面
+    static void welcomePage(Users user); // 欢迎界面
 
-    void customMenu();                             // 顾客菜单界面
-    void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
-    void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // 顾客商品目录
-    void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
-    void customMarket(vector<Bills> market);                           // 顾客购物车
+    static void customMenu();                             // 顾客菜单界面
+    static void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
 
-    void keeperMenu();
-    void keeperSearch(vector<Goods> &goods);
-    void keeperLimit(vector<Goods> &goods);
+    static void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // 顾客商品目录
+    static void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
+    static void customMarket(vector<Bills> market);                           // 顾客购物车
 
-    void cashierMenu();
-    void cashierMarket(vector<Bills> &market);
-    void cashierTrade(vector<Goods> &goods, vector<Bills> &market);
+    static void keeperMenu();
+    static void keeperSearch(vector<Goods> &goods);
+    static void keeperLimit(vector<Goods> &goods);
 
-    void users_data();
-    void goods_data(vector<Goods> &goods); // 所有的商品信息展示
-    void goods_edit(vector<Goods> &goods); // 商品编辑
+    static void cashierMenu();
+    static void cashierMarket(vector<Bills> &market);
+    static void cashierTrade(vector<Goods> &goods, vector<Bills> &market);
+
+    static void goods_data(vector<Goods> &goods); // 所有的商品信息展示
+    static void goods_edit(vector<Goods> &goods); // 商品编辑
+
+    static void adminMenu(); // 管理员总菜单
+    static void adminUsers(vector<Users> users); // 用户菜单
+    static void adminGoodsMenu(); // 货物菜单
 };
 
 #endif // SUPERMARKET_SYSTEM_HEAD_H

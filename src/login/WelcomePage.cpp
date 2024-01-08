@@ -4,7 +4,6 @@
 
 #include "iostream"
 #include "fstream"
-#include "windows.h"
 
 #include "..\\head.h"
 #include "WelcomePage.h"
@@ -19,7 +18,7 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     int sta = 0;
 
     if(!txt_data.is_open()){
-        cout << "ÎÄ¼ş´ò¿ªÊ§°Ü";
+        cout << "ÓÃ»§ÎÄ¼ş´ò¿ªÊ§°Ü";
     }
     else{
         while(!txt_data.eof()){
@@ -52,13 +51,24 @@ Users login(){
 
     // Êä³ö²¿·Ö
     do{
-    cout<<"ÇëÊäÈëÓÃ»§Ãû£º";
-    cin>>id;
-    cout<<"ÇëÊäÈëÃÜÂë£º";
-    cin>>pwd;
-
-    // µ÷ÓÃº¯Êı²éÕÒµÇÂ¼Ä¿±ê
-    user = user_login(user,id,pwd);
+        cout<<"»¶Ó­Ê¹ÓÃ³¬ÊĞ¹ÜÀíÏµÍ³"<<endl;
+        cout<<"ÈçĞè×¢²áÇëÊäÈë reg £¬ÈçĞèÊ¹ÓÃ·Ã¿ÍÉí·İµÇÂ¼ÇëÊäÈë 0 "<<endl;
+        cout<<"ÇëÊäÈëÓÃ»§Ãû£º";
+        cin>>id;
+        if(id == "reg") {
+            user.id = "reg";
+            return user;
+        }
+        else if(id == "0") {
+            user.id = "0";
+            return user;
+        }
+        else {
+            cout << "ÇëÊäÈëÃÜÂë£º";
+            cin >> pwd;
+        }
+        // µ÷ÓÃº¯Êı²éÕÒµÇÂ¼Ä¿±ê
+        user = user_login(user,id,pwd);
     }while(user.name == "NOTFOUND");
 
     cout << user.name << " " << user.id << endl;
