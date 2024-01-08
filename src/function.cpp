@@ -3,27 +3,27 @@
 //
 #include "head.h"
 
-bool isDigitStr(string s){
+bool isDigitStr(string s) {
     int len = s.length();
     int i = 0;
 
-    for(i = 0;i<len;i++)
+    for (i = 0; i < len; i++)
         if (isdigit(s[i])) // 调用isdigit函数，判断传入字符是否为数字，如果是则返回0
             return false;
     return true;
 }
 
-int strTurnNum(string s){
+int strTurnNum(string s) {
     int num;
     istringstream ss(s);
     ss >> num;
     return num;
 }
 
-void pause(){
+void pause() {
     system("pause");
 }
 
-void cls(){
+void cls() {
     system("cls");
 }
