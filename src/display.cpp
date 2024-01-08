@@ -300,9 +300,78 @@ void Display::goods_edit(vector<Goods> &goods) {
         pause();
         return;
     }
-    
-
 }
 
+void Display::adminMenu() {
+    cout << "1.用户操作" << endl;
+    cout << "2.货物操作" << endl;
+    cout << "3.销售记录" << endl;
+    cout << "4.修改密码" << endl;
+    cout << "0.退出" << endl;
+}
 
+void Display::adminUsers(vector<Users> users) {//管理员用户操作
+    int pageNumber;
+    int pageSize = 10;
 
+// 计算起始和结束
+    int startIndex = (pageNumber - 1) * pageSize;
+    int endIndex = pageNumber * pageSize;
+
+// 遍历指定范围内的用户信息
+    for (int i = startIndex; i < endIndex && i < users.size(); i++) {
+        // 打印当前用户的姓名和ID
+        cout << " 姓名: " << users[i].name << endl;
+        cout << " id: " << users[i].id << endl;
+    }
+
+// 显示管理员查看用户信息的界面
+    cout << "其他选项：" << endl;
+    cout << "1. 创建用户" << endl;
+    cout << "2. 编辑用户" << endl;
+    cout << "3. 删除用户" << endl;
+    cout << "0. 返回" << endl;
+
+    int choice = 1;
+    string verify_pwd;
+    cin >> choice;
+    switch (choice) {
+        case 1:{
+            int level;
+            Users::add(users,level);
+            break;
+        }//创建用户
+        case 2: {
+            int kind;
+            int i;
+            string new_value;
+            Users::edit(users,i,kind,new_value);
+            break;
+        }//编辑用户
+        case 3: {
+            cout <<"请输入密码确认身份"<<endl;
+            cin >>verify_pwd;
+            for (int i = 0; i < users.size(); i++) {
+                if(verify_pwd == users[i].pwd){
+                    if(users[i].level == 3){
+                        int level;
+                        Users::del(users);
+                        break;
+                    }
+                }
+            }
+            break;
+        }//删除用户
+        case 0:
+            break;
+        default:
+            cout << "输入值无效！请重新输入：";
+    }
+}
+
+void Display::adminGoodsMenu() {
+    cout << "1.库存详情" << endl;
+    cout << "2.编辑商品" << endl;
+    cout << "3.删除商品" << endl;
+    cout << "0.退出" << endl;
+}

@@ -70,7 +70,11 @@ void Bills::receipt(vector<Bills> market){
 }
 
 // 销售数据的函数
-void Bills::data(vector<Bills> market,const Bills& bill, int pageNumber, const string& name, const string& species) {
+void Bills::data( vector<Bills> bills) {
+    int pageNumber;
+    string name;
+    string species;
+    vector<Bills> market;
 
     // 每页显示的销售记录数量
     int pageSize = 10;
@@ -149,7 +153,7 @@ void Bills::data(vector<Bills> market,const Bills& bill, int pageNumber, const s
             break;
         }
         case 3: {
-
+                Bills::analyzeSales(bills);
                 break;
             }
             case 0:
@@ -159,8 +163,8 @@ void Bills::data(vector<Bills> market,const Bills& bill, int pageNumber, const s
             return;
         }
     }
-
-void Bills::analyzeSales(vector<Bills> &bills) {
+//销售统计
+void Bills::analyzeSales(vector<Bills> bills) {
     // 初始化每日、每周和每月销售的变量
     map < int, map < string, int >> dailySalesQuantity;  // 天 -> 产品 -> 数量
     map < int, map < string, double >> dailySalesTotal;  // 天 -> 产品 -> 总金额
