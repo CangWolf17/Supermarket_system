@@ -82,10 +82,13 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     // ÊäÈë¹ºÂòÉÌÆ·±àºÅ
     int id, i;
     cin >> id;
-    if (id != 0)
+    if (id != 0) {
         for (i = 0; i < goods.size(); i++)
             if (goods[i].id == id)
                 break;
+    }
+    else
+        return;
 
     Goods buy_goods = goods[i];
     char buy_choice;
