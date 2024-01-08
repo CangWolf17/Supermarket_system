@@ -18,6 +18,7 @@
 #include "string"
 #include "sysinfoapi.h"
 #include "iomanip"
+#include "algorithm"
 
 #define BLANKSPACE "   "
 
@@ -69,8 +70,9 @@ public:
     static void save(vector<Bills> &bills);
 
     static void receipt(vector<Bills> market);
-    static void data(vector<Bills> bills);
-    static void analyzeSales(vector<Bills> bills);
+    static void data(vector<Bills> &bills);
+    static void analyzeSales(vector<Bills> &bills);
+    static void menu(vector<Bills> market);
 };
 
 // 创建货物的类
