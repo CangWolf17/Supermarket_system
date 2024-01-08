@@ -121,7 +121,7 @@ int main()
                                 menuChoice[0] = -1;
                                 break;
                             }
-                            default:{
+                            default: {
                                 menuChoice[0] = -1;
                                 break;
                             }
@@ -171,13 +171,13 @@ int main()
             break;
         }
 
-        case keeper:{
+        case keeper: {
             system("title keeper");
 
             while (menuChoice[0]) {
                 cls();
                 display.keeperLimit(goods);
-                cout<<endl;
+                cout << endl;
                 display.keeperMenu();
 
                 cin >> menuChoice[0];
@@ -220,11 +220,11 @@ int main()
 
         case cashier: {
             system("title cashier");
-            vector<Bills> market; // 创建market作为购物测
+            vector<Bills> market; // 创建market作为购物车
 
-            while(menuChoice[0]) {
-                if(market.empty())
-                    cout<<"当前购物车为空。"<<endl;
+            while (menuChoice[0]) {
+                if (market.empty())
+                    cout << "当前购物车为空。" << endl;
                 else
                     display.cashierMarket(market);
 
@@ -233,7 +233,7 @@ int main()
 
                 switch (menuChoice[0]) {
                     case 1: {
-                        display.cashierTrade(goods,market);
+                        display.cashierTrade(goods, market);
                         break;
                     } // 1 销售商品
                     case 2: {
@@ -282,32 +282,71 @@ int main()
             break;
         }
 
-
         case admin: {
             system("title admin");
-            cin >> menuChoice[0];
-<<<<<<< HEAD
 
-            while(menuChoice[0]){
+            while (menuChoice[0]) {
+                cls();
+                display.adminMenu();
 
+                cin >> menuChoice[0];
                 switch (menuChoice[0]) {
+                    case 1: {
+                        display.adminUsers(users);
+                        break;
+                    }//用户操作
+                    case 2: {
+                        display.adminGoodsMenu();
+                        int choice;
+                        cin >> choice;
+
+                        switch (choice) {
+                            case 1: {
+                                display.goods_data(goods);
+                                break;
+                            } // 1 商品详情
+                            case 2: {
+                                display.goods_edit(goods);
+                                break;
+                            } // 2 编辑商品
+                            case 3: {
+                                Goods::add(goods);
+                                break;
+                            } // 3 添加商品
+                            case 4: {
+                                Goods::del(goods);
+                                break;
+                            } // 4 删除商品
+                            case 0:
+                                break;
+                            default:
+                                cout << "输入值无效！请重新输入：";
+                                cin >> choice;
+                                break;
+                        }
+                        break;
+                    }//货物操作
+                    case 3: {
+                        Bills::data(bills);
+                        break;
+                    }//销售情况
+
+                    case 4: {
+                        Users::pwdedit(users, user);
+                        menuChoice[0] = -1;
+                        break;
+                    } // 4 修改密码
+
                     default:
-                        cout << "杈撳叆鍊兼棤鏁堬紒璇烽噸鏂拌緭鍏ワ細";
+                        cout << "输入值无效！请重新输入：";
                         cin >> menuChoice[0];
                         menuChoice[0] = -1;
                 }
                 break;
-=======
-            switch (menuChoice[0]) {
-                default:
-                    cout << "输入值无效！请重新输入：";
-                    cin >> menuChoice[0];
-                    menuChoice[0] = -1;
->>>>>>> d1d3310630a856d53c8ec3808e895a8fe6641b7b
             }
-
         }
     }
+
 
 
     // 程序结束，保存数据

@@ -69,8 +69,8 @@ public:
     static void save(vector<Bills> &bills);
 
     static void receipt(vector<Bills> market);
-    static void data(vector<Bills> market,const Bills& bill, int pageNumber, const string& name, const string& species);
-    static void analyzeSales(vector<Bills> &bills);
+    static void data(vector<Bills> bills);
+    static void analyzeSales(vector<Bills> bills);
 };
 
 // 创建货物的类
@@ -124,6 +124,10 @@ public:
     void users_data();
     void goods_data(vector<Goods> &goods); // 所有的商品信息展示
     void goods_edit(vector<Goods> &goods); // 商品编辑
+
+    void adminMenu();//管理员总菜单
+    void adminUsers(vector<Users> users);//用户菜单
+    void adminGoodsMenu();//货物菜单
 };
 
 #endif // SUPERMARKET_SYSTEM_HEAD_H
