@@ -76,21 +76,8 @@ int main() {
                                 int goodsChoice;
                                 cout << "请输入要修改的商品编号：";
                                 cin >> goodsChoice;
-                                bool cond = false;
-                                for (int i = 0; i < market.size(); i++) {
-                                    if (market[i].id == goodsChoice) {
-                                        market.erase(market.begin() + i); // 直接删除，重新创建
-                                        Goods buy_goods;
-                                        buy_goods.id = goodsChoice;
-                                        for (int j = 0; j < goods.size(); j++)
-                                            if (goods[j].id == buy_goods.id)
-                                                buy_goods = goods[j];
-                                        Display::customTrade(buy_goods, goods, market, 'y');
-                                        cond = true;
-                                        break;
-                                    }
-                                }
-                                if (!cond) {
+
+                                if (!Display::customMarketEdit(goods,market,goodsChoice)) {
                                     cout << "输入的商品编号有误..." << endl;
                                     choice = 0;
                                     pause();
@@ -253,8 +240,13 @@ int main() {
                             cout << endl << "是否确认结算？(y/n)：";
                             char choice;
                             cin >> choice;
-                            if (choice == 'y')
+                            if (choice == 'y') {
                                 Goods::trade(bills, goods, market);
+
+                                // 结算信息保存
+                                Goods::save(goods);
+                                Bills::save(bills);
+                            }
                             else
                                 menuChoice = -1;
 

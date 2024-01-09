@@ -98,7 +98,7 @@ public:
     // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
     // 传入的string s可以是商品id也可以是商品名
 
-    static void trade(vector<Bills> bills, vector<Goods> &goods,
+    static void trade(vector<Bills> &bills, vector<Goods> &goods,
                       vector<Bills> &new_bills); // 交易函数，无论买卖操作都进行调用，用于扣除库存
     static void edit(vector<Goods> &goods, int i, int kind, string new_value); // 商品编辑函数，用于编辑商品指定内容
     static void add(vector<Goods> &goods); // 商品添加函数
@@ -114,10 +114,10 @@ public:
 
     static void customMenu();                             // 顾客菜单界面
     static void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
-
+    static bool customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int goodsChoice); // 购物车商品编辑
     static void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // 顾客商品目录
     static void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
-    static void customMarket(vector<Bills> market);                           // 顾客购物车
+    static void customMarket(vector<Bills> &market);                           // 顾客购物车
 
     static void keeperMenu();
     static void keeperSearch(vector<Goods> &goods);

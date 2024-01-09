@@ -71,15 +71,20 @@ void Bills::save(vector<Bills> &bills) {
 
 void Bills::receipt(vector<Bills> market) {
     int i, size = market.size();
+    float sum;
 
-    // cout 菜单头
-    cout << "小票：";
-    for (i = 0; i < size; i++)
-        cout << market[i].id << BLANKSPACE << market[i].name << BLANKSPACE
-             << market[i].sellPrice << BLANKSPACE << market[i].quantity << market[i].measure
-             << BLANKSPACE << market[i].price << endl;
+    cout << "小票："<<endl;
+    cout << "=============================" << endl
+         << "编号   名称  单价   数量  总价" << endl;
+    for (i = 0; i < size; i++) {
+        cout << " " << market[i].id << ' ' <<BLANKSPACE << market[i].name << "  "
+             << market[i].sellPrice << "/" <<market[i].measure  << BLANKSPACE << market[i].quantity
+             << BLANKSPACE << " " << market[i].price << endl;
+        sum += market[i].price;
+    }
     cout << "交易时间：" << market[0].time.wYear << "/" << market[0].time.wMonth << "/" << market[0].time.wDay << " "
          << market[0].time.wHour << ":" << market[0].time.wMinute << endl;
+    cout << "=============================" << endl;
 }
 
 void billsPrint(Bills print_bills) {

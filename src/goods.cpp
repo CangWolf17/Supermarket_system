@@ -91,7 +91,7 @@ int simpleSreach(vector<Goods> &goods, int id) {
     return 0;
 }
 
-void Goods::trade(vector<Bills> bills, vector<Goods> &goods, vector<Bills> &new_bills) {
+void Goods::trade(vector<Bills> &bills, vector<Goods> &goods, vector<Bills> &new_bills) {
     int marketSize = new_bills.size();
 
     SYSTEMTIME tradeTime;
@@ -145,7 +145,7 @@ void Goods::add(vector<Goods> &goods) {
     cout << "编号：";
     cin >> newGoods.id;
     // 安全检查
-    while (newGoods.id > 0) {
+    while (newGoods.id < 0) {
         cout << "编号应大于0，请重新输入：";
         cin >> newGoods.id;
     }

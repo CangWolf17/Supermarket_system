@@ -34,8 +34,39 @@ void Display::customMenu() {
     cout << "0. 退出" << endl;
 }
 
+bool Display::customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int goodsChoice) {
+    for (int i = 0; i < market.size(); i++) {
+        if (market[i].id == goodsChoice) {
+            market.erase(market.begin() + i); // 直接删除，重新创建
+
+            // 建立重新购买的商品
+            Goods buy_goods;
+            buy_goods.id = goodsChoice;
+
+            // 从商品数组获取信息
+            for (int j = 0; j < goods.size(); j++)
+                if (goods[j].id == buy_goods.id)
+                    buy_goods = goods[j];
+
+            // 传入交易函数
+            Display::customTrade(buy_goods, goods, market, 'y');
+            return true;
+        }
+    }
+
+
+
+}
+
 void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice) {
     if (buy_choice == 'y') {
+        for(auto & i : market)
+            if(buy_goods.id == i.id) {
+                cout << "商品已存在，即将跳转修改..." << endl;
+                pause();
+                Display::customMarketEdit(goods,market,i.id);
+                return;
+            }
         Bills new_bills;
         cout << "请输入购买数量：";
         cin >> new_bills.quantity;
@@ -117,7 +148,7 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
     }
 }
 
-void Display::customMarket(vector<Bills> market) {
+void Display::customMarket(vector<Bills> &market) {
     cls();
     int j = 1;
     cout << "您的购物车内容：" << endl;
@@ -125,6 +156,13 @@ void Display::customMarket(vector<Bills> market) {
         cout << "商品编号："<< bill.id << " 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
              << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
     }
+}
+
+void goodsPrint(Goods goods){
+    cout << setw(7) << goods.id << setw(10) << goods.name
+         << setw(9) << goods.species << setw(8) << goods.quantity
+         << setw(7) << goods.purchasePrice << setw(8) << goods.sellPrice
+         << setw(9) << goods.measure << setw(10) << goods.lessLimit << endl;
 }
 
 void Display::keeperMenu() {
@@ -150,10 +188,7 @@ void Display::keeperSearch(vector<Goods> &goods) {
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
         cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
-        cout << setw(5) << find_goods.id << setw(9) << find_goods.name
-             << setw(9) << find_goods.species << setw(9) << find_goods.quantity
-             << setw(9) << find_goods.purchasePrice << setw(9) << find_goods.sellPrice
-             << setw(9) << find_goods.measure << setw(9) << find_goods.lessLimit << endl;
+        goodsPrint(find_goods);
         pause();
     } else {
         cout << "查找的商品不存在！即将返回上一级...";
@@ -240,18 +275,10 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     std::cout << "添加成功！" << std::endl;
 }
 
-void goodsPrint(Goods goods){
-    cout << setw(5) << goods.id << setw(9) << goods.name
-         << setw(9) << goods.species << setw(9) << goods.quantity
-         << setw(9) << goods.purchasePrice << setw(9) << goods.sellPrice
-         << setw(9) << goods.measure << setw(9) << goods.lessLimit << endl;
-}
-
 void Display::goods_data(vector<Goods> &goods) {
     int pageSize = 10, pageNumber = 1;
+    int maxPage = goods.size() / 10 + (goods.size() % 10 > 0);
 
-    int choice = 1;
-    cin >> choice;
     while (pageNumber) {
         // 计算起始和结束
         int startIndex = (pageNumber - 1) * pageSize;
@@ -263,8 +290,16 @@ void Display::goods_data(vector<Goods> &goods) {
             // 打印当前销售记录的信息
             goodsPrint(goods[i]);
         }
+        cout << "最大页数：" << maxPage << endl;
         cout << "请输入查看页数（0退出）：" << endl;
         cin >> pageNumber;
+        if (pageNumber > maxPage) {
+            cout << "页数大于最大页数！请重新输入：";
+            cin >> pageNumber;
+        } else if (pageNumber < 0) {
+            cout << "输入页数应大于0！请重新输入：";
+            cin >> pageNumber;
+        }
     }
 }
 
@@ -274,16 +309,14 @@ void Display::goods_edit(vector<Goods> &goods) {
     string s;
     Goods find_goods;
 
-    cout << "请输入要修改的商品名称或编号：";
+    cout << "请输入要修改的商品名称或编号来进行搜索，输入0退出：";
     cin >> s;
+    if(s == "0")
+        return;
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
         cout << "   1.编号   2.名称   3.种类   4.数量   5.进价   6.售价   7.单位   8.提醒阈值" << endl;
-        cout << setw(5) << find_goods.id << setw(9) << find_goods.name
-             << setw(9) << find_goods.species << setw(9) << find_goods.quantity
-             << setw(9) << find_goods.purchasePrice << setw(9) << find_goods.sellPrice
-             << setw(9) << find_goods.measure << setw(9) << find_goods.lessLimit << endl;
-        pause();
+        goodsPrint(find_goods);
     } else {
         cout << "要修改的商品不存在！即将返回上一级...";
         pause();
