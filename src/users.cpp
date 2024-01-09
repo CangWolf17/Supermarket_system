@@ -50,18 +50,6 @@ void Users::save(vector<Users> &users) {
 }
 
 
-void Users::search(vector<Users> &users, string s, Users &find_user) {
-    int i;
-
-    for (i = 0; i < users.size(); i++) // 通过数字id查找商品
-        if (users[i].id == s) {
-            find_user = users[i];
-            return;
-        }
-
-    find_user.id = "-1";
-}
-
 void Users::add(vector<Users> &users, int level) {
 
 

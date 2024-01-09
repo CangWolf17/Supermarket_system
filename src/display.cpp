@@ -44,9 +44,9 @@ bool Display::customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int 
             buy_goods.id = goodsChoice;
 
             // 从商品数组获取信息
-            for (int j = 0; j < goods.size(); j++)
-                if (goods[j].id == buy_goods.id)
-                    buy_goods = goods[j];
+            for (auto & good : goods)
+                if (good.id == buy_goods.id)
+                    buy_goods = good;
 
             // 传入交易函数
             Display::customTrade(buy_goods, goods, market, 'y');
@@ -310,7 +310,7 @@ void Display::cashierMenu() {
 
 void Display::cashierMarket(vector<Bills> &market) {
     cls();
-    int j = 1;
+
     cout << "购物车中的内容：" << endl;
     cout << "   商品编号    商品名称   种类   数量   价格/单位   总价" << endl;
     for (const auto &bill: market) {
@@ -463,17 +463,14 @@ void Display::adminUsers(vector<Users> &users, Users user) {//管理员用户操作
             case 3: {
                 cout << "请输入您的密码以确认身份：";
                 cin >> verify_pwd;
-                for (int i = 0; i < users.size(); i++) {
-                    if (verify_pwd == user.pwd) {
-                        Users::del(users);
-                        break;
-                    } else {
-                        cout << "密码错误，程序即将返回...";
-                        pause();
-                        break;
-                    }
+                if (verify_pwd == user.pwd) {
+                    Users::del(users);
+                    break;
+                } else {
+                    cout << "密码错误，程序即将返回...";
+                    pause();
+                    break;
                 }
-                break;
             } // 删除用户
             case 0:
                 break;

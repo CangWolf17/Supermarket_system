@@ -26,7 +26,7 @@
 // 目的是为了避免重复造轮子
 
 bool isDigitStr(string s);       // 用于检查传入的字符串是否全部为数字，如果是则返回true
-int strTurnNum(string s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
+int strTurnNum(const string& s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
 void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
 void cls();               // 清屏函数
 
@@ -45,7 +45,6 @@ public:
 
     static void save(vector<Users> &users);
 
-    static void search(vector<Users> &users, string s, Users &find_user);      // 查找用户
     static void add(vector<Users> &users, int level);                    // 添加用户函数
     static void del(vector<Users> &users);                      // 删除用户，需要传入用户id
     static void pwdedit(vector<Users> &users, Users currentUser);              // 修改密码

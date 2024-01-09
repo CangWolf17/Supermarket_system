@@ -13,7 +13,7 @@ bool isDigitStr(string s) {
     return true;
 }
 
-int strTurnNum(string s) {
+int strTurnNum(const string& s) {
     int num;
     istringstream ss(s);
     ss >> num;
