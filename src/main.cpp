@@ -126,6 +126,7 @@ int main() {
                             cin >> choice;
                             if (choice == 'y') {
                                 Goods::trade(bills, goods, market);
+                                market.clear();
                                 // 小票打印
                                 cout << "是否打印小票？(y/n)：";
                                 cin >> choice;
@@ -236,29 +237,71 @@ int main() {
                             // 展示购物车内容
                             Display::cashierMarket(market);
 
-                            // 结算
-                            cout << endl << "是否确认结算？(y/n)：";
-                            char choice;
+                            cout << "请选择操作（0.取消，1.结算，2.修改，3.删除）：";
+                            int choice;
                             cin >> choice;
-                            if (choice == 'y') {
-                                Goods::trade(bills, goods, market);
 
-                                // 结算信息保存
-                                Goods::save(goods);
-                                Bills::save(bills);
+                            // 购物车操作
+                            switch (choice) {
+                                case 1: {
+                                    cout << endl << "是否确认结算？(y/n)：";
+                                    char tradeChoice;
+                                    cin >> tradeChoice;
+                                    if (tradeChoice == 'y') {
+                                        Goods::trade(bills, goods, market);
+                                        market.clear();
+                                        // 小票打印
+                                        cout << "是否打印小票？(y/n)：";
+                                        cin >> tradeChoice;
+                                        if (tradeChoice == 'y')
+                                            Bills::receipt(market);
+                                    }
+                                    else
+                                        menuChoice = -1;
+                                    break;
+                                }
+                                case 2: {
+                                    int goodsChoice;
+                                    cout << "请输入要修改的商品编号：";
+                                    cin >> goodsChoice;
+
+                                    if (!Display::customMarketEdit(goods, market, goodsChoice)) {
+                                        cout << "输入的商品编号有误..." << endl;
+                                        choice = 0;
+                                        pause();
+                                    }
+                                    menuChoice = -1;
+                                    break;
+                                }
+                                case 3: {
+                                    int goodsChoice;
+                                    cout << "请输入要删除的商品编号：";
+                                    cin >> goodsChoice;
+                                    bool cond = false;
+                                    for (int i = 0; i < market.size(); i++) {
+                                        if (market[i].id == goodsChoice) {
+                                            market.erase(market.begin() + i);
+                                            cout << "购物车中的商品已删除" << endl;
+                                            cond = true;
+                                        }
+                                    }
+
+                                    if (!cond) {
+                                        cout << "输入的商品编号有误..." << endl;
+                                        choice = 0;
+                                    }
+                                    menuChoice = -1;
+                                    break;
+                                }
+                                default: {
+                                    menuChoice = -1;
+                                    break;
+                                }
                             }
-                            else
-                                menuChoice = -1;
-
-                            // 小票打印
-                            cout << "是否打印小票？(y/n)：";
-                            cin >> choice;
-                            if (choice == 'y')
-                                Bills::receipt(market);
                         }
                         menuChoice = -1;
                         break;
-                    } // 2 购物结算
+                    }// 2 购物结算
                     case 3: {
                         Bills::data(bills);
                         break;

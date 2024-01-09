@@ -84,6 +84,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         new_bills.species = buy_goods.species;
         new_bills.sellPrice = buy_goods.sellPrice;
         new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
+        new_bills.profit = new_bills.price - (buy_goods.purchasePrice * new_bills.quantity); // 计算利润
         new_bills.measure = buy_goods.measure;
 
 
@@ -111,11 +112,13 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     int j = 1;
     // 添加代码以显示顾客商品目录
     cout << "以下是所有商品目录：" << endl;
+    cout<<"=============================================="<<endl;
     cout<<"   商品编号    商品名称   种类   库存数量   价格/单位"<<endl;
     for (const auto &tmp_goods: goods) {
         cout<<j++<<".";
         customGoodsPrint(tmp_goods);
     } // 未包含“商品进价”、“阈值提醒”和“备注”
+    cout<<"=============================================="<<endl;
 
     cout << "请输入要购买的商品编号（无则请输入0）：";
     // 输入购买商品编号
@@ -229,11 +232,15 @@ void Display::goods_data(vector<Goods> &goods) {
         int endIndex = pageNumber * pageSize;
         cout << "商品详情页面" << endl;
         cout << "当前页数： 第 " << pageNumber << " 页" << endl;
+
+        cout << "====================================================================="<<endl;
         cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
         for (int j = startIndex, i = startIndex; j < endIndex && i < goods.size(); i++, j++) {
             // 打印当前销售记录的信息
             goodsPrint(goods[i]);
         }
+        cout << "====================================================================="<<endl;
+
         cout << "最大页数：" << maxPage << endl;
         cout << "请输入查看页数（0退出）：" << endl;
         cin >> pageNumber;
@@ -295,9 +302,9 @@ void Display::goods_edit(vector<Goods> &goods) {
 }
 
 void Display::cashierMenu() {
-    cout << "1.销售商品" << endl;
-    cout << "2.购物结算" << endl;
-    cout << "3.查看记录" << endl;
+    cout << "1.添加销售商品" << endl;
+    cout << "2.销售商品操作" << endl;
+    cout << "3.查看销售记录" << endl;
     cout << "4.修改密码" << endl;
     cout << "0.退出" << endl;
 }
@@ -364,6 +371,7 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     new_bills.sellPrice = goods[i].sellPrice;
     new_bills.quantity = goods[i].quantity;
     new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
+    new_bills.profit = new_bills.price - (goods[i].purchasePrice * new_bills.quantity); // 计算利润
     new_bills.measure = goods[i].measure;
 
     // 销售记录推入购物车
