@@ -325,14 +325,15 @@ int main() {
         case admin: {
             system("title admin");
 
-            while (menuChoice) {
+            while (menuChoice!=0) {
                 cls();
                 Display::adminMenu();
 
                 cin >> menuChoice;
                 switch (menuChoice) {
                     case 1: {
-                        Display::adminUsers(users);
+                        Display::adminUsers(users, user);
+                        menuChoice = -1;
                         break;
                     } // 用户操作
                     case 2: {
@@ -368,6 +369,7 @@ int main() {
                     } // 货物操作
                     case 3: {
                         Bills::data(bills);
+                        menuChoice = -1;
                         break;
                     } // 销售情况
                     case 4: {
@@ -375,13 +377,14 @@ int main() {
                         menuChoice = -1;
                         break;
                     }  // 4 修改密码
-
+                    case 0:
+                        break;
                     default:
                         cout << "输入值无效！请重新输入：";
                         cin >> menuChoice;
                         menuChoice = -1;
+                        break;
                 }
-                break;
             }
         }
     }

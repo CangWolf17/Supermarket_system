@@ -93,18 +93,8 @@ void Users::add(vector<Users> &users, int level) {
     string tmp;
     cin >> tmp;
 
-    i = 3; // 三次重复输入机会
-    while (i > 0 && (new_user.pwd != tmp)) {
-        cout << "两次密码输入不一致！请重新输入：" << endl;
-        cin >> new_user.pwd;
-        cout << endl;
-        cin >> tmp;
-        i--;
-    }
-
-    // 三次后两次密码仍然错误的话，返回
     if (new_user.pwd != tmp) {
-        cout << "程序即将返回..." << endl;
+        cout << "二次输入错误，程序即将返回..." << endl;
         pause();
         return;
     } else {
@@ -115,7 +105,7 @@ void Users::add(vector<Users> &users, int level) {
     }
 
     users.push_back(new_user);
-    cout << "创建新用户成功。";
+    cout << "创建新用户成功。"<<endl;
     pause();
 }
 
@@ -123,27 +113,14 @@ void Users::del(vector<Users> &users) {
     int i;
     string userid;
 
-    for (i = 0; i < users.size(); i++) {
-        cout << "用户姓名：" << users[i].name << "用户id：" << users[i].id << "用户权限：";
-        switch (users[i].level) {
-            case 0:
-                cout << "Customer" << endl;
-            case 1:
-                cout << "keeper" << endl;
-            case 2:
-                cout << "Cashier" << endl;
-            case 3:
-                cout << "Admin" << endl;
-        }
-    }
-    cout << endl << "请输入要删除的用户id：";
+    cout  << "请输入要删除的用户id：";
     cin >> userid;
 
     for (i = 0; i < users.size(); i++)
         if (users[i].id == userid)
             break;
 
-    int index = i - 1;             // 获取选择的用户的索引
+    int index = i;             // 获取选择的用户的索引
     users.erase(users.begin() + index); // 删除选中的用户
     cout << "删除成功！" << endl;
 }

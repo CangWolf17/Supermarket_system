@@ -103,8 +103,7 @@ void billsPrint(Bills print_bills) {
 
 }
 
-void Bills::data(vector<Bills> &bills) {
-    cls();
+void billsMenu(){
     // 信息展示页
     cout << "销售记录管理：" << endl;
     cout << "1. 按时间顺序查看" << endl;
@@ -112,13 +111,18 @@ void Bills::data(vector<Bills> &bills) {
     cout << "3. 按商品名称查看" << endl;
     cout << "4. 销售额统计" << endl;
     cout << "0. 退出" << endl;
+}
+
+void Bills::data(vector<Bills> &bills) {
+    cls();
 
     // 每页显示的销售记录数量
     int pageSize = 10, pageNumber = 1;
-
     int choice = 1;
-    cin >> choice;
+
     while (choice) {
+        billsMenu();
+        cin >> choice;
         switch (choice) {
             case 1: {
 

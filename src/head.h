@@ -131,7 +131,7 @@ public:
     static void goods_edit(vector<Goods> &goods); // 商品编辑
 
     static void adminMenu(); // 管理员总菜单
-    static void adminUsers(vector<Users> users); // 用户菜单
+    static void adminUsers(vector<Users> &users, Users user); // 用户菜单
     static void adminGoodsMenu(); // 货物菜单
 };
 

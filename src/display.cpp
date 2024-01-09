@@ -387,24 +387,25 @@ void Display::adminMenu() {
     cout << "0.退出" << endl;
 }
 
-void Display::adminUsers(vector<Users> users) {//管理员用户操作
-
-// 遍历指定范围内的用户信息
+void usersMenuPrint(vector<Users> &users){
+    // 遍历指定范围内的用户信息
+    cout<<"======================================"<<endl;
+    cout<<"     姓名          id            权限"<<endl;
     for (auto & user : users) {
         // 打印当前用户的姓名和ID
-        cout << " 姓名: " << user.name << " id: " << user.id;
+        cout << setw(9) << user.name << setw(14)<< user.id << "       ";
         switch (user.level) {
             case 0:
-                cout<<" 权限：顾客"<<endl;
+                cout<<"    顾客"<<endl;
                 break;
             case 1:
-                cout<<" 权限：仓库管理员"<<endl;
+                cout<<"仓库管理员"<<endl;
                 break;
             case 2:
-                cout<<" 权限：收银员"<<endl;
+                cout<<"   收银员"<<endl;
                 break;
             case 3:
-                cout<<" 权限：管理员"<<endl;
+                cout<<"   管理员"<<endl;
                 break;
         }
     }
@@ -416,46 +417,78 @@ void Display::adminUsers(vector<Users> users) {//管理员用户操作
     cout << "3. 删除用户" << endl;
     cout << "0. 返回" << endl;
 
+}
+
+void Display::adminUsers(vector<Users> &users, Users user) {//管理员用户操作
+
     int choice = 1;
     string verify_pwd;
-    cin >> choice;
-    switch (choice) {
-        case 1: {
-            int level;
-            Users::add(users, level);
-            break;
-        } // 创建用户
-        case 2: {
-            int kind;
-            int i;
-            string new_value;
-            Users::edit(users, i, kind, new_value);
-            break;
-        } // 编辑用户
-        case 3: {
-            cout << "请输入密码以确认身份：" << endl;
-            cin >> verify_pwd;
-            for (int i = 0; i < users.size(); i++) {
-                if (verify_pwd == users[i].pwd) {
-                    if (users[i].level == 3) {
-                        int level;
-                        Users::del(users);
+    while(choice) {
+        cls();
+        usersMenuPrint(users);
+        cin >> choice;
+        switch (choice) {
+            case 1: {
+                Users::add(users, 3);
+                break;
+            } // 创建用户
+            case 2: {
+                int kind;
+                int i;
+                string id, new_value;
+                cout<<"请输入修改的用户id:";
+                cin >> id;
+                bool cond = false;
+
+                for(i=0;i<users.size();i++)
+                    if(users[i].id == id) {
+                        cond = true;
+                        break;
+                    }
+
+                if(cond == false) {
+                    cout << "用户id错误！" << endl;
+                    pause();
+                    break;
+                }
+                cout<<"请输入修改的数据类型（1.姓名，2.id，3.密码，4.权限，0.退出）：";
+                cin >> kind;
+                if(kind == 1 || kind ==2 || kind == 3 || kind == 4){
+                    cout<<"请输入新的值：";
+                    cin>>new_value;
+                    Users::edit(users, i, kind, new_value);
+                    break;
+                }
+                break;
+            } // 编辑用户
+            case 3: {
+                cout << "请输入您的密码以确认身份：";
+                cin >> verify_pwd;
+                for (int i = 0; i < users.size(); i++) {
+                    if (verify_pwd == user.pwd) {
+                            Users::del(users);
+                            break;
+                    }else{
+                        cout<<"密码错误，程序即将返回...";
+                        pause();
                         break;
                     }
                 }
-            }
-            break;
-        } // 删除用户
-        case 0:
-            break;
-        default:
-            cout << "输入值无效！请重新输入：";
+                break;
+            } // 删除用户
+            case 0:
+                break;
+            default:
+                cout << "输入值无效！请重新输入：";
+                cin>>choice;
+        }
     }
 }
 
 void Display::adminGoodsMenu() {
     cout << "1.库存详情" << endl;
     cout << "2.编辑商品" << endl;
-    cout << "3.删除商品" << endl;
+    cout << "3.添加商品" << endl;
+    cout << "4.删除商品" << endl;
     cout << "0.退出" << endl;
 }
