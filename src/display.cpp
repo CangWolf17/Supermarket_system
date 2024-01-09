@@ -53,9 +53,6 @@ bool Display::customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int 
             return true;
         }
     }
-
-
-
 }
 
 void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice) {
@@ -96,16 +93,28 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
     }
 }
 
+void customGoodsPrint(Goods tmp_goods){
+    cout << setw(5) << tmp_goods.id << setw(12) << tmp_goods.name
+         << setw(8) << tmp_goods.species << setw(8) << tmp_goods.quantity
+         << setw(7) << tmp_goods.sellPrice << "/" << tmp_goods.measure << endl;
+}
+
+void marketPrint(Bills tmp_bills){
+    cout << setw(5) << tmp_bills.id << setw(12) << tmp_bills.name
+         << setw(9) << tmp_bills.species << setw(5) << tmp_bills.quantity
+         << setw(7) << tmp_bills.sellPrice << "/" << tmp_bills.measure << setw(6) << tmp_bills.price << endl;
+}
+
 void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     cls();
 
     int j = 1;
     // 添加代码以显示顾客商品目录
     cout << "以下是所有商品目录：" << endl;
+    cout<<"   商品编号    商品名称   种类   库存数量   价格/单位"<<endl;
     for (const auto &tmp_goods: goods) {
-        cout << j++ << ".商品编号：" << tmp_goods.id << " 名称：" << tmp_goods.name
-             << " 种类：" << tmp_goods.species << " 价格：" << tmp_goods.sellPrice << "/" << tmp_goods.measure
-             << " 数量：" << tmp_goods.quantity << endl;
+        cout<<j++<<".";
+        customGoodsPrint(tmp_goods);
     } // 未包含“商品进价”、“阈值提醒”和“备注”
 
     cout << "请输入要购买的商品编号（无则请输入0）：";
@@ -138,6 +147,8 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
 
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
+        cout<<"商品编号    商品名称   种类   库存数量   价格/单位"<<endl;
+        customGoodsPrint(find_goods);
         char buy_choice;
         cout << "是否确认加入购物车？（请输入y/n）：";
         cin >> buy_choice;
@@ -152,9 +163,10 @@ void Display::customMarket(vector<Bills> &market) {
     cls();
     int j = 1;
     cout << "您的购物车内容：" << endl;
-    for (const auto &bill: market) {
-        cout << "商品编号："<< bill.id << " 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
-             << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
+    cout<<"   商品编号    商品名称   种类   数量   价格/单位   总价"<<endl;
+    for (const auto &tmp_market: market) {
+        cout<<j++<<".";
+        marketPrint(tmp_market);
     }
 }
 
@@ -294,21 +306,21 @@ void Display::cashierMarket(vector<Bills> &market) {
     cls();
     int j = 1;
     cout << "购物车中的内容：" << endl;
+    cout<<"   商品编号    商品名称   种类   数量   价格/单位   总价"<<endl;
     for (const auto &bill: market) {
-        cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
-             << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
+        marketPrint(bill);
     }
 }
 
 void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
 
     int j = 1;
-    // 添加代码以显示顾客商品目录
+    // 显示商品目录
     cout << "以下是所有商品目录：" << endl;
+    cout<<"   商品编号    商品名称   种类   库存数量   价格/单位"<<endl;
     for (const auto &tmp_goods: goods) {
-        cout << j++ << ".商品编号：" << tmp_goods.id << " 名称：" << tmp_goods.name
-             << " 种类：" << tmp_goods.species << " 价格：" << tmp_goods.sellPrice << "/" << tmp_goods.measure
-             << " 数量：" << tmp_goods.quantity << endl;
+        cout<<j++<<".";
+        customGoodsPrint(tmp_goods);
     } // 未包含“商品进价”、“阈值提醒”和“备注”
 
     cout << "请输入要销售的商品编号（无则请输入0）：";
@@ -325,7 +337,17 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     }
 
     Bills new_bills;
+    new_bills.id = goods[i].id;
+    for(auto & tmp_market : market)
+        if(new_bills.id == tmp_market.id) {
+            cout << "商品已存在，即将跳转修改..." << endl;
+            pause();
+            Display::customMarketEdit(goods, market, tmp_market.id);
+            return;
+        }
+
     cout << "请输入购买数量：";
+    cin >> new_bills.quantity;
     // 对顾客输入的商品数量进行检查
     while (new_bills.quantity <= 0) {
         cout << "商品数量不能为负数或零。" << endl;
@@ -337,14 +359,12 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
         cin >> new_bills.quantity;
     }
     // 产生销售记录
-    new_bills.id = goods[i].id;
     new_bills.name = goods[i].name;
     new_bills.species = goods[i].species;
     new_bills.sellPrice = goods[i].sellPrice;
     new_bills.quantity = goods[i].quantity;
     new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
     new_bills.measure = goods[i].measure;
-
 
     // 销售记录推入购物车
     market.push_back(new_bills);
