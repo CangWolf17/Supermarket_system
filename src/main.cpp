@@ -77,7 +77,7 @@ int main() {
                                 cout << "请输入要修改的商品编号：";
                                 cin >> goodsChoice;
 
-                                if (!Display::customMarketEdit(goods,market,goodsChoice)) {
+                                if (!Display::customMarketEdit(goods, market, goodsChoice)) {
                                     cout << "输入的商品编号有误..." << endl;
                                     choice = 0;
                                     pause();
@@ -145,9 +145,8 @@ int main() {
                             if (user.id != "0") {
                                 Users::pwdedit(users, user);
                                 menuChoice = -1;
-                            }
-                            else{
-                                cout<<"您不能修改游客身份的密码！请退出后注册！"<<endl;
+                            } else {
+                                cout << "您不能修改游客身份的密码！请退出后注册！" << endl;
                                 menuChoice = -1;
                             }
                             break;
@@ -255,8 +254,7 @@ int main() {
                                         cin >> tradeChoice;
                                         if (tradeChoice == 'y')
                                             Bills::receipt(market);
-                                    }
-                                    else
+                                    } else
                                         menuChoice = -1;
                                     break;
                                 }
@@ -325,7 +323,7 @@ int main() {
         case admin: {
             system("title admin");
 
-            while (menuChoice!=0) {
+            while (menuChoice != 0) {
                 cls();
                 Display::adminMenu();
 

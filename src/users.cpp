@@ -36,10 +36,10 @@ void Users::save(vector<Users> &users) {
         exit(1);
     } else
         while (i < users.size()) {
-            if(i == 0) {
+            if (i == 0) {
                 txt_data << users[i].name << BLANKSPACE << users[i].id << BLANKSPACE
                          << users[i].pwd << BLANKSPACE << users[i].level;
-            }else{
+            } else {
                 txt_data << '\n' << users[i].name << BLANKSPACE << users[i].id << BLANKSPACE
                          << users[i].pwd << BLANKSPACE << users[i].level;
             }
@@ -105,7 +105,7 @@ void Users::add(vector<Users> &users, int level) {
     }
 
     users.push_back(new_user);
-    cout << "创建新用户成功。"<<endl;
+    cout << "创建新用户成功。" << endl;
     pause();
 }
 
@@ -113,7 +113,7 @@ void Users::del(vector<Users> &users) {
     int i;
     string userid;
 
-    cout  << "请输入要删除的用户id：";
+    cout << "请输入要删除的用户id：";
     cin >> userid;
 
     for (i = 0; i < users.size(); i++)

@@ -114,17 +114,22 @@ public:
 
     static void customMenu();                             // 顾客菜单界面
     static void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
+
     static bool customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int goodsChoice); // 购物车商品编辑
     static void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // 顾客商品目录
     static void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
     static void customMarket(vector<Bills> &market);                           // 顾客购物车
 
     static void keeperMenu();
+
     static void keeperSearch(vector<Goods> &goods);
+
     static void keeperLimit(vector<Goods> &goods);
 
     static void cashierMenu();
+
     static void cashierMarket(vector<Bills> &market);
+
     static void cashierTrade(vector<Goods> &goods, vector<Bills> &market);
 
     static void goods_data(vector<Goods> &goods); // 所有的商品信息展示

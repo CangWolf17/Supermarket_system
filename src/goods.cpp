@@ -40,17 +40,18 @@ void Goods::save(vector<Goods> &goods) {
         exit(1);
     } else
         while (i < goods.size()) {
-            if(i == 0){
-                txt_data << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species << BLANKSPACE <<
-                         goods[i].purchasePrice << BLANKSPACE << goods[i].sellPrice << BLANKSPACE << goods[i].quantity <<
+            if (i == 0) {
+                txt_data << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species << BLANKSPACE
+                         <<
+                         goods[i].purchasePrice << BLANKSPACE << goods[i].sellPrice << BLANKSPACE << goods[i].quantity
+                         <<
                          BLANKSPACE << goods[i].lessLimit << BLANKSPACE << goods[i].measure;
-            }
-            else {
+            } else {
 
                 txt_data << '\n' << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species
                          << BLANKSPACE << goods[i].purchasePrice
                          << BLANKSPACE << goods[i].sellPrice << BLANKSPACE
-                         << goods[i].quantity  << BLANKSPACE
+                         << goods[i].quantity << BLANKSPACE
                          << goods[i].lessLimit << BLANKSPACE << goods[i].measure;
             }
             i++;

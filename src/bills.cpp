@@ -42,7 +42,7 @@ void Bills::save(vector<Bills> &bills) {
         exit(1);
     } else
         while (i < bills.size()) {
-            if(i == 0) {
+            if (i == 0) {
                 txt_data << bills[i].transactionID << BLANKSPACE
                          << bills[i].time.wYear << BLANKSPACE << bills[i].time.wMonth << BLANKSPACE
                          << bills[i].time.wDay
@@ -52,7 +52,7 @@ void Bills::save(vector<Bills> &bills) {
                          << bills[i].sellPrice << BLANKSPACE << bills[i].quantity << BLANKSPACE
                          << bills[i].price << BLANKSPACE << bills[i].profit
                          << BLANKSPACE << bills[i].measure;
-            }else{
+            } else {
                 txt_data << '\n' << bills[i].transactionID << BLANKSPACE
                          << bills[i].time.wYear << BLANKSPACE << bills[i].time.wMonth << BLANKSPACE
                          << bills[i].time.wDay
@@ -73,12 +73,12 @@ void Bills::receipt(vector<Bills> market) {
     int i, size = market.size();
     float sum;
 
-    cout << "小票："<<endl;
+    cout << "小票：" << endl;
     cout << "=============================" << endl
          << "编号   名称  单价   数量  总价" << endl;
     for (i = 0; i < size; i++) {
-        cout << " " << market[i].id << ' ' <<BLANKSPACE << market[i].name << "  "
-             << market[i].sellPrice << "/" <<market[i].measure  << BLANKSPACE << market[i].quantity
+        cout << " " << market[i].id << ' ' << BLANKSPACE << market[i].name << "  "
+             << market[i].sellPrice << "/" << market[i].measure << BLANKSPACE << market[i].quantity
              << BLANKSPACE << " " << market[i].price << endl;
         sum += market[i].price;
     }
@@ -91,19 +91,19 @@ void billsPrint(Bills print_bills) {
     cout << "   " << print_bills.transactionID << setw(8)
          << print_bills.time.wYear << "/" << print_bills.time.wMonth << "/"
          << print_bills.time.wDay << " " << print_bills.time.wHour << ":" << print_bills.time.wMinute
-     << setw(6) << print_bills.id
-     << setw(11) << print_bills.name
-     << setw(7) << print_bills.species
-     << setw(5) << print_bills.sellPrice
-     << setw(9) << print_bills.quantity
-     << setw(6) << print_bills.measure
-     << setw(8) << print_bills.price
-     << setw(8) << print_bills.profit
-     << endl; // 便于区分每条销售数据
+         << setw(6) << print_bills.id
+         << setw(11) << print_bills.name
+         << setw(7) << print_bills.species
+         << setw(5) << print_bills.sellPrice
+         << setw(9) << print_bills.quantity
+         << setw(6) << print_bills.measure
+         << setw(8) << print_bills.price
+         << setw(8) << print_bills.profit
+         << endl; // 便于区分每条销售数据
 
 }
 
-void billsMenu(){
+void billsMenu() {
     // 信息展示页
     cout << "销售记录管理：" << endl;
     cout << "1. 按时间顺序查看" << endl;
@@ -135,13 +135,16 @@ void Bills::data(vector<Bills> &bills) {
                     int maxPage = bills.size() / 10 + (bills.size() % 10 > 0);
 
                     cout << "当前页数： 第 " << pageNumber << " 页" << endl;
-                    cout<<"=================================================================================="<<endl;
-                    cout<<" 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"<<endl;
+                    cout << "=================================================================================="
+                         << endl;
+                    cout << " 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"
+                         << endl;
                     for (int j = startIndex, i = startIndex; j < endIndex && i < bills.size(); i++, j++) {
                         // 打印当前销售记录的信息
                         billsPrint(bills[i]);
                     }
-                    cout<<"=================================================================================="<<endl;
+                    cout << "=================================================================================="
+                         << endl;
                     cout << "最大页数：" << maxPage << endl;
                     cout << "请输入查看页数（0退出）：" << endl;
                     cin >> pageNumber;
@@ -182,8 +185,10 @@ void Bills::data(vector<Bills> &bills) {
                         int maxPage = speciesBills.size() / 10 + (speciesBills.size() % 10 > 0);
 
                         cout << "当前页数： 第 " << pageNumber << " 页" << endl;
-                        cout<<"=================================================================================="<<endl;
-                        cout<<" 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"<<endl;
+                        cout << "=================================================================================="
+                             << endl;
+                        cout << " 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"
+                             << endl;
                         // j做循环控制，i做界限控制
                         for (int j = startIndex, i = startIndex; j < endIndex && i < speciesBills.size(); i++, j++) {
                             // 检查商品种类是否符合条件
@@ -195,7 +200,8 @@ void Bills::data(vector<Bills> &bills) {
                                 continue;
                             }
                         }
-                        cout<<"=================================================================================="<<endl;
+                        cout << "=================================================================================="
+                             << endl;
                         cout << "最大页数：" << maxPage << endl;
                         cout << "请输入查看页数（0退出）：" << endl;
                         cin >> pageNumber;
@@ -235,7 +241,8 @@ void Bills::data(vector<Bills> &bills) {
 
                         // 最后一页查找
                         int maxPage = namesBills.size() / 10 + (namesBills.size() % 10 > 0);
-                        cout<<"=================================================================================="<<endl;
+                        cout << "=================================================================================="
+                             << endl;
                         cout << "当前页数： 第 " << pageNumber << " 页" << endl;
                         // j做循环控制，i做界限控制
                         for (int j = startIndex, i = startIndex; j < endIndex && i < namesBills.size(); i++, j++) {
@@ -248,7 +255,8 @@ void Bills::data(vector<Bills> &bills) {
                                 continue;
                             }
                         }
-                        cout<<"=================================================================================="<<endl;
+                        cout << "=================================================================================="
+                             << endl;
                         cout << "最大页数：" << maxPage << endl;
                         cout << "请输入查看页数（0退出）：" << endl;
                         cin >> pageNumber;

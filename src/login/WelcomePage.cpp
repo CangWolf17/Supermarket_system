@@ -10,22 +10,21 @@
 
 using namespace std;
 
-Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤ÓÃ»§Éí·İĞÅÏ¢
+Users user_login(Users user, string login_id, string login_pwd) {// ¶ÁÈ¡ÎÄ¼şÑéÖ¤ÓÃ»§Éí·İĞÅÏ¢
     // ´«ÈëĞÎ²ÎÎªÒ»¸öĞÂµÄusers½á¹¹Ìå£¬µÇÂ¼idºÍµÇÂ½ÃÜÂë
 
     string fname = R"(.\data\users.txt)"; // Ö´ĞĞÎÄ¼şÂ·¾¶ÔÚÏîÄ¿ÎÄ¼ş¼ĞÏÂ£¬Êı¾İÎÄ¼şÖ¸¶¨ÔÚdataÏÂ
     ifstream txt_data(fname, ios::in);
     int sta = 0;
 
-    if(!txt_data.is_open()){
+    if (!txt_data.is_open()) {
         cout << "ÓÃ»§ÎÄ¼ş´ò¿ªÊ§°Ü";
-    }
-    else{
-        while(!txt_data.eof()){
+    } else {
+        while (!txt_data.eof()) {
             txt_data >> user.name >> user.id >> user.pwd >> user.level;
             // ´Ó´ò¿ªµÄÎÄ¼şÖĞÖğ´Î½«Á÷´æÈëÀà
 
-            if(user.id == login_id && user.pwd == login_pwd) {
+            if (user.id == login_id && user.pwd == login_pwd) {
                 sta = 1;
                 break; // µ±ÓÃ»§ÃûºÍÃÜÂëÕıÈ·Ê±ÍË³öÑ­»·
             }
@@ -33,7 +32,7 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     }
     txt_data.close();
 
-    if(sta == 0) {
+    if (sta == 0) {
         cout << "ÕËºÅ»òÃÜÂë´íÎó£¡ÇëÖØĞÂÊäÈë" << endl;
         user.name = "NOTFOUND";
         return user;
@@ -42,7 +41,7 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     return user;
 }
 
-Users login(){
+Users login() {
 
     // ´´½¨ĞÂµÄusersÀà
     Users user = *new Users;
@@ -50,26 +49,24 @@ Users login(){
     string id, pwd;
 
     // Êä³ö²¿·Ö
-    do{
-        cout<<"»¶Ó­Ê¹ÓÃ³¬ÊĞ¹ÜÀíÏµÍ³"<<endl;
-        cout<<"ÈçĞè×¢²áÇëÊäÈë reg £¬ÈçĞèÊ¹ÓÃ·Ã¿ÍÉí·İµÇÂ¼ÇëÊäÈë 0 "<<endl;
-        cout<<"ÇëÊäÈëÓÃ»§Ãû£º";
-        cin>>id;
-        if(id == "reg") {
+    do {
+        cout << "»¶Ó­Ê¹ÓÃ³¬ÊĞ¹ÜÀíÏµÍ³" << endl;
+        cout << "ÈçĞè×¢²áÇëÊäÈë reg £¬ÈçĞèÊ¹ÓÃ·Ã¿ÍÉí·İµÇÂ¼ÇëÊäÈë 0 " << endl;
+        cout << "ÇëÊäÈëÓÃ»§Ãû£º";
+        cin >> id;
+        if (id == "reg") {
             user.id = "reg";
             return user;
-        }
-        else if(id == "0") {
+        } else if (id == "0") {
             user.id = "0";
             return user;
-        }
-        else {
+        } else {
             cout << "ÇëÊäÈëÃÜÂë£º";
             cin >> pwd;
         }
         // µ÷ÓÃº¯Êı²éÕÒµÇÂ¼Ä¿±ê
-        user = user_login(user,id,pwd);
-    }while(user.name == "NOTFOUND");
+        user = user_login(user, id, pwd);
+    } while (user.name == "NOTFOUND");
 
     cout << user.name << " " << user.id << endl;
 
