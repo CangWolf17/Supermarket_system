@@ -29,6 +29,7 @@ bool isDigitStr(string s);       // 用于检查传入的字符串是否全部为数字，如果是则
 int strTurnNum(const string& s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
 void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
 void cls();               // 清屏函数
+void goto_xy(int x,int y);
 
 // 创建类
 // 创建用户信息的类

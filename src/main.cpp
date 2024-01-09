@@ -27,6 +27,10 @@ int main() {
     // 主函数开始执行
 
     // 登录
+
+    Display::loginPage();
+    system("cls");
+
     Users user = login(); // 调用login函数实现登录，同时返回一个包含用户数据的users对象
     if (user.name == "NOTFOUND")
         user = login();
@@ -395,6 +399,6 @@ int main() {
     Bills::save(bills);
 
     cout << "感谢您的使用，下次再见！";
-    system("pause");
+    Sleep(3000);
     return 0;
 }

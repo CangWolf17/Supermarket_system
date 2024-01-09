@@ -27,3 +27,13 @@ void pause() {
 void cls() {
     system("cls");
 }
+
+void goto_xy(int x,int y){ //定义goto_xy函数，实现格式控制
+    int xx=0x0b;
+    HANDLE hOutput;
+    COORD loc;
+    loc.X=x;
+    loc.Y=y;
+    hOutput=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(hOutput,loc);
+}
