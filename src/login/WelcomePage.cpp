@@ -10,33 +10,33 @@
 
 using namespace std;
 
-Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤ÓÃ»§Éí·İĞÅÏ¢
-    // ´«ÈëĞÎ²ÎÎªÒ»¸öĞÂµÄusers½á¹¹Ìå£¬µÇÂ¼idºÍµÇÂ½ÃÜÂë
+Users user_login(Users user, string login_id, string login_pwd) {// è¯»å–æ–‡ä»¶éªŒè¯ç”¨æˆ·èº«ä»½ä¿¡æ¯
+    // ä¼ å…¥å½¢å‚ä¸ºä¸€ä¸ªæ–°çš„usersç»“æ„ä½“ï¼Œç™»å½•idå’Œç™»é™†å¯†ç 
 
-    string fname = R"(.\data\users.txt)"; // Ö´ĞĞÎÄ¼şÂ·¾¶ÔÚÏîÄ¿ÎÄ¼ş¼ĞÏÂ£¬Êı¾İÎÄ¼şÖ¸¶¨ÔÚdataÏÂ
+    string fname = R"(.\data\users.txt)"; // æ‰§è¡Œæ–‡ä»¶è·¯å¾„åœ¨é¡¹ç›®æ–‡ä»¶å¤¹ä¸‹ï¼Œæ•°æ®æ–‡ä»¶æŒ‡å®šåœ¨dataä¸‹
     ifstream txt_data(fname, ios::in);
     int sta = 0;
 
-    if(!txt_data.is_open()){
-        cout << "ÓÃ»§ÎÄ¼ş´ò¿ªÊ§°Ü";
-    }
-    else{
-        while(!txt_data.eof()){
+    if (!txt_data.is_open()) {
+        cout << "ç”¨æˆ·æ–‡ä»¶æ‰“å¼€å¤±è´¥";
+    } else {
+        while (!txt_data.eof()) {
             txt_data >> user.name >> user.id >> user.pwd >> user.level;
-            // ´Ó´ò¿ªµÄÎÄ¼şÖĞÖğ´Î½«Á÷´æÈëÀà
+            // ä»æ‰“å¼€çš„æ–‡ä»¶ä¸­é€æ¬¡å°†æµå­˜å…¥ç±»
 
-            if(user.id == login_id && user.pwd == login_pwd) {
+            if (user.id == login_id && user.pwd == login_pwd) {
                 sta = 1;
-                break; // µ±ÓÃ»§ÃûºÍÃÜÂëÕıÈ·Ê±ÍË³öÑ­»·
+                break; // å½“ç”¨æˆ·åå’Œå¯†ç æ­£ç¡®æ—¶é€€å‡ºå¾ªç¯
             }
         }
     }
     txt_data.close();
 
+
     if(sta == 0) {
         goto_xy(35,13);
-        cout << "ÕËºÅ»òÃÜÂë´íÎó£¡ÇëÖØĞÂÊäÈë" << endl;
-        Sleep(2000);
+        cout << "è´¦å·æˆ–å¯†ç é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥" << endl;
+        Sleep(100);
         user.name = "NOTFOUND";
         return user;
     }
@@ -44,36 +44,36 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼şÑéÖ¤Ó
     return user;
 }
 
-Users login(){
+Users login() {
 
-    // ´´½¨ĞÂµÄusersÀà
+    // åˆ›å»ºæ–°çš„usersç±»
     Users user = *new Users;
 
     string id, pwd;
 
-    // Êä³ö²¿·Ö
+    // è¾“å‡ºéƒ¨åˆ†
+
     do{
         goto_xy(35,10);
-        cout<<"ÈçĞè×¢²áÇëÊäÈë reg £¬ÈçĞèÊ¹ÓÃ·Ã¿ÍÉí·İµÇÂ¼ÇëÊäÈë 0 ";
+        cout<<"å¦‚éœ€æ³¨å†Œè¯·è¾“å…¥ reg ï¼Œå¦‚éœ€ä½¿ç”¨è®¿å®¢èº«ä»½ç™»å½•è¯·è¾“å…¥ 0 ";
         goto_xy(35,11);
-        cout<<"ÇëÊäÈëÓÃ»§Ãû£º";
+        cout<<"è¯·è¾“å…¥ç”¨æˆ·åï¼š";
         cin>>id;
         if(id == "reg") {
             user.id = "reg";
             return user;
-        }
-        else if(id == "0") {
+        } else if (id == "0") {
             user.id = "0";
             return user;
         }
         else {
             goto_xy(35,12);
-            cout << "ÇëÊäÈëÃÜÂë£º";
+            cout << "è¯·è¾“å…¥å¯†ç ï¼š";
             cin >> pwd;
         }
-        // µ÷ÓÃº¯Êı²éÕÒµÇÂ¼Ä¿±ê
-        user = user_login(user,id,pwd);
-    }while(user.name == "NOTFOUND");
+        // è°ƒç”¨å‡½æ•°æŸ¥æ‰¾ç™»å½•ç›®æ ‡
+        user = user_login(user, id, pwd);
+    } while (user.name == "NOTFOUND");
 
     goto_xy(50,13);
     cout << user.name << " " << user.id << endl;

@@ -40,17 +40,18 @@ void Goods::save(vector<Goods> &goods) {
         exit(1);
     } else
         while (i < goods.size()) {
-            if(i == 0){
-                txt_data << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species << BLANKSPACE <<
-                         goods[i].purchasePrice << BLANKSPACE << goods[i].sellPrice << BLANKSPACE << goods[i].quantity <<
+            if (i == 0) {
+                txt_data << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species << BLANKSPACE
+                         <<
+                         goods[i].purchasePrice << BLANKSPACE << goods[i].sellPrice << BLANKSPACE << goods[i].quantity
+                         <<
                          BLANKSPACE << goods[i].lessLimit << BLANKSPACE << goods[i].measure;
-            }
-            else {
+            } else {
 
                 txt_data << '\n' << goods[i].id << BLANKSPACE << goods[i].name << BLANKSPACE << goods[i].species
                          << BLANKSPACE << goods[i].purchasePrice
                          << BLANKSPACE << goods[i].sellPrice << BLANKSPACE
-                         << goods[i].quantity  << BLANKSPACE
+                         << goods[i].quantity << BLANKSPACE
                          << goods[i].lessLimit << BLANKSPACE << goods[i].measure;
             }
             i++;
@@ -60,7 +61,7 @@ void Goods::save(vector<Goods> &goods) {
 
 
 void Goods::search(vector<Goods> &goods, string s, Goods &find_goods) {
-    int i = 0;
+    int i;
 
     if (isDigitStr(s)) { // 判断给定字符串是否为纯数字，如果是纯数字则为商品id，如果不是则为商品名
         int num = strTurnNum(s);
@@ -91,7 +92,7 @@ int simpleSreach(vector<Goods> &goods, int id) {
     return 0;
 }
 
-void Goods::trade(vector<Bills> bills, vector<Goods> &goods, vector<Bills> &new_bills) {
+void Goods::trade(vector<Bills> &bills, vector<Goods> &goods, vector<Bills> &new_bills) {
     int marketSize = new_bills.size();
 
     SYSTEMTIME tradeTime;
@@ -145,7 +146,7 @@ void Goods::add(vector<Goods> &goods) {
     cout << "编号：";
     cin >> newGoods.id;
     // 安全检查
-    while (newGoods.id > 0) {
+    while (newGoods.id < 0) {
         cout << "编号应大于0，请重新输入：";
         cin >> newGoods.id;
     }
