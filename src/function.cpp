@@ -5,10 +5,10 @@
 
 bool isDigitStr(string s) {
     int len = s.length();
-    int i = 0;
+    int i;
 
     for (i = 0; i < len; i++)
-        if (isdigit(s[i])) // 调用isdigit函数，判断传入字符是否为数字，如果是则返回0
+        if (!(isdigit(s[i]))) // 调用isdigit函数，判断传入字符是否为数字，如果是则返回0
             return false;
     return true;
 }

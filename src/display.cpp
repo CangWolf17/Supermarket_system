@@ -41,12 +41,12 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         cin >> new_bills.quantity;
         // 对顾客输入的商品数量进行检查
         while (new_bills.quantity <= 0) {
-            cout << "商品数量不能为负数或零。" << endl;
+            cout << "商品数量不能为负数或零，请重新输入：" << endl;
             cin >> new_bills.quantity;
         }
         // 检查商品数量是否超过了库存
-        while (new_bills.quantity > buy_goods.lessLimit) {
-            cout << "购物车中的商品数量超过了库存。" << endl;
+        while (new_bills.quantity > buy_goods.quantity) {
+            cout << "购物车中的商品数量超过了库存，请重新输入：" << endl;
             cin >> new_bills.quantity;
         }
 
@@ -55,7 +55,6 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         new_bills.name = buy_goods.name;
         new_bills.species = buy_goods.species;
         new_bills.sellPrice = buy_goods.sellPrice;
-        new_bills.quantity = buy_goods.quantity;
         new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
         new_bills.measure = buy_goods.measure;
 
@@ -123,7 +122,7 @@ void Display::customMarket(vector<Bills> market) {
     int j = 1;
     cout << "您的购物车内容：" << endl;
     for (const auto &bill: market) {
-        cout << j++ << ". 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
+        cout << "商品编号："<< bill.id << " 商品名称: " << bill.name << ", 数量: " << bill.quantity << ", 单价: "
              << bill.sellPrice << "/" << bill.measure << ", 总价: " << bill.price << endl;
     }
 }
