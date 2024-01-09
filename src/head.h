@@ -26,7 +26,7 @@
 // 目的是为了避免重复造轮子
 
 bool isDigitStr(string s);       // 用于检查传入的字符串是否全部为数字，如果是则返回true
-int strTurnNum(string s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
+int strTurnNum(const string& s);        // 用于将字符串转换为数字的函数，返回值为转换后的数字
 void pause();             // 暂停函数，暂停黑窗口并显示按任意键继续
 void cls();               // 清屏函数
 
@@ -45,7 +45,6 @@ public:
 
     static void save(vector<Users> &users);
 
-    static void search(vector<Users> &users, string s, Users &find_user);      // 查找用户
     static void add(vector<Users> &users, int level);                    // 添加用户函数
     static void del(vector<Users> &users);                      // 删除用户，需要传入用户id
     static void pwdedit(vector<Users> &users, Users currentUser);              // 修改密码
@@ -98,7 +97,7 @@ public:
     // 查找商品，能找到就把商品信息存入形参find_goods，找不到就将其的id设置为-1
     // 传入的string s可以是商品id也可以是商品名
 
-    static void trade(vector<Bills> bills, vector<Goods> &goods,
+    static void trade(vector<Bills> &bills, vector<Goods> &goods,
                       vector<Bills> &new_bills); // 交易函数，无论买卖操作都进行调用，用于扣除库存
     static void edit(vector<Goods> &goods, int i, int kind, string new_value); // 商品编辑函数，用于编辑商品指定内容
     static void add(vector<Goods> &goods); // 商品添加函数
@@ -115,23 +114,28 @@ public:
     static void customMenu();                             // 顾客菜单界面
     static void customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice);
 
+    static bool customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int goodsChoice); // 购物车商品编辑
     static void customGoodsData(vector<Goods> &goods, vector<Bills> &market); // 顾客商品目录
     static void customSearch(vector<Goods> &goods, vector<Bills> &market);    // 顾客搜索商品
-    static void customMarket(vector<Bills> market);                           // 顾客购物车
+    static void customMarket(vector<Bills> &market);                           // 顾客购物车
 
     static void keeperMenu();
+
     static void keeperSearch(vector<Goods> &goods);
+
     static void keeperLimit(vector<Goods> &goods);
 
     static void cashierMenu();
+
     static void cashierMarket(vector<Bills> &market);
+
     static void cashierTrade(vector<Goods> &goods, vector<Bills> &market);
 
     static void goods_data(vector<Goods> &goods); // 所有的商品信息展示
     static void goods_edit(vector<Goods> &goods); // 商品编辑
 
     static void adminMenu(); // 管理员总菜单
-    static void adminUsers(vector<Users> users); // 用户菜单
+    static void adminUsers(vector<Users> &users, Users user); // 用户菜单
     static void adminGoodsMenu(); // 货物菜单
 };
 
