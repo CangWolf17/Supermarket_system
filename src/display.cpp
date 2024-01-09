@@ -9,43 +9,65 @@
 using namespace std;
 
 void Display::loginPage() { // 登录界面
-    // 登录页面，未设计
+    system("title login");//界面初始化
+    system("color 70");
+
+    goto_xy(50,10);
+    cout <<"欢迎使用超市购物系统";
+    goto_xy(53,11);
+    cout <<"AI2302 第五小组";
+    goto_xy(54,12);
+    cout <<setw(10) <<"组长：沈文伟";
+    goto_xy(48,13);
+    cout <<setw(7) <<"小组成员：罗梦希，寇笑天";
+    goto_xy(53,16);
+    system ("pause");
 }
 
 void Display::welcomePage(Users user) {
-    system("cls");
+    cls();
     system("title 欢迎使用超市管理系统");
-    system("color 0C");
+    system("color 70");
     cout << endl;
-    system("pause");
-
+    pause();
 }
 
 void Display::customMenu() {
     cls();
     system("title customer");
+    system ("color 70");
     // 添加代码以显示顾客菜单界面
-    cout << "菜单选项：" << endl;
-    cout << "1. 商品目录" << endl;
-    cout << "2. 搜索商品" << endl;
-    cout << "3. 购物车" << endl;
-    cout << "4. 结算" << endl;
-    cout << "5. 修改密码" << endl;
-    cout << "0. 退出" << endl;
+    goto_xy(50,10);
+    cout << "菜单选项：";
+    goto_xy(50,11);
+    cout << "1. 商品目录";
+    goto_xy(50,12);
+    cout << "2. 搜索商品";
+    goto_xy(50,13);
+    cout << "3. 购物车";
+    goto_xy(50,14);
+    cout << "4. 结算";
+    goto_xy(50,15);
+    cout << "5. 修改密码";
+    goto_xy(50,16);
+    cout << "0. 退出";
 }
 
 void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice) {
     if (buy_choice == 'y') {
         Bills new_bills;
+        goto_xy(50,10);
         cout << "请输入购买数量：";
         cin >> new_bills.quantity;
         // 对顾客输入的商品数量进行检查
         while (new_bills.quantity <= 0) {
+            goto_xy(50,11);
             cout << "商品数量不能为负数或零。" << endl;
             cin >> new_bills.quantity;
         }
         // 检查商品数量是否超过了库存
         while (new_bills.quantity > buy_goods.lessLimit) {
+            goto_xy(50,12);
             cout << "购物车中的商品数量超过了库存。" << endl;
             cin >> new_bills.quantity;
         }
@@ -62,6 +84,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
 
         // 销售记录推入购物车
         market.push_back(new_bills);
+        goto_xy(50,17);
         std::cout << "添加成功！" << std::endl;
     }
 }
@@ -322,11 +345,18 @@ void Display::goods_edit(vector<Goods> &goods) {
 }
 
 void Display::adminMenu() {
-    cout << "1.用户操作" << endl;
-    cout << "2.货物操作" << endl;
-    cout << "3.销售记录" << endl;
-    cout << "4.修改密码" << endl;
+    goto_xy(50,10);
+    cout << "1.用户操作";
+    goto_xy(50,11);
+    cout << "2.货物操作";
+    goto_xy(50,12);
+    cout << "3.销售记录";
+    goto_xy(50,13);
+    cout << "4.修改密码";
+    goto_xy(50,14);
     cout << "0.退出" << endl;
+    goto_xy(50,15);
+    cout <<"请选择(输入0-4):";
 }
 
 void Display::adminUsers(vector<Users> users) {//管理员用户操作
@@ -334,29 +364,39 @@ void Display::adminUsers(vector<Users> users) {//管理员用户操作
 // 遍历指定范围内的用户信息
     for (auto & user : users) {
         // 打印当前用户的姓名和ID
+        goto_xy(50,10);
         cout << " 姓名: " << user.name << " id: " << user.id;
         switch (user.level) {
             case 0:
+                goto_xy(50,11);
                 cout<<" 权限：顾客"<<endl;
                 break;
             case 1:
+                goto_xy(50,12);
                 cout<<" 权限：仓库管理员"<<endl;
                 break;
             case 2:
+                goto_xy(50,13);
                 cout<<" 权限：收银员"<<endl;
                 break;
             case 3:
+                goto_xy(50,14);
                 cout<<" 权限：管理员"<<endl;
                 break;
         }
     }
 
 // 显示管理员查看用户信息的界面
-    cout << "其他选项：" << endl;
-    cout << "1. 创建用户" << endl;
-    cout << "2. 编辑用户" << endl;
-    cout << "3. 删除用户" << endl;
-    cout << "0. 返回" << endl;
+    goto_xy(50,10);
+    cout << "其他选项：";
+    goto_xy(50,11);
+    cout << "1. 创建用户";
+    goto_xy(50,12);
+    cout << "2. 编辑用户";
+    goto_xy(50,13);
+    cout << "3. 删除用户";
+    goto_xy(50,14);
+    cout << "0. 返回";
 
     int choice = 1;
     string verify_pwd;

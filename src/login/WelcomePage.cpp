@@ -34,7 +34,9 @@ Users user_login(Users user, string login_id, string login_pwd){// ¶ÁÈ¡ÎÄ¼þÑéÖ¤Ó
     txt_data.close();
 
     if(sta == 0) {
+        goto_xy(35,13);
         cout << "ÕËºÅ»òÃÜÂë´íÎó£¡ÇëÖØÐÂÊäÈë" << endl;
+        Sleep(2000);
         user.name = "NOTFOUND";
         return user;
     }
@@ -51,8 +53,9 @@ Users login(){
 
     // Êä³ö²¿·Ö
     do{
-        cout<<"»¶Ó­Ê¹ÓÃ³¬ÊÐ¹ÜÀíÏµÍ³"<<endl;
-        cout<<"ÈçÐè×¢²áÇëÊäÈë reg £¬ÈçÐèÊ¹ÓÃ·Ã¿ÍÉí·ÝµÇÂ¼ÇëÊäÈë 0 "<<endl;
+        goto_xy(35,10);
+        cout<<"ÈçÐè×¢²áÇëÊäÈë reg £¬ÈçÐèÊ¹ÓÃ·Ã¿ÍÉí·ÝµÇÂ¼ÇëÊäÈë 0 ";
+        goto_xy(35,11);
         cout<<"ÇëÊäÈëÓÃ»§Ãû£º";
         cin>>id;
         if(id == "reg") {
@@ -64,6 +67,7 @@ Users login(){
             return user;
         }
         else {
+            goto_xy(35,12);
             cout << "ÇëÊäÈëÃÜÂë£º";
             cin >> pwd;
         }
@@ -71,6 +75,7 @@ Users login(){
         user = user_login(user,id,pwd);
     }while(user.name == "NOTFOUND");
 
+    goto_xy(50,13);
     cout << user.name << " " << user.id << endl;
 
     return user;
