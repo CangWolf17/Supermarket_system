@@ -8,7 +8,7 @@ bool isDigitStr(string s) {
     int i = 0;
 
     for (i = 0; i < len; i++)
-        if (isdigit(s[i])) // è°ƒç”¨isdigitå‡½æ•°ï¼Œåˆ¤æ–­ä¼ å…¥å­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—ï¼Œå¦‚æžœæ˜¯åˆ™è¿”å›ž0
+        if (isdigit(s[i])) // µ÷ÓÃisdigitº¯Êý£¬ÅÐ¶Ï´«Èë×Ö·ûÊÇ·ñÎªÊý×Ö£¬Èç¹ûÊÇÔò·µ»Ø0
             return false;
     return true;
 }

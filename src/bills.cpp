@@ -9,12 +9,12 @@
 using namespace std;
 
 void Bills::read(vector<Bills> &bills) {
-    string fname = R"(.\data\bills.txt)"; // æ‰§è¡Œæ–‡ä»¶è·¯å¾„åœ¨é¡¹ç›®æ–‡ä»¶å¤¹ä¸‹ï¼Œæ•°æ®æ–‡ä»¶æŒ‡å®šåœ¨dataä¸‹
+    string fname = R"(.\data\bills.txt)"; // Ö´ĞĞÎÄ¼şÂ·¾¶ÔÚÏîÄ¿ÎÄ¼ş¼ĞÏÂ£¬Êı¾İÎÄ¼şÖ¸¶¨ÔÚdataÏÂ
     ifstream txt_data(fname, ios::in);
     Bills new_bill;
 
     if (!txt_data.is_open()) {
-        cout << "è´¦å•ä¿¡æ¯æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼";
+        cout << "ÕËµ¥ĞÅÏ¢ÎÄ¼ş´ò¿ªÊ§°Ü£¡";
         pause();
         exit(1);
     } else {
@@ -32,12 +32,12 @@ void Bills::read(vector<Bills> &bills) {
 }
 
 void Bills::save(vector<Bills> &bills) {
-    string fname = R"(.\data\bills.txt)"; // æŒ‡å®šæ–‡ä»¶åœ°å€
-    ofstream txt_data(fname, ios::out); // æ‰“å¼€æ–‡ä»¶
+    string fname = R"(.\data\bills.txt)"; // Ö¸¶¨ÎÄ¼şµØÖ·
+    ofstream txt_data(fname, ios::out); // ´ò¿ªÎÄ¼ş
     int i = 0;
 
     if (!txt_data.is_open()) {
-        cout << "è´¦å•ä¿¡æ¯æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼";
+        cout << "ÕËµ¥ĞÅÏ¢ÎÄ¼ş´ò¿ªÊ§°Ü£¡";
         pause();
         exit(1);
     } else
@@ -72,43 +72,43 @@ void Bills::save(vector<Bills> &bills) {
 void Bills::receipt(vector<Bills> market) {
     int i, size = market.size();
 
-    // cout èœå•å¤´
-    cout << "å°ç¥¨ï¼š";
+    // cout ²Ëµ¥Í·
+    cout << "Ğ¡Æ±£º";
     for (i = 0; i < size; i++)
         cout << market[i].id << BLANKSPACE << market[i].name << BLANKSPACE
              << market[i].sellPrice << BLANKSPACE << market[i].quantity << market[i].measure
              << BLANKSPACE << market[i].price << endl;
-    cout << "äº¤æ˜“æ—¶é—´ï¼š" << market[0].time.wYear << "/" << market[0].time.wMonth << "/" << market[0].time.wDay << " "
+    cout << "½»Ò×Ê±¼ä£º" << market[0].time.wYear << "/" << market[0].time.wMonth << "/" << market[0].time.wDay << " "
          << market[0].time.wHour << ":" << market[0].time.wMinute << endl;
 }
 
 void billsPrint(Bills print_bills) {
-    cout << " äº¤æ˜“ç¼–å·: " << print_bills.transactionID;
-    cout << " æ—¶é—´: " << print_bills.time.wYear << "/" << print_bills.time.wMonth << "/"
+    cout << " ½»Ò×±àºÅ: " << print_bills.transactionID;
+    cout << " Ê±¼ä: " << print_bills.time.wYear << "/" << print_bills.time.wMonth << "/"
          << print_bills.time.wDay << " " << print_bills.time.wHour << ":" << print_bills.time.wMinute;
-    cout << " å•†å“ç¼–å·: " << print_bills.id;
-    cout << " å•†å“åç§°: " << print_bills.name;
-    cout << " å•†å“ç§ç±»: " << print_bills.species;
-    cout << " å•†å“å•ä»·: " << print_bills.sellPrice;
-    cout << " äº¤æ˜“æ•°é‡: " << print_bills.quantity;
-    cout << " è®¡é‡å•ä½: " << print_bills.measure;
-    cout << " äº¤æ˜“æ€»ä»·: " << print_bills.price;
-    cout << " äº¤æ˜“åˆ©æ¶¦: " << print_bills.profit;
-    cout << endl; // ä¾¿äºåŒºåˆ†æ¯æ¡é”€å”®æ•°æ®
+    cout << " ÉÌÆ·±àºÅ: " << print_bills.id;
+    cout << " ÉÌÆ·Ãû³Æ: " << print_bills.name;
+    cout << " ÉÌÆ·ÖÖÀà: " << print_bills.species;
+    cout << " ÉÌÆ·µ¥¼Û: " << print_bills.sellPrice;
+    cout << " ½»Ò×ÊıÁ¿: " << print_bills.quantity;
+    cout << " ¼ÆÁ¿µ¥Î»: " << print_bills.measure;
+    cout << " ½»Ò××Ü¼Û: " << print_bills.price;
+    cout << " ½»Ò×ÀûÈó: " << print_bills.profit;
+    cout << endl; // ±ãÓÚÇø·ÖÃ¿ÌõÏúÊÛÊı¾İ
 
 }
 
 void Bills::data(vector<Bills> &bills) {
     cls();
-    // ä¿¡æ¯å±•ç¤ºé¡µ
-    cout << "é”€å”®è®°å½•ç®¡ç†ï¼š" << endl;
-    cout << "1. æŒ‰æ—¶é—´é¡ºåºæŸ¥çœ‹" << endl;
-    cout << "2. æŒ‰ç±»åˆ«æŸ¥çœ‹" << endl;
-    cout << "3. æŒ‰å•†å“åç§°æŸ¥çœ‹" << endl;
-    cout << "4. é”€å”®é¢ç»Ÿè®¡" << endl;
-    cout << "0. é€€å‡º" << endl;
+    // ĞÅÏ¢Õ¹Ê¾Ò³
+    cout << "ÏúÊÛ¼ÇÂ¼¹ÜÀí£º" << endl;
+    cout << "1. °´Ê±¼äË³Ğò²é¿´" << endl;
+    cout << "2. °´Àà±ğ²é¿´" << endl;
+    cout << "3. °´ÉÌÆ·Ãû³Æ²é¿´" << endl;
+    cout << "4. ÏúÊÛ¶îÍ³¼Æ" << endl;
+    cout << "0. ÍË³ö" << endl;
 
-    // æ¯é¡µæ˜¾ç¤ºçš„é”€å”®è®°å½•æ•°é‡
+    // Ã¿Ò³ÏÔÊ¾µÄÏúÊÛ¼ÇÂ¼ÊıÁ¿
     int pageSize = 10, pageNumber = 1;
 
     int choice = 1;
@@ -118,22 +118,22 @@ void Bills::data(vector<Bills> &bills) {
             case 1: {
 
                 while (pageNumber) {
-                    // è®¡ç®—èµ·å§‹å’Œç»“æŸ
+                    // ¼ÆËãÆğÊ¼ºÍ½áÊø
                     int startIndex = (pageNumber - 1) * pageSize;
                     int endIndex = pageNumber * pageSize;
 
-                    cout << "å½“å‰é¡µæ•°ï¼š ç¬¬ " << pageNumber << " é¡µ" << endl;
+                    cout << "µ±Ç°Ò³Êı£º µÚ " << pageNumber << " Ò³" << endl;
                     for (int j = startIndex, i = startIndex; j < endIndex && i < bills.size(); i++, j++) {
-                        // æ‰“å°å½“å‰é”€å”®è®°å½•çš„ä¿¡æ¯
+                        // ´òÓ¡µ±Ç°ÏúÊÛ¼ÇÂ¼µÄĞÅÏ¢
                         billsPrint(bills[i]);
                     }
-                    cout << "è¯·è¾“å…¥æŸ¥çœ‹é¡µæ•°ï¼ˆ0é€€å‡ºï¼‰ï¼š" << endl;
+                    cout << "ÇëÊäÈë²é¿´Ò³Êı£¨0ÍË³ö£©£º" << endl;
                     cin >> pageNumber;
                 }
                 break;
-            } // æŒ‰æ—¶é—´é¡ºåºæŸ¥çœ‹
+            } // °´Ê±¼äË³Ğò²é¿´
             case 2: {
-                // è¾“å‡ºå•†å“æ‰€æœ‰ç§ç±»
+                // Êä³öÉÌÆ·ËùÓĞÖÖÀà
                 vector<string> species;
                 for (auto &bill: bills)
                     if (!(count(species.begin(), species.end(), bill.species)))
@@ -142,7 +142,7 @@ void Bills::data(vector<Bills> &bills) {
                     cout << kind << endl;
 
                 string speciesChoice;
-                cout << "è¯·è¾“å…¥è¦æŸ¥è¯¢çš„å•†å“ç§ç±»ï¼š";
+                cout << "ÇëÊäÈëÒª²éÑ¯µÄÉÌÆ·ÖÖÀà£º";
                 cin >> speciesChoice;
                 if (count(species.begin(), species.end(), speciesChoice)) {
                     vector<Bills> speciesBills;
@@ -151,19 +151,19 @@ void Bills::data(vector<Bills> &bills) {
                             speciesBills.push_back(bill);
 
                     while (pageNumber) {
-                        // è®¡ç®—èµ·å§‹å’Œç»“æŸ
+                        // ¼ÆËãÆğÊ¼ºÍ½áÊø
                         int startIndex = (pageNumber - 1) * pageSize;
                         int endIndex = pageNumber * pageSize;
 
-                        // æœ€åä¸€é¡µæŸ¥æ‰¾
+                        // ×îºóÒ»Ò³²éÕÒ
                         int maxPage = speciesBills.size() / 10 + (speciesBills.size() % 10 > 0);
 
-                        cout << "å½“å‰é¡µæ•°ï¼š ç¬¬ " << pageNumber << " é¡µ" << endl;
-                        // jåšå¾ªç¯æ§åˆ¶ï¼Œiåšç•Œé™æ§åˆ¶
+                        cout << "µ±Ç°Ò³Êı£º µÚ " << pageNumber << " Ò³" << endl;
+                        // j×öÑ­»·¿ØÖÆ£¬i×ö½çÏŞ¿ØÖÆ
                         for (int j = startIndex, i = startIndex; j < endIndex && i < speciesBills.size(); i++, j++) {
-                            // æ£€æŸ¥å•†å“ç§ç±»æ˜¯å¦ç¬¦åˆæ¡ä»¶
+                            // ¼ì²éÉÌÆ·ÖÖÀàÊÇ·ñ·ûºÏÌõ¼ş
                             if (speciesBills[i].species == speciesChoice) {
-                                // æ‰“å°å½“å‰é”€å”®è®°å½•çš„ä¿¡æ¯
+                                // ´òÓ¡µ±Ç°ÏúÊÛ¼ÇÂ¼µÄĞÅÏ¢
                                 billsPrint(bills[i]);
                             } else {
                                 j--;
@@ -171,22 +171,22 @@ void Bills::data(vector<Bills> &bills) {
                             }
                         }
 
-                        cout << "æœ€å¤§é¡µæ•°ï¼š" << maxPage << endl;
-                        cout << "è¯·è¾“å…¥æŸ¥çœ‹é¡µæ•°ï¼ˆ0é€€å‡ºï¼‰ï¼š" << endl;
+                        cout << "×î´óÒ³Êı£º" << maxPage << endl;
+                        cout << "ÇëÊäÈë²é¿´Ò³Êı£¨0ÍË³ö£©£º" << endl;
                         cin >> pageNumber;
                         if (pageNumber > maxPage) {
-                            cout << "é¡µæ•°å¤§äºæœ€å¤§é¡µæ•°ï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                            cout << "Ò³Êı´óÓÚ×î´óÒ³Êı£¡ÇëÖØĞÂÊäÈë£º";
                             cin >> pageNumber;
                         } else if (pageNumber < 0) {
-                            cout << "è¾“å…¥é¡µæ•°åº”å¤§äº0ï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                            cout << "ÊäÈëÒ³ÊıÓ¦´óÓÚ0£¡ÇëÖØĞÂÊäÈë£º";
                             cin >> pageNumber;
                         }
                     }
                 }
                 break;
-            } // æŒ‰ç±»åˆ«
+            } // °´Àà±ğ
             case 3: {
-                // è¾“å‡ºå•†å“æ‰€æœ‰ç§ç±»
+                // Êä³öÉÌÆ·ËùÓĞÖÖÀà
                 vector<string> names;
                 for (auto &bill: bills)
                     if (!(count(names.begin(), names.end(), bill.name)))
@@ -195,7 +195,7 @@ void Bills::data(vector<Bills> &bills) {
                     cout << name << endl;
 
                 string nameChoice;
-                cout << "è¯·è¾“å…¥è¦æŸ¥è¯¢çš„å•†å“ç§ç±»ï¼š";
+                cout << "ÇëÊäÈëÒª²éÑ¯µÄÉÌÆ·ÖÖÀà£º";
                 cin >> nameChoice;
                 if (count(names.begin(), names.end(), nameChoice)) {
                     vector<Bills> namesBills;
@@ -204,19 +204,19 @@ void Bills::data(vector<Bills> &bills) {
                             namesBills.push_back(bill);
 
                     while (pageNumber) {
-                        // è®¡ç®—èµ·å§‹å’Œç»“æŸ
+                        // ¼ÆËãÆğÊ¼ºÍ½áÊø
                         int startIndex = (pageNumber - 1) * pageSize;
                         int endIndex = pageNumber * pageSize;
 
-                        // æœ€åä¸€é¡µæŸ¥æ‰¾
+                        // ×îºóÒ»Ò³²éÕÒ
                         int maxPage = namesBills.size() / 10 + (namesBills.size() % 10 > 0);
 
-                        cout << "å½“å‰é¡µæ•°ï¼š ç¬¬ " << pageNumber << " é¡µ" << endl;
-                        // jåšå¾ªç¯æ§åˆ¶ï¼Œiåšç•Œé™æ§åˆ¶
+                        cout << "µ±Ç°Ò³Êı£º µÚ " << pageNumber << " Ò³" << endl;
+                        // j×öÑ­»·¿ØÖÆ£¬i×ö½çÏŞ¿ØÖÆ
                         for (int j = startIndex, i = startIndex; j < endIndex && i < namesBills.size(); i++, j++) {
-                            // æ£€æŸ¥å•†å“åç§°æ˜¯å¦ç¬¦åˆæ¡ä»¶
+                            // ¼ì²éÉÌÆ·Ãû³ÆÊÇ·ñ·ûºÏÌõ¼ş
                             if (namesBills[i].species == nameChoice) {
-                                // æ‰“å°å½“å‰é”€å”®è®°å½•çš„ä¿¡æ¯
+                                // ´òÓ¡µ±Ç°ÏúÊÛ¼ÇÂ¼µÄĞÅÏ¢
                                 billsPrint(bills[i]);
                             } else {
                                 j--;
@@ -224,28 +224,28 @@ void Bills::data(vector<Bills> &bills) {
                             }
                         }
 
-                        cout << "æœ€å¤§é¡µæ•°ï¼š" << maxPage << endl;
-                        cout << "è¯·è¾“å…¥æŸ¥çœ‹é¡µæ•°ï¼ˆ0é€€å‡ºï¼‰ï¼š" << endl;
+                        cout << "×î´óÒ³Êı£º" << maxPage << endl;
+                        cout << "ÇëÊäÈë²é¿´Ò³Êı£¨0ÍË³ö£©£º" << endl;
                         cin >> pageNumber;
                         if (pageNumber > maxPage) {
-                            cout << "é¡µæ•°å¤§äºæœ€å¤§é¡µæ•°ï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                            cout << "Ò³Êı´óÓÚ×î´óÒ³Êı£¡ÇëÖØĞÂÊäÈë£º";
                             cin >> pageNumber;
                         } else if (pageNumber < 0) {
-                            cout << "è¾“å…¥é¡µæ•°åº”å¤§äº0ï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                            cout << "ÊäÈëÒ³ÊıÓ¦´óÓÚ0£¡ÇëÖØĞÂÊäÈë£º";
                             cin >> pageNumber;
                         }
                     }
                 }
                 break;
-            } // æŒ‰åç§°
+            } // °´Ãû³Æ
             case 4: {
                 analyzeSales(bills);
                 break;
-            } // é”€å”®é¢ç»Ÿè®¡å‡½æ•°
+            } // ÏúÊÛ¶îÍ³¼Æº¯Êı
             case 0:
                 break;
             default:
-                cout << "è¯·è¾“å…¥æœ‰æ•ˆå€¼ï¼ ";
+                cout << "ÇëÊäÈëÓĞĞ§Öµ£¡ ";
                 break;
         }
     }
@@ -253,64 +253,64 @@ void Bills::data(vector<Bills> &bills) {
 
 void Bills::analyzeSales(vector<Bills> &bills) {
 
-    // åˆå§‹åŒ–æ¯æ—¥ã€æ¯å‘¨å’Œæ¯æœˆé”€å”®çš„å˜é‡
-    map<int, map<string, int >> dailySalesQuantity;  // å¤© -> äº§å“ -> æ•°é‡
-    map<int, map<string, double >> dailySalesTotal;  // å¤© -> äº§å“ -> æ€»é‡‘é¢
-    map<int, map<string, double >> weeklySalesTotal;  // å‘¨ -> äº§å“ -> æ€»é‡‘é¢
-    map<int, map<string, double >> monthlySalesTotal;  // æœˆ -> äº§å“ -> æ€»é‡‘é¢
+    // ³õÊ¼»¯Ã¿ÈÕ¡¢Ã¿ÖÜºÍÃ¿ÔÂÏúÊÛµÄ±äÁ¿
+    map<int, map<string, int >> dailySalesQuantity;  // Ìì -> ²úÆ· -> ÊıÁ¿
+    map<int, map<string, double >> dailySalesTotal;  // Ìì -> ²úÆ· -> ×Ü½ğ¶î
+    map<int, map<string, double >> weeklySalesTotal;  // ÖÜ -> ²úÆ· -> ×Ü½ğ¶î
+    map<int, map<string, double >> monthlySalesTotal;  // ÔÂ -> ²úÆ· -> ×Ü½ğ¶î
 
-    // è·å–å½“å‰æ—¥æœŸå’Œæ—¶é—´
+    // »ñÈ¡µ±Ç°ÈÕÆÚºÍÊ±¼ä
     SYSTEMTIME currentTime;
     GetSystemTime(&currentTime);
-    int currentDay = currentTime.wDay;  // å½“æœˆçš„å¤©æ•°ï¼ˆ1-31ï¼‰
-    int currentWeek = (currentTime.wDay - 1) / 7 + 1;  // ä»Šå¹´çš„å‘¨æ•°ï¼ˆ1-52ï¼‰
-    int currentMonth = currentTime.wMonth;  // å½“å‰æœˆä»½ï¼ˆ1-12ï¼‰
+    int currentDay = currentTime.wDay;  // µ±ÔÂµÄÌìÊı£¨1-31£©
+    int currentWeek = (currentTime.wDay - 1) / 7 + 1;  // ½ñÄêµÄÖÜÊı£¨1-52£©
+    int currentMonth = currentTime.wMonth;  // µ±Ç°ÔÂ·İ£¨1-12£©
 
-    // è®¡ç®—æ¯æ—¥ã€æ¯å‘¨å’Œæ¯æœˆçš„é”€å”®ç»Ÿè®¡æ•°æ®
+    // ¼ÆËãÃ¿ÈÕ¡¢Ã¿ÖÜºÍÃ¿ÔÂµÄÏúÊÛÍ³¼ÆÊı¾İ
     for (const Bills &bill: bills) {
-        int billDay = bill.time.wDay;  // è®°è´¦çš„å¤©æ•°ï¼ˆ1-31ï¼‰
-        int billWeek = (bill.time.wDay - 1) / 7 + 1;  // è®°è´¦çš„å‘¨æ•°ï¼ˆ1-52ï¼‰
-        int billMonth = bill.time.wMonth;  // è®°è´¦çš„æœˆä»½ï¼ˆ1-12ï¼‰
+        int billDay = bill.time.wDay;  // ¼ÇÕËµÄÌìÊı£¨1-31£©
+        int billWeek = (bill.time.wDay - 1) / 7 + 1;  // ¼ÇÕËµÄÖÜÊı£¨1-52£©
+        int billMonth = bill.time.wMonth;  // ¼ÇÕËµÄÔÂ·İ£¨1-12£©
 
-        // æ›´æ–°æ¯æ—¥é”€å”®ç»Ÿè®¡æ•°æ®
-        dailySalesQuantity[billDay][bill.name] += bill.quantity;  // æ·»åŠ åˆ°æ¯æ—¥æ•°é‡ä¸­
-        dailySalesTotal[billDay][bill.name] += bill.price * bill.quantity;  // æ·»åŠ åˆ°æ¯æ—¥æ€»é‡‘é¢ä¸­ï¼Œè€ƒè™‘åˆ°æ¯ä¸ªäº§å“é”€å”®çš„æ•°é‡å’Œå•ä»·
+        // ¸üĞÂÃ¿ÈÕÏúÊÛÍ³¼ÆÊı¾İ
+        dailySalesQuantity[billDay][bill.name] += bill.quantity;  // Ìí¼Óµ½Ã¿ÈÕÊıÁ¿ÖĞ
+        dailySalesTotal[billDay][bill.name] += bill.price * bill.quantity;  // Ìí¼Óµ½Ã¿ÈÕ×Ü½ğ¶îÖĞ£¬¿¼ÂÇµ½Ã¿¸ö²úÆ·ÏúÊÛµÄÊıÁ¿ºÍµ¥¼Û
 
-        // æ›´æ–°æ¯å‘¨é”€å”®ç»Ÿè®¡æ•°æ®
-        weeklySalesTotal[billWeek][bill.name] += bill.price * bill.quantity;  // æ·»åŠ åˆ°æ¯å‘¨æ€»é‡‘é¢ä¸­ï¼Œè€ƒè™‘åˆ°æ¯ä¸ªäº§å“é”€å”®çš„æ•°é‡å’Œå•ä»·
+        // ¸üĞÂÃ¿ÖÜÏúÊÛÍ³¼ÆÊı¾İ
+        weeklySalesTotal[billWeek][bill.name] += bill.price * bill.quantity;  // Ìí¼Óµ½Ã¿ÖÜ×Ü½ğ¶îÖĞ£¬¿¼ÂÇµ½Ã¿¸ö²úÆ·ÏúÊÛµÄÊıÁ¿ºÍµ¥¼Û
 
-        // æ›´æ–°æ¯æœˆé”€å”®ç»Ÿè®¡æ•°æ®
-        monthlySalesTotal[billMonth][bill.name] += bill.price * bill.quantity;  // æ·»åŠ åˆ°æ¯æœˆæ€»é‡‘é¢ä¸­ï¼Œè€ƒè™‘åˆ°æ¯ä¸ªäº§å“é”€å”®çš„æ•°é‡å’Œå•ä»·
+        // ¸üĞÂÃ¿ÔÂÏúÊÛÍ³¼ÆÊı¾İ
+        monthlySalesTotal[billMonth][bill.name] += bill.price * bill.quantity;  // Ìí¼Óµ½Ã¿ÔÂ×Ü½ğ¶îÖĞ£¬¿¼ÂÇµ½Ã¿¸ö²úÆ·ÏúÊÛµÄÊıÁ¿ºÍµ¥¼Û
     }
 
-    // æ‰“å°æ¯æ—¥é”€å”®ç»Ÿè®¡æ•°æ®ï¼ˆæ•°é‡å’Œæ€»é‡‘é¢ï¼‰
-    cout << "æ¯æ—¥é”€å”®é¢åº¦:" << endl;
+    // ´òÓ¡Ã¿ÈÕÏúÊÛÍ³¼ÆÊı¾İ£¨ÊıÁ¿ºÍ×Ü½ğ¶î£©
+    cout << "Ã¿ÈÕÏúÊÛ¶î¶È:" << endl;
     for (const auto &daySales: dailySalesQuantity) {
-        cout << "ç¬¬" << daySales.first << "å¤©: ";
+        cout << "µÚ" << daySales.first << "Ìì: ";
         for (const auto &productSales: daySales.second) {
-            cout << productSales.first << ": " << productSales.second << " ä»¶, "
-                 << dailySalesTotal[daySales.first][productSales.first] << " æ€»é‡‘é¢" << endl;
+            cout << productSales.first << ": " << productSales.second << " ¼ş, "
+                 << dailySalesTotal[daySales.first][productSales.first] << " ×Ü½ğ¶î" << endl;
         }
     }
-    // æ‰“å°æ¯å‘¨é”€å”®ç»Ÿè®¡æ•°æ®ï¼ˆæ•°é‡å’Œæ€»é‡‘é¢ï¼‰
-    cout << "æ¯å‘¨é”€å”®æ€»é¢:" << endl;
+    // ´òÓ¡Ã¿ÖÜÏúÊÛÍ³¼ÆÊı¾İ£¨ÊıÁ¿ºÍ×Ü½ğ¶î£©
+    cout << "Ã¿ÖÜÏúÊÛ×Ü¶î:" << endl;
     for (const auto &weekSales: weeklySalesTotal) {
         int weekNumber = weekSales.first;
-        cout << "ç¬¬" << weekNumber << "å‘¨: ";
+        cout << "µÚ" << weekNumber << "ÖÜ: ";
         for (const auto &productSales: weekSales.second) {
             cout << productSales.first << ": ";
-            cout << "æ€»é‡‘é¢: " << weeklySalesTotal[weekNumber][productSales.first] << endl;
+            cout << "×Ü½ğ¶î: " << weeklySalesTotal[weekNumber][productSales.first] << endl;
         }
     }
 
-    // æ‰“å°æ¯æœˆé”€å”®ç»Ÿè®¡æ•°æ®ï¼ˆæ•°é‡å’Œæ€»é‡‘é¢ï¼‰
-    cout << "æ¯æœˆé”€å”®æ€»é¢:" << endl;
+    // ´òÓ¡Ã¿ÔÂÏúÊÛÍ³¼ÆÊı¾İ£¨ÊıÁ¿ºÍ×Ü½ğ¶î£©
+    cout << "Ã¿ÔÂÏúÊÛ×Ü¶î:" << endl;
     for (const auto &monthSales: monthlySalesTotal) {
         int monthNumber = monthSales.first;
-        cout << "ç¬¬" << monthNumber << "æœˆ: ";
+        cout << "µÚ" << monthNumber << "ÔÂ: ";
         for (const auto &productSales: monthSales.second) {
             cout << productSales.first << ": ";
-            cout << "æ€»é‡‘é¢: " << monthlySalesTotal[monthNumber][productSales.first] << endl;
+            cout << "×Ü½ğ¶î: " << monthlySalesTotal[monthNumber][productSales.first] << endl;
         }
     }
 }

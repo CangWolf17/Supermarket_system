@@ -7,12 +7,12 @@
 using namespace std;
 
 void Users::read(vector<Users> &users) {
-    string fname = R"(.\data\users.txt)"; // æ‰§è¡Œæ–‡ä»¶è·¯å¾„åœ¨é¡¹ç›®æ–‡ä»¶å¤¹ä¸‹ï¼Œæ•°æ®æ–‡ä»¶æŒ‡å®šåœ¨dataä¸‹
+    string fname = R"(.\data\users.txt)"; // Ö´ĞĞÎÄ¼şÂ·¾¶ÔÚÏîÄ¿ÎÄ¼ş¼ĞÏÂ£¬Êı¾İÎÄ¼şÖ¸¶¨ÔÚdataÏÂ
     ifstream txt_data(fname, ios::in);
     Users new_user;
 
     if (!txt_data.is_open()) {
-        cout << "ç”¨æˆ·ä¿¡æ¯æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼";
+        cout << "ÓÃ»§ĞÅÏ¢ÎÄ¼ş´ò¿ªÊ§°Ü£¡";
         pause();
         exit(1);
     } else {
@@ -26,12 +26,12 @@ void Users::read(vector<Users> &users) {
 }
 
 void Users::save(vector<Users> &users) {
-    string fname = R"(.\data\users.txt)"; // æŒ‡å®šæ–‡ä»¶åœ°å€
-    ofstream txt_data(fname, ios::out); // æ‰“å¼€æ–‡ä»¶
+    string fname = R"(.\data\users.txt)"; // Ö¸¶¨ÎÄ¼şµØÖ·
+    ofstream txt_data(fname, ios::out); // ´ò¿ªÎÄ¼ş
     int i = 0;
 
     if (!txt_data.is_open()) {
-        cout << "ç”¨æˆ·ä¿¡æ¯æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼";
+        cout << "ÓÃ»§ĞÅÏ¢ÎÄ¼ş´ò¿ªÊ§°Ü£¡";
         pause();
         exit(1);
     } else
@@ -53,7 +53,7 @@ void Users::save(vector<Users> &users) {
 void Users::search(vector<Users> &users, string s, Users &find_user) {
     int i;
 
-    for (i = 0; i < users.size(); i++) // é€šè¿‡æ•°å­—idæŸ¥æ‰¾å•†å“
+    for (i = 0; i < users.size(); i++) // Í¨¹ıÊı×Öid²éÕÒÉÌÆ·
         if (users[i].id == s) {
             find_user = users[i];
             return;
@@ -65,57 +65,57 @@ void Users::search(vector<Users> &users, string s, Users &find_user) {
 void Users::add(vector<Users> &users, int level) {
 
 
-    // å‰ç«¯è¯¢é—®
+    // Ç°¶ËÑ¯ÎÊ
     int i;
     Users new_user;
     new_user.level = 0;
-    cout << "è¯·è¾“å…¥æ–°ç”¨æˆ·å§“åï¼š";
+    cout << "ÇëÊäÈëĞÂÓÃ»§ĞÕÃû£º";
     cin >> new_user.name;
-    cout << "è¯·è¾“å…¥æ–°ç”¨æˆ·idï¼š";
+    cout << "ÇëÊäÈëĞÂÓÃ»§id£º";
     cin >> new_user.id;
     while (new_user.id == "reg" || new_user.id == "0") {
-        cout << "ç”¨æˆ·idéæ³•ï¼" << endl;
-        cout << "è¯·å†æ¬¡è¾“å…¥ï¼š" << endl;
+        cout << "ÓÃ»§id·Ç·¨£¡" << endl;
+        cout << "ÇëÔÙ´ÎÊäÈë£º" << endl;
         cin >> new_user.id;
     }
 
-    // å®‰å…¨æ£€æŸ¥
+    // °²È«¼ì²é
     for (i = 0; i < users.size(); i++)
         if (users[i].name == new_user.name || users[i].id == new_user.id) {
-            cout << "è¾“å…¥çš„ç”¨æˆ·å§“åæˆ–idå·²å­˜åœ¨" << endl;
+            cout << "ÊäÈëµÄÓÃ»§ĞÕÃû»òidÒÑ´æÔÚ" << endl;
             pause();
             return;
         }
 
-    cout << "è¯·è¾“å…¥æ–°ç”¨æˆ·å¯†ç ï¼š";
+    cout << "ÇëÊäÈëĞÂÓÃ»§ÃÜÂë£º";
     cin >> new_user.pwd;
-    cout << "è¯·å†æ¬¡è¾“å…¥æ–°ç”¨æˆ·å¯†ç ä»¥ç¡®è®¤ï¼š";
+    cout << "ÇëÔÙ´ÎÊäÈëĞÂÓÃ»§ÃÜÂëÒÔÈ·ÈÏ£º";
     string tmp;
     cin >> tmp;
 
-    i = 3; // ä¸‰æ¬¡é‡å¤è¾“å…¥æœºä¼š
+    i = 3; // Èı´ÎÖØ¸´ÊäÈë»ú»á
     while (i > 0 && (new_user.pwd != tmp)) {
-        cout << "ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´ï¼è¯·é‡æ–°è¾“å…¥ï¼š" << endl;
+        cout << "Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ£¡ÇëÖØĞÂÊäÈë£º" << endl;
         cin >> new_user.pwd;
         cout << endl;
         cin >> tmp;
         i--;
     }
 
-    // ä¸‰æ¬¡åä¸¤æ¬¡å¯†ç ä»ç„¶é”™è¯¯çš„è¯ï¼Œè¿”å›
+    // Èı´ÎºóÁ½´ÎÃÜÂëÈÔÈ»´íÎóµÄ»°£¬·µ»Ø
     if (new_user.pwd != tmp) {
-        cout << "ç¨‹åºå³å°†è¿”å›..." << endl;
+        cout << "³ÌĞò¼´½«·µ»Ø..." << endl;
         pause();
         return;
     } else {
         if (level == 3) {
-            cout << "è¯·è¾“å…¥æ–°ç”¨æˆ·æƒé™ï¼ˆé¡¾å®¢0ï¼Œä»“åº“ç®¡ç†å‘˜1ï¼Œæ”¶é“¶å‘˜2ï¼Œç®¡ç†å‘˜3ï¼‰ï¼š";
+            cout << "ÇëÊäÈëĞÂÓÃ»§È¨ÏŞ£¨¹Ë¿Í0£¬²Ö¿â¹ÜÀíÔ±1£¬ÊÕÒøÔ±2£¬¹ÜÀíÔ±3£©£º";
             cin >> new_user.level;
         }
     }
 
     users.push_back(new_user);
-    cout << "åˆ›å»ºæ–°ç”¨æˆ·æˆåŠŸã€‚";
+    cout << "´´½¨ĞÂÓÃ»§³É¹¦¡£";
     pause();
 }
 
@@ -124,7 +124,7 @@ void Users::del(vector<Users> &users) {
     string userid;
 
     for (i = 0; i < users.size(); i++) {
-        cout << "ç”¨æˆ·å§“åï¼š" << users[i].name << "ç”¨æˆ·idï¼š" << users[i].id << "ç”¨æˆ·æƒé™ï¼š";
+        cout << "ÓÃ»§ĞÕÃû£º" << users[i].name << "ÓÃ»§id£º" << users[i].id << "ÓÃ»§È¨ÏŞ£º";
         switch (users[i].level) {
             case 0:
                 cout << "Customer" << endl;
@@ -136,16 +136,16 @@ void Users::del(vector<Users> &users) {
                 cout << "Admin" << endl;
         }
     }
-    cout << endl << "è¯·è¾“å…¥è¦åˆ é™¤çš„ç”¨æˆ·idï¼š";
+    cout << endl << "ÇëÊäÈëÒªÉ¾³ıµÄÓÃ»§id£º";
     cin >> userid;
 
     for (i = 0; i < users.size(); i++)
         if (users[i].id == userid)
             break;
 
-    int index = i - 1;             // è·å–é€‰æ‹©çš„ç”¨æˆ·çš„ç´¢å¼•
-    users.erase(users.begin() + index); // åˆ é™¤é€‰ä¸­çš„ç”¨æˆ·
-    cout << "åˆ é™¤æˆåŠŸï¼" << endl;
+    int index = i - 1;             // »ñÈ¡Ñ¡ÔñµÄÓÃ»§µÄË÷Òı
+    users.erase(users.begin() + index); // É¾³ıÑ¡ÖĞµÄÓÃ»§
+    cout << "É¾³ı³É¹¦£¡" << endl;
 }
 
 void Users::pwdedit(vector<Users> &users, Users currentUser) {
@@ -156,21 +156,21 @@ void Users::pwdedit(vector<Users> &users, Users currentUser) {
             break;
 
     string old_pwd, new_pwd;
-    cout << "è¯·è¾“å…¥åŸå¯†ç ï¼š";
+    cout << "ÇëÊäÈëÔ­ÃÜÂë£º";
     cin >> old_pwd;
     if (old_pwd == users[i].pwd) {
-        cout << "è¯·è¾“å…¥æ–°å¯†ç ï¼š";
+        cout << "ÇëÊäÈëĞÂÃÜÂë£º";
         cin >> new_pwd;
         string tmp;
-        cout << "è¯·å†æ¬¡è¾“å…¥æ–°å¯†ç ï¼š";
+        cout << "ÇëÔÙ´ÎÊäÈëĞÂÃÜÂë£º";
         cin >> tmp;
         if (new_pwd == tmp) {
             users[i].pwd = new_pwd;
-            cout << "å¯†ç ä¿®æ”¹æˆåŠŸï¼" << endl;
+            cout << "ÃÜÂëĞŞ¸Ä³É¹¦£¡" << endl;
         } else
-            cout << "äºŒæ¬¡å¯†ç è¾“å…¥é”™è¯¯ï¼Œç¨‹åºå³å°†è¿”å›...";
+            cout << "¶ş´ÎÃÜÂëÊäÈë´íÎó£¬³ÌĞò¼´½«·µ»Ø...";
     } else {
-        cout << "åŸå¯†ç é”™è¯¯ï¼" << endl;
+        cout << "Ô­ÃÜÂë´íÎó£¡" << endl;
     }
 
 }
