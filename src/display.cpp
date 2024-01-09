@@ -197,12 +197,88 @@ void Display::keeperSearch(vector<Goods> &goods) {
 }
 
 void Display::keeperLimit(vector<Goods> &goods) {
+    cout<<endl<<"补货通知："<<endl;
     int j = 1;
     for (auto &igoods: goods) {
         if (igoods.quantity <= igoods.lessLimit) {
             cout << j++ << ".商品 " << igoods.name << " (编号 " << igoods.id << " ）" << "数量低于设置阈值（"
                  << igoods.lessLimit << "），当前库存为：" << igoods.quantity << "，请及时补货。" << endl;
         }
+    }
+}
+
+void Display::goods_data(vector<Goods> &goods) {
+    int pageSize = 10, pageNumber = 1;
+    int maxPage = goods.size() / 10 + (goods.size() % 10 > 0);
+
+    while (pageNumber) {
+        // 计算起始和结束
+        int startIndex = (pageNumber - 1) * pageSize;
+        int endIndex = pageNumber * pageSize;
+        cout << "商品详情页面" << endl;
+        cout << "当前页数： 第 " << pageNumber << " 页" << endl;
+        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
+        for (int j = startIndex, i = startIndex; j < endIndex && i < goods.size(); i++, j++) {
+            // 打印当前销售记录的信息
+            goodsPrint(goods[i]);
+        }
+        cout << "最大页数：" << maxPage << endl;
+        cout << "请输入查看页数（0退出）：" << endl;
+        cin >> pageNumber;
+        if (pageNumber > maxPage) {
+            cout << "页数大于最大页数！请重新输入：";
+            cin >> pageNumber;
+        } else if (pageNumber < 0) {
+            cout << "输入页数应大于0！请重新输入：";
+            cin >> pageNumber;
+        }
+    }
+}
+
+void Display::goods_edit(vector<Goods> &goods) {
+    cls();
+
+    string s;
+    Goods find_goods;
+
+    cout << "请输入要修改的商品名称或编号来进行搜索，输入0退出：";
+    cin >> s;
+    if(s == "0")
+        return;
+    Goods::search(goods, s, find_goods);
+    if (find_goods.id != -1) {
+        cout << "   1.编号   2.名称   3.种类   4.数量   5.进价   6.售价   7.单位   8.提醒阈值" << endl;
+        goodsPrint(find_goods);
+    } else {
+        cout << "要修改的商品不存在！即将返回上一级...";
+        pause();
+        return;
+    }
+
+    cout << "请指定要修改的商品信息对应的数字：";
+    int kind;
+    cin >> kind;
+
+    // 安全检查
+    if (kind >= 1 && kind <= 8) {
+        int i;
+        for (i = 0; i < goods.size(); i++)
+            if (find_goods.id == goods[i].id)
+                break;
+        string new_value;
+        cout << "请输入新的商品信息：";
+        cin >> new_value; // 输入数据的安全检查没做
+        Goods::edit(goods, i, kind, new_value);
+        cls();
+        cout << "修改完成，结果如下：" << endl;
+        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
+        goodsPrint(goods[i]);
+        pause();
+        return;
+    } else {
+        cout << "输入数字无效，程序即将返回...";
+        pause();
+        return;
     }
 }
 
@@ -273,84 +349,6 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     // 销售记录推入购物车
     market.push_back(new_bills);
     std::cout << "添加成功！" << std::endl;
-}
-
-void Display::goods_data(vector<Goods> &goods) {
-    int pageSize = 10, pageNumber = 1;
-    int maxPage = goods.size() / 10 + (goods.size() % 10 > 0);
-
-    while (pageNumber) {
-        // 计算起始和结束
-        int startIndex = (pageNumber - 1) * pageSize;
-        int endIndex = pageNumber * pageSize;
-        cout << "商品详情页面" << endl;
-        cout << "当前页数： 第 " << pageNumber << " 页" << endl;
-        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
-        for (int j = startIndex, i = startIndex; j < endIndex && i < goods.size(); i++, j++) {
-            // 打印当前销售记录的信息
-            goodsPrint(goods[i]);
-        }
-        cout << "最大页数：" << maxPage << endl;
-        cout << "请输入查看页数（0退出）：" << endl;
-        cin >> pageNumber;
-        if (pageNumber > maxPage) {
-            cout << "页数大于最大页数！请重新输入：";
-            cin >> pageNumber;
-        } else if (pageNumber < 0) {
-            cout << "输入页数应大于0！请重新输入：";
-            cin >> pageNumber;
-        }
-    }
-}
-
-void Display::goods_edit(vector<Goods> &goods) {
-    cls();
-
-    string s;
-    Goods find_goods;
-
-    cout << "请输入要修改的商品名称或编号来进行搜索，输入0退出：";
-    cin >> s;
-    if(s == "0")
-        return;
-    Goods::search(goods, s, find_goods);
-    if (find_goods.id != -1) {
-        cout << "   1.编号   2.名称   3.种类   4.数量   5.进价   6.售价   7.单位   8.提醒阈值" << endl;
-        goodsPrint(find_goods);
-    } else {
-        cout << "要修改的商品不存在！即将返回上一级...";
-        pause();
-        return;
-    }
-
-    cout << "请指定要修改的商品信息对应的数字：";
-    int kind;
-    cin >> kind;
-
-    // 安全检查
-    if (kind >= 1 && kind <= 8) {
-        int i;
-        for (i = 0; i < goods.size(); i++)
-            if (find_goods.id == goods[i].id)
-                break;
-        string new_value;
-        cout << "请输入新的商品信息：";
-        cin >> new_value; // 输入数据的安全检查没做
-        Goods::edit(goods, i, kind, new_value);
-        cls();
-        cout << "修改完成，结果如下：" << endl;
-        cout << "     编号     名称     种类     数量     进价     售价     单位     提醒阈值" << endl;
-        cout << setw(5) << goods[i].id << setw(9) << goods[i].name
-             << setw(9) << goods[i].species << setw(9) << goods[i].quantity
-             << setw(9) << goods[i].purchasePrice << setw(9) << goods[i].sellPrice
-             << setw(9) << goods[i].measure << setw(9) << goods[i].lessLimit << endl;
-        pause();
-        return;
-    } else {
-        cout << "输入数字无效，程序即将返回...";
-        pause();
-        return;
-    }
 }
 
 void Display::adminMenu() {
