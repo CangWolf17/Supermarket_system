@@ -142,54 +142,74 @@ void Goods::edit(vector<Goods> &goods, int i, int kind, string new_value) {
 void Goods::add(vector<Goods> &goods) {
     cls();
     Goods newGoods = *new Goods; // 创建新的 Goods 对象
+    goto_xy(10,10);
     cout << "请输入新商品信息" << endl;
+    goto_xy(10,11);
     cout << "编号：";
     cin >> newGoods.id;
     // 安全检查
     while (newGoods.id < 0) {
+        goto_xy(10,11);
         cout << "编号应大于0，请重新输入：";
         cin >> newGoods.id;
     }
+    goto_xy(10,12);
     cout << "名称：";
     cin >> newGoods.name;
     // 安全检查
     for (auto &good: goods)
         if (good.id == newGoods.id || good.name == newGoods.name) {
+            goto_xy(10,12);
             cout << "编号或名称重复，所添加商品已存在！";
             pause();
             return;
         }
 
+    goto_xy(10,13);
     cout << "种类：";
     cin >> newGoods.species;
+    goto_xy(10,14);
     cout << "进价：";
     cin >> newGoods.purchasePrice;
+    goto_xy(10,15);;
     cout << "售价：";
     cin >> newGoods.sellPrice;
+    goto_xy(10,16);
     cout << "单位:";
     cin >> newGoods.measure;
+    goto_xy(10,17);
     cout << "数量：";
     cin >> newGoods.quantity;
-    cout << "提醒阈值";
+    goto_xy(10,18);
+    cout << "提醒阈值: ";
     cin >> newGoods.lessLimit;
     goods.push_back(newGoods); // 将新商品添加到商品列表中
-    cout << "添加成功！" << endl;
+    goto_xy(10,19);
+    cout << "添加成功！";
+    goto_xy(10,20);
+    pause();
 }
 
 void Goods::del(vector<Goods> &goods) {
+    cls();
     int choice;
+    goto_xy(10,9);
     cout << "请选择要删除的商品：" << endl;
     for (int i = 0; i < goods.size(); i++) {
+        goto_xy(10,10+i);
         cout << i + 1 << ". " << goods[i].id << " - " << goods[i].name << endl;
     }
     // 安全检查
+    goto_xy(30,9);
     cin >> choice;
     if (choice < 1 || choice > goods.size()) {
+        goto_xy(10,18);
         cout << "无效的选择！" << endl;
         return;
     }
 
     int index = choice - 1;             // 获取选择的商品的索引
     goods.erase(goods.begin() + index); // 删除选中的商品
+    goto_xy(10,18);
     cout << "删除成功！" << endl;
 }

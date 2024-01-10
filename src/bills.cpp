@@ -105,12 +105,21 @@ void billsPrint(Bills print_bills) {
 
 void billsMenu() {
     // 信息展示页
+    goto_xy(10,10);
     cout << "销售记录管理：" << endl;
+    goto_xy(10,12);
     cout << "1. 按时间顺序查看" << endl;
+    goto_xy(10,13);
     cout << "2. 按类别查看" << endl;
+    goto_xy(10,14);
     cout << "3. 按商品名称查看" << endl;
+    goto_xy(10,15);
     cout << "4. 销售额统计" << endl;
+    goto_xy(10,16);
     cout << "0. 退出" << endl;
+    goto_xy(10,17);
+    cout <<"您的选择： ";
+
 }
 
 void Bills::data(vector<Bills> &bills) {
@@ -126,6 +135,7 @@ void Bills::data(vector<Bills> &bills) {
         switch (choice) {
             case 1: {
 
+                int hang6=13;
                 while (pageNumber) {
                     // 计算起始和结束
                     int startIndex = (pageNumber - 1) * pageSize;
@@ -134,28 +144,41 @@ void Bills::data(vector<Bills> &bills) {
                     // 最后一页查找
                     int maxPage = bills.size() / 10 + (bills.size() % 10 > 0);
 
+                    goto_xy(10,10);
                     cout << "当前页数： 第 " << pageNumber << " 页" << endl;
+                    goto_xy(10,11);
                     cout << "=================================================================================="
                          << endl;
+                    goto_xy(10,12);
                     cout << " 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"
                          << endl;
                     for (int j = startIndex, i = startIndex; j < endIndex && i < bills.size(); i++, j++) {
                         // 打印当前销售记录的信息
+                        goto_xy(10,hang6);
                         billsPrint(bills[i]);
+                        hang6++;
                     }
+                    goto_xy(10,hang6);
                     cout << "=================================================================================="
                          << endl;
+                    goto_xy(10,hang6+1);
                     cout << "最大页数：" << maxPage << endl;
-                    cout << "请输入查看页数（0退出）：" << endl;
+                    goto_xy(10,hang6+2);
+                    cout << "请输入查看页数（0退出）：";
                     cin >> pageNumber;
                     if (pageNumber > maxPage) {
+                        goto_xy(10,hang6+3);
                         cout << "页数大于最大页数！请重新输入：";
                         cin >> pageNumber;
                     } else if (pageNumber < 0) {
+                        goto_xy(10,hang6+3);
                         cout << "输入页数应大于0！请重新输入：";
                         cin >> pageNumber;
                     }
                 }
+                goto_xy(10,hang6+3);
+                pause();
+                cls();
                 break;
             } // 按时间顺序查看
             case 2: {
