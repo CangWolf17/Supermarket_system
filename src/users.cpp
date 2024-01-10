@@ -69,8 +69,10 @@ void Users::add(vector<Users> &users, int level) {
     int i;
     Users new_user;
     new_user.level = 0;
+    goto_xy(50,16);
     cout << "请输入新用户姓名：";
     cin >> new_user.name;
+    goto_xy(50,17);
     cout << "请输入新用户id：";
     cin >> new_user.id;
     while (new_user.id == "reg" || new_user.id == "0") {

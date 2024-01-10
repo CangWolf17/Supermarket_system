@@ -397,6 +397,8 @@ void Display::adminUsers(vector<Users> users) {//管理员用户操作
     cout << "3. 删除用户";
     goto_xy(50,14);
     cout << "0. 返回";
+    goto_xy(50,15);
+    cout <<"您的选择（0-4）：";
 
     int choice = 1;
     string verify_pwd;
@@ -415,7 +417,8 @@ void Display::adminUsers(vector<Users> users) {//管理员用户操作
             break;
         } // 编辑用户
         case 3: {
-            cout << "请输入密码以确认身份：" << endl;
+            goto_xy(50,16);
+            cout << "请输入密码以确认身份：";
             cin >> verify_pwd;
             for (int i = 0; i < users.size(); i++) {
                 if (verify_pwd == users[i].pwd) {
@@ -431,6 +434,7 @@ void Display::adminUsers(vector<Users> users) {//管理员用户操作
         case 0:
             break;
         default:
+            goto_xy(50,17);
             cout << "输入值无效！请重新输入：";
     }
 }

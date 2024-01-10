@@ -288,6 +288,7 @@ int main() {
                 Display::adminMenu();
 
                 cin >> menuChoice;
+                cls();
                 switch (menuChoice) {
                     case 1: {
                         Display::adminUsers(users);
