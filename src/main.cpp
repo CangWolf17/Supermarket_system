@@ -70,20 +70,26 @@ int main() {
                     case 3: {// 3 购物车
                         Display::customMarket(market);
 
+                        goto_xy(0,17);
                         cout << "是否要修改或删除内容？（取消：0，修改：1，删除：2）：";
                         int choice;
+                        goto_xy(0,18);
+                        cout <<"您的选择：";
                         cin >> choice;
 
                         // 购物车操作
                         switch (choice) {
                             case 1: {
                                 int goodsChoice;
+                                goto_xy(70,12);
                                 cout << "请输入要修改的商品编号：";
                                 cin >> goodsChoice;
 
                                 if (!Display::customMarketEdit(goods, market, goodsChoice)) {
+                                    goto_xy(70,13);
                                     cout << "输入的商品编号有误..." << endl;
                                     choice = 0;
+                                    goto_xy(70,14);
                                     pause();
                                 }
                                 menuChoice = -1;
@@ -91,18 +97,21 @@ int main() {
                             }
                             case 2: {
                                 int goodsChoice;
+                                goto_xy(70,12);
                                 cout << "请输入要删除的商品编号：";
                                 cin >> goodsChoice;
                                 bool cond = false;
                                 for (int i = 0; i < market.size(); i++) {
                                     if (market[i].id == goodsChoice) {
                                         market.erase(market.begin() + i);
+                                        goto_xy(70,13);
                                         cout << "购物车中的商品已删除" << endl;
                                         cond = true;
                                     }
                                 }
 
                                 if (!cond) {
+                                    goto_xy(70,14);
                                     cout << "输入的商品编号有误..." << endl;
                                     choice = 0;
                                 }
@@ -157,10 +166,13 @@ int main() {
                         }
                         case 0:
                             break;
-                        default:
+                        default:{
+                            goto_xy(10,18);
                             cout << "请输入有效值！ ";
-                        menuChoice = -1;
-                        cin >> menuChoice;
+                            goto_xy(10,20);
+                            pause();
+                            menuChoice = -1;
+                        }
                     }
                 }
             }
@@ -176,6 +188,8 @@ int main() {
                 cout << endl;
                 Display::keeperMenu();
 
+                goto_xy(10,19);
+                cout <<"您的选择：";
                 cin >> menuChoice;
                 switch (menuChoice) {
                     case 1: {
@@ -206,8 +220,10 @@ int main() {
                     case 0:
                         break;
                     default:
-                        cout << "输入值无效！请重新输入：";
-                        cin >> menuChoice;
+                        goto_xy(10,20);
+                        cout << "输入值无效！请重输入有效值";
+                        goto_xy(10,21);
+                        pause();
                         break;
                 }
             }
