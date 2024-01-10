@@ -79,7 +79,7 @@ cmake --build .
         <a href="https://github.com/jasminlnx">
             <img src="https://avatars.githubusercontent.com/u/154338878?v=4" width="100;" alt="jasminlnx"/>
             <br />
-            <sub><b>jasminlnx</b></sub>
+            <sub><b>Jasminlnx</b></sub>
         </a>
     </td></tr>
 </table>
