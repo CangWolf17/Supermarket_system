@@ -69,22 +69,31 @@ void Bills::save(vector<Bills> &bills) {
 }
 
 
-void Bills::receipt(vector<Bills> market) {
-    int i, size = market.size();
+void Bills::receipt(vector<Bills> &market) {
+    cls();
+    int i, j = 11, size = market.size();
     float sum;
 
+    goto_xy(10,10);
     cout << "小票：" << endl;
-    cout << "=============================" << endl
-         << "编号   名称  单价   数量  总价" << endl;
+    goto_xy(10,j++);
+    cout << "=============================" << endl;
+    goto_xy(10,j++);
+    cout << "编号   名称  单价   数量  总价" << endl;
     for (i = 0; i < size; i++) {
+        goto_xy(10,j++);
         cout << " " << market[i].id << ' ' << BLANKSPACE << market[i].name << "  "
              << market[i].sellPrice << "/" << market[i].measure << BLANKSPACE << market[i].quantity
-             << BLANKSPACE << " " << market[i].price << endl;
+             << BLANKSPACE << "   " << market[i].price << endl;
         sum += market[i].price;
     }
+    goto_xy(10,j++);
     cout << "交易时间：" << market[0].time.wYear << "/" << market[0].time.wMonth << "/" << market[0].time.wDay << " "
          << market[0].time.wHour << ":" << market[0].time.wMinute << endl;
+    goto_xy(10,j++);
     cout << "=============================" << endl;
+    goto_xy(10,j++);
+    pause();
 }
 
 void billsPrint(Bills print_bills) {

@@ -139,7 +139,6 @@ int main() {
                             cin >> choice;
                             if (choice == 'y') {
                                 Goods::trade(bills, goods, market);
-                                market.clear();
                                 // 小票打印
                                 cout << "是否打印小票？(y/n)：";
                                 cin >> choice;
@@ -274,12 +273,13 @@ int main() {
                                     cin >> tradeChoice;
                                     if (tradeChoice == 'y') {
                                         Goods::trade(bills, goods, market);
-                                        market.clear();
                                         // 小票打印
                                         cout << "是否打印小票？(y/n)：";
                                         cin >> tradeChoice;
-                                        if (tradeChoice == 'y')
+                                        if (tradeChoice == 'y') {
                                             Bills::receipt(market);
+                                        }
+                                        market.clear();
                                     } else
                                         menuChoice = -1;
                                     break;

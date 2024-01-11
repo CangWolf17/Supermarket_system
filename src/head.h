@@ -70,7 +70,7 @@ public:
 
     static void save(vector<Bills> &bills);
 
-    static void receipt(vector<Bills> market);
+    static void receipt(vector<Bills> &market);
 
     static void data(vector<Bills> &bills);
 

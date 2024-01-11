@@ -75,6 +75,7 @@ bool Display::customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int 
             return true;
         }
     }
+    return false;
 }
 
 void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &market, char buy_choice) {
@@ -133,7 +134,7 @@ void customGoodsPrint(Goods tmp_goods) {
 void marketPrint(Bills tmp_bills) {
     cout << setw(5) << tmp_bills.id << setw(12) << tmp_bills.name
          << setw(9) << tmp_bills.species << setw(5) << tmp_bills.quantity
-         << setw(7) << tmp_bills.sellPrice << "/" << tmp_bills.measure << setw(6) << tmp_bills.price << endl;
+         << setw(10) << tmp_bills.sellPrice << "/" << tmp_bills.measure << setw(9) << tmp_bills.price << endl;
 }
 
 void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
