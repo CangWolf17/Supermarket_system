@@ -420,9 +420,10 @@ int main() {
     Goods::save(goods);
     Bills::save(bills);
 
-    goto_xy(35,20);
+    cls();
+    goto_xy(35,10);
     cout << "感谢您的使用，下次再见！";
-    goto_xy(35,21);
+    goto_xy(35,11);
     pause();
     return 0;
 }
