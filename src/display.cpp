@@ -485,7 +485,6 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     new_bills.name = goods[i].name;
     new_bills.species = goods[i].species;
     new_bills.sellPrice = goods[i].sellPrice;
-    new_bills.quantity = goods[i].quantity;
     new_bills.price = new_bills.sellPrice * new_bills.quantity;  // 计算总价
     new_bills.profit = new_bills.price - (goods[i].purchasePrice * new_bills.quantity); // 计算利润
     new_bills.measure = goods[i].measure;
