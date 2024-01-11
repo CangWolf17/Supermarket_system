@@ -3,7 +3,22 @@
 
 ## 目录
 
-[toc]
+- [超市收银管理系统](#--------)
+  * [目录](#--)
+  * [安装](#--)
+    + [在CMD中使用CMake构建](#-cmd---cmake--)
+  * [使用](#--)
+    + [注册](#--)
+    + [访客访问](#----)
+    + [登录](#--)
+      - [测试账户](#----)
+  * [~~权限组~~](#-------)
+  * [贡献者](#---)
+  * [许可证](#---)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 
 ## 安装
 
