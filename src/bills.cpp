@@ -137,6 +137,7 @@ void Bills::data(vector<Bills> &bills) {
 
                 int hang6=13;
                 while (pageNumber) {
+                    cls();
                     // 计算起始和结束
                     int startIndex = (pageNumber - 1) * pageSize;
                     int endIndex = pageNumber * pageSize;
@@ -182,15 +183,19 @@ void Bills::data(vector<Bills> &bills) {
                 break;
             } // 按时间顺序查看
             case 2: {
+                cls();
                 // 输出商品所有种类
                 vector<string> species;
                 for (auto &bill: bills)
                     if (!(count(species.begin(), species.end(), bill.species)))
                         species.push_back(bill.species);
-                for (auto &kind: species)
+                for (auto &kind: species) {
+                    goto_xy(10, 8);
                     cout << kind << endl;
+                }
 
                 string speciesChoice;
+                goto_xy(10,10);
                 cout << "请输入要查询的商品种类：";
                 cin >> speciesChoice;
                 if (count(species.begin(), species.end(), speciesChoice)) {
@@ -201,54 +206,80 @@ void Bills::data(vector<Bills> &bills) {
 
                     while (pageNumber) {
                         // 计算起始和结束
+                        cls();
                         int startIndex = (pageNumber - 1) * pageSize;
                         int endIndex = pageNumber * pageSize;
 
                         // 最后一页查找
                         int maxPage = speciesBills.size() / 10 + (speciesBills.size() % 10 > 0);
 
+                        goto_xy(10,11);
                         cout << "当前页数： 第 " << pageNumber << " 页" << endl;
+                        goto_xy(10,12);
                         cout << "=================================================================================="
                              << endl;
+                        goto_xy(10,13);
                         cout << " 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"
                              << endl;
                         // j做循环控制，i做界限控制
                         for (int j = startIndex, i = startIndex; j < endIndex && i < speciesBills.size(); i++, j++) {
                             // 检查商品种类是否符合条件
+                            cls();
+                            goto_xy(10,12);
+                            cout << "=================================================================================="
+                                 << endl;
+                            goto_xy(10,13);
+                            cout << " 交易编号       时间       商品编号    名称   种类   单价  交易数量   单位     总价   交易利润"
+                                 << endl;
                             if (speciesBills[i].species == speciesChoice) {
                                 // 打印当前销售记录的信息
+                                goto_xy(10,14);
                                 billsPrint(bills[i]);
                             } else {
                                 j--;
                                 continue;
                             }
                         }
+                        goto_xy(10,15);
                         cout << "=================================================================================="
                              << endl;
+                        goto_xy(10,16);
                         cout << "最大页数：" << maxPage << endl;
-                        cout << "请输入查看页数（0退出）：" << endl;
+                        goto_xy(10,17);
+                        cout << "请输入查看页数（0退出）：";
                         cin >> pageNumber;
                         if (pageNumber > maxPage) {
+                            goto_xy(10,18);
                             cout << "页数大于最大页数！请重新输入：";
                             cin >> pageNumber;
                         } else if (pageNumber < 0) {
+                            goto_xy(10,18);
                             cout << "输入页数应大于0！请重新输入：";
                             cin >> pageNumber;
                         }
                     }
+                    cls();
                 }
+
                 break;
+
             } // 按类别
             case 3: {
                 // 输出商品所有种类
+                cls();
                 vector<string> names;
                 for (auto &bill: bills)
                     if (!(count(names.begin(), names.end(), bill.name)))
                         names.push_back(bill.name);
-                for (auto &name: names)
+                int shuaige=10;
+                for (auto &name: names) {
+                    goto_xy(10, shuaige);
                     cout << name << endl;
+                    shuaige++;
+                }
 
                 string nameChoice;
+                goto_xy(10,shuaige);
                 cout << "请输入要查询的商品种类：";
                 cin >> nameChoice;
                 if (count(names.begin(), names.end(), nameChoice)) {
@@ -259,38 +290,49 @@ void Bills::data(vector<Bills> &bills) {
 
                     while (pageNumber) {
                         // 计算起始和结束
+
+                        cls();
                         int startIndex = (pageNumber - 1) * pageSize;
                         int endIndex = pageNumber * pageSize;
 
                         // 最后一页查找
                         int maxPage = namesBills.size() / 10 + (namesBills.size() % 10 > 0);
+                        goto_xy(10,shuaige);
                         cout << "=================================================================================="
                              << endl;
+                        goto_xy(10,shuaige+1);
                         cout << "当前页数： 第 " << pageNumber << " 页" << endl;
                         // j做循环控制，i做界限控制
                         for (int j = startIndex, i = startIndex; j < endIndex && i < namesBills.size(); i++, j++) {
                             // 检查商品名称是否符合条件
                             if (namesBills[i].species == nameChoice) {
                                 // 打印当前销售记录的信息
+                                goto_xy(10,shuaige+2);
                                 billsPrint(bills[i]);
                             } else {
                                 j--;
                                 continue;
                             }
                         }
+                        goto_xy(10,shuaige+3);
                         cout << "=================================================================================="
                              << endl;
+                        goto_xy(10,shuaige+4);
                         cout << "最大页数：" << maxPage << endl;
-                        cout << "请输入查看页数（0退出）：" << endl;
+                        goto_xy(10,shuaige+5);
+                        cout << "请输入查看页数（0退出）：";
                         cin >> pageNumber;
                         if (pageNumber > maxPage) {
+                            goto_xy(10,shuaige+6);
                             cout << "页数大于最大页数！请重新输入：";
                             cin >> pageNumber;
                         } else if (pageNumber < 0) {
+                            goto_xy(10,shuaige+7);
                             cout << "输入页数应大于0！请重新输入：";
                             cin >> pageNumber;
                         }
                     }
+                    cls();
                 }
                 break;
             } // 按名称
@@ -299,6 +341,7 @@ void Bills::data(vector<Bills> &bills) {
                 break;
             } // 销售额统计函数
             case 0:
+                cls();
                 break;
             default:
                 cout << "请输入有效值！ ";
@@ -340,8 +383,12 @@ void Bills::analyzeSales(vector<Bills> &bills) {
     }
 
     // 打印每日销售统计数据（数量和总金额）
+    cls();
+
     cout << "每日销售额度:" << endl;
     for (const auto &daySales: dailySalesQuantity) {
+
+
         cout << "第" << daySales.first << "天: ";
         for (const auto &productSales: daySales.second) {
             cout << productSales.first << ": " << productSales.second << " 件, "

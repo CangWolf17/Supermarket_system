@@ -2,3 +2,5 @@
 收银员   Cashier   1234   2
 仓库管理   Keeper   0000   1
 顾客1   Customer1   123456   0
+sa   sa   sa   0
+老王   666   666   0

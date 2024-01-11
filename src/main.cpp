@@ -173,6 +173,7 @@ int main() {
                             pause();
                             menuChoice = -1;
                         }
+                        break;
                     }
                 }
             }
@@ -231,12 +232,16 @@ int main() {
         }
 
         case cashier: {
+            cls();
             system("title cashier");
             vector<Bills> market; // 创建market作为购物车
 
             while (menuChoice) {
-                if (market.empty())
+                cls();
+                if (market.empty()) {
+                    goto_xy(10, 9);
                     cout << "当前购物车为空。" << endl;
+                }
                 else
                     Display::cashierMarket(market);
 
@@ -245,6 +250,7 @@ int main() {
 
                 switch (menuChoice) {
                     case 1: {
+                        cls();
                         Display::cashierTrade(goods, market);
                         break;
                     } // 1 销售商品
@@ -414,7 +420,9 @@ int main() {
     Goods::save(goods);
     Bills::save(bills);
 
+    goto_xy(35,20);
     cout << "感谢您的使用，下次再见！";
-    Sleep(3000);
+    goto_xy(35,21);
+    pause();
     return 0;
 }

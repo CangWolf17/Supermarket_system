@@ -56,6 +56,7 @@ void Display::customMenu() {
 }
 
 bool Display::customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int goodsChoice) {
+    cls();
     for (int i = 0; i < market.size(); i++) {
         if (market[i].id == goodsChoice) {
             market.erase(market.begin() + i); // 直接删除，重新创建
@@ -82,6 +83,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
             if (buy_goods.id == i.id) {
                 goto_xy(70,11);
                 cout << "商品已存在，即将跳转修改..." << endl;
+                goto_xy(70,12);
                 pause();
                 Display::customMarketEdit(goods, market, i.id);
                 return;
@@ -388,20 +390,32 @@ void Display::goods_edit(vector<Goods> &goods) {
 }
 
 void Display::cashierMenu() {
+    goto_xy(10,10);
     cout << "1.添加销售商品" << endl;
+    goto_xy(10,11);
     cout << "2.销售商品操作" << endl;
+    goto_xy(10,12);
     cout << "3.查看销售记录" << endl;
+    goto_xy(10,13);
     cout << "4.修改密码" << endl;
+    goto_xy(10,14);
     cout << "0.退出" << endl;
+    goto_xy(10,15);
+    cout <<"您的选择：";
 }
 
 void Display::cashierMarket(vector<Bills> &market) {
     cls();
 
+    goto_xy(60,10);
     cout << "购物车中的内容：" << endl;
+    goto_xy(60,10);
     cout << "   商品编号    商品名称   种类   数量   价格/单位   总价" << endl;
+    int chapai=11;
     for (const auto &bill: market) {
+        goto_xy(60,chapai);
         marketPrint(bill);
+        chapai++;
     }
 }
 
@@ -409,13 +423,20 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
 
     int j = 1;
     // 显示商品目录
+    goto_xy(10,9);
     cout << "以下是所有商品目录：" << endl;
+    int hang7=11;
+    goto_xy(10,10);
     cout << "   商品编号    商品名称   种类   库存数量   价格/单位" << endl;
     for (const auto &tmp_goods: goods) {
+        goto_xy(10,hang7);
         cout << j++ << ".";
+        goto_xy(10,hang7);
         customGoodsPrint(tmp_goods);
+        hang7++;
     } // 未包含“商品进价”、“阈值提醒”和“备注”
 
+    goto_xy(10,hang7);
     cout << "请输入要销售的商品编号（无则请输入0）：";
     // 输入购买商品编号
     int id, i;
@@ -425,6 +446,7 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
             if (goods[i].id == id)
                 break;
     } else {
+        goto_xy(10,hang7+1);
         pause();
         return;
     }
@@ -439,16 +461,23 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
             return;
         }
 
+    goto_xy(10,hang7+1);
     cout << "请输入购买数量：";
     cin >> new_bills.quantity;
     // 对顾客输入的商品数量进行检查
     while (new_bills.quantity <= 0) {
-        cout << "商品数量不能为负数或零。" << endl;
+        goto_xy(10,hang7+2);
+        cout << "商品数量不能为负数或零。";
+        goto_xy(10,hang7+3);
+        cout <<"请重新输入： ";
         cin >> new_bills.quantity;
     }
     // 检查商品数量是否超过了库存
     while (new_bills.quantity > goods[i].lessLimit) {
+        goto_xy(10,hang7+2);
         cout << "购物车中的商品数量超过了库存。" << endl;
+        goto_xy(10,hang7+3);
+        cout <<"请重新输入： ";
         cin >> new_bills.quantity;
     }
     // 产生销售记录
@@ -597,9 +626,17 @@ void Display:: adminUsers(vector<Users> &users, Users user) {//管理员用户操作
 }
 
 void Display::adminGoodsMenu() {
+    cls();
+    goto_xy(10,10);
     cout << "1.库存详情" << endl;
+    goto_xy(10,11);
     cout << "2.编辑商品" << endl;
+    goto_xy(10,12);
     cout << "3.添加商品" << endl;
+    goto_xy(10,13);
     cout << "4.删除商品" << endl;
+    goto_xy(10,14);
     cout << "0.退出" << endl;
+    goto_xy(10,15);
+    cout <<"请输入您的选择： ";
 }

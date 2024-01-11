@@ -36,8 +36,9 @@ Users user_login(Users user, string login_id, string login_pwd) {// 读取文件验证
     if(sta == 0) {
         goto_xy(35,13);
         cout << "账号或密码错误！请重新输入" << endl;
-        Sleep(100);
         user.name = "NOTFOUND";
+        pause();
+        cls();
         return user;
     }
 
