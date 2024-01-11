@@ -22,7 +22,6 @@ void Users::read(vector<Users> &users) {
         }
     }
     txt_data.close();
-
 }
 
 void Users::save(vector<Users> &users) {
@@ -46,7 +45,6 @@ void Users::save(vector<Users> &users) {
             i++;
         }
     txt_data.close();
-
 }
 
 

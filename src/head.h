@@ -13,7 +13,6 @@
 #include "windows.h"
 #include "sstream"
 #include "vector"
-#include "vector"
 #include "login/WelcomePage.h"
 #include "string"
 #include "sysinfoapi.h"
