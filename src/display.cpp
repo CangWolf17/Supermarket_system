@@ -8,14 +8,14 @@
 
 using namespace std;
 
-void Display::loginPage() { // ç™»å½•ç•Œé¢
-    system("title login");//ç•Œé¢åˆå§‹åŒ–
+void Display::loginPage() { // µÇÂ¼½çÃæ
+    system("title login");//½çÃæ³õÊ¼»¯
     system("color 70");
 
     goto_xy(50,10);
-    cout <<"æ¬¢è¿ä½¿ç”¨è¶…å¸‚è´­ç‰©ç³»ç»Ÿ";
+    cout <<"»¶Ó­Ê¹ÓÃ³¬ÊĞ¹ºÎïÏµÍ³";
     goto_xy(53,11);
-    cout <<"AI2302 ç¬¬äº”å°ç»„";
+    cout <<"AI2302 µÚÎåĞ¡×é";
    
     goto_xy(53,14);
     system ("pause");
@@ -23,7 +23,7 @@ void Display::loginPage() { // ç™»å½•ç•Œé¢
 
 void Display::welcomePage(Users user) {
     cls();
-    system("title æ¬¢è¿ä½¿ç”¨è¶…å¸‚ç®¡ç†ç³»ç»Ÿ");
+    system("title »¶Ó­Ê¹ÓÃ³¬ÊĞ¹ÜÀíÏµÍ³");
     system("color 70");
     goto_xy(10,15);;
     pause();
@@ -33,41 +33,41 @@ void Display::customMenu() {
     cls();
     system("title customer");
     system ("color 70");
-    // æ·»åŠ ä»£ç ä»¥æ˜¾ç¤ºé¡¾å®¢èœå•ç•Œé¢
+    // Ìí¼Ó´úÂëÒÔÏÔÊ¾¹Ë¿Í²Ëµ¥½çÃæ
     goto_xy(10,10);
-    cout << "èœå•é€‰é¡¹ï¼š";
+    cout << "²Ëµ¥Ñ¡Ïî£º";
     goto_xy(10,11);
-    cout << "1. å•†å“ç›®å½•";
+    cout << "1. ÉÌÆ·Ä¿Â¼";
     goto_xy(10,12);
-    cout << "2. æœç´¢å•†å“";
+    cout << "2. ËÑË÷ÉÌÆ·";
     goto_xy(10,13);
-    cout << "3. è´­ç‰©è½¦";
+    cout << "3. ¹ºÎï³µ";
     goto_xy(10,14);
-    cout << "4. ç»“ç®—";
+    cout << "4. ½áËã";
     goto_xy(10,15);
-    cout << "5. ä¿®æ”¹å¯†ç ";
+    cout << "5. ĞŞ¸ÄÃÜÂë";
     goto_xy(10,16);
-    cout << "0. é€€å‡º";
+    cout << "0. ÍË³ö";
     goto_xy(10,17);
-    cout <<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š";
+    cout <<"ÇëÊäÈëÄúµÄÑ¡Ôñ£º";
 }
 
 bool Display::customMarketEdit(vector<Goods> &goods, vector<Bills> &market, int goodsChoice) {
     cls();
     for (int i = 0; i < market.size(); i++) {
         if (market[i].id == goodsChoice) {
-            market.erase(market.begin() + i); // ç›´æ¥åˆ é™¤ï¼Œé‡æ–°åˆ›å»º
+            market.erase(market.begin() + i); // Ö±½ÓÉ¾³ı£¬ÖØĞÂ´´½¨
 
-            // å»ºç«‹é‡æ–°è´­ä¹°çš„å•†å“
+            // ½¨Á¢ÖØĞÂ¹ºÂòµÄÉÌÆ·
             Goods buy_goods;
             buy_goods.id = goodsChoice;
 
-            // ä»å•†å“æ•°ç»„è·å–ä¿¡æ¯
+            // ´ÓÉÌÆ·Êı×é»ñÈ¡ĞÅÏ¢
             for (auto & good : goods)
                 if (good.id == buy_goods.id)
                     buy_goods = good;
 
-            // ä¼ å…¥äº¤æ˜“å‡½æ•°
+            // ´«Èë½»Ò×º¯Êı
             Display::customTrade(buy_goods, goods, market, 'y');
             return true;
         }
@@ -80,7 +80,7 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
         for (auto &i: market)
             if (buy_goods.id == i.id) {
                 goto_xy(70,11);
-                cout << "å•†å“å·²å­˜åœ¨ï¼Œå³å°†è·³è½¬ä¿®æ”¹..." << endl;
+                cout << "ÉÌÆ·ÒÑ´æÔÚ£¬¼´½«Ìø×ªĞŞ¸Ä..." << endl;
                 goto_xy(70,12);
                 pause();
                 Display::customMarketEdit(goods, market, i.id);
@@ -88,37 +88,37 @@ void Display::customTrade(Goods buy_goods, vector<Goods> &goods, vector<Bills> &
             }
         Bills new_bills;
         goto_xy(70,10);
-        cout << "è¯·è¾“å…¥è´­ä¹°æ•°é‡ï¼š";
+        cout << "ÇëÊäÈë¹ºÂòÊıÁ¿£º";
         cin >> new_bills.quantity;
-        // å¯¹é¡¾å®¢è¾“å…¥çš„å•†å“æ•°é‡è¿›è¡Œæ£€æŸ¥
+        // ¶Ô¹Ë¿ÍÊäÈëµÄÉÌÆ·ÊıÁ¿½øĞĞ¼ì²é
         while (new_bills.quantity <= 0) {
             goto_xy(70,11);
-            cout << "å•†å“æ•°é‡ä¸èƒ½ä¸ºè´Ÿæ•°æˆ–é›¶ã€‚" ;
+            cout << "ÉÌÆ·ÊıÁ¿²»ÄÜÎª¸ºÊı»òÁã¡£" ;
             cin >> new_bills.quantity;
         }
-        // æ£€æŸ¥å•†å“æ•°é‡æ˜¯å¦è¶…è¿‡äº†åº“å­˜
+        // ¼ì²éÉÌÆ·ÊıÁ¿ÊÇ·ñ³¬¹ıÁË¿â´æ
         while (new_bills.quantity > buy_goods.quantity) {
             goto_xy(70,12);
-            cout << "è´­ç‰©è½¦ä¸­çš„å•†å“æ•°é‡è¶…è¿‡äº†åº“å­˜ã€‚" ;
+            cout << "¹ºÎï³µÖĞµÄÉÌÆ·ÊıÁ¿³¬¹ıÁË¿â´æ¡£" ;
             goto_xy(70,13);
-            cout << "è¯·å†æ¬¡è¾“å…¥ï¼š";
+            cout << "ÇëÔÙ´ÎÊäÈë£º";
             cin >> new_bills.quantity;
         }
 
-        // äº§ç”Ÿé”€å”®è®°å½•
+        // ²úÉúÏúÊÛ¼ÇÂ¼
         new_bills.id = buy_goods.id;
         new_bills.name = buy_goods.name;
         new_bills.species = buy_goods.species;
         new_bills.sellPrice = buy_goods.sellPrice;
-        new_bills.price = new_bills.sellPrice * new_bills.quantity;  // è®¡ç®—æ€»ä»·
-        new_bills.profit = new_bills.price - (buy_goods.purchasePrice * new_bills.quantity); // è®¡ç®—åˆ©æ¶¦
+        new_bills.price = new_bills.sellPrice * new_bills.quantity;  // ¼ÆËã×Ü¼Û
+        new_bills.profit = new_bills.price - (buy_goods.purchasePrice * new_bills.quantity); // ¼ÆËãÀûÈó
         new_bills.measure = buy_goods.measure;
 
 
-        // é”€å”®è®°å½•æ¨å…¥è´­ç‰©è½¦
+        // ÏúÊÛ¼ÇÂ¼ÍÆÈë¹ºÎï³µ
         market.push_back(new_bills);
         goto_xy(70,13);
-        std::cout << "æ·»åŠ æˆåŠŸï¼" ;
+        std::cout << "Ìí¼Ó³É¹¦£¡" ;
     }
 }
 
@@ -138,28 +138,31 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     cls();
 
     int j = 1;
-    // æ·»åŠ ä»£ç ä»¥æ˜¾ç¤ºé¡¾å®¢å•†å“ç›®å½•
+    // Ìí¼Ó´úÂëÒÔÏÔÊ¾¹Ë¿ÍÉÌÆ·Ä¿Â¼
     goto_xy(10,10);
-    cout << "ä»¥ä¸‹æ˜¯æ‰€æœ‰å•†å“ç›®å½•ï¼š";
+    cout << "ÒÔÏÂÊÇËùÓĞÉÌÆ·Ä¿Â¼£º";
     goto_xy(10,11);
     cout << "==============================================" ;
     goto_xy(10,12);
-    cout << "   å•†å“ç¼–å·    å•†å“åç§°   ç§ç±»   åº“å­˜æ•°é‡   ä»·æ ¼/å•ä½" ;
+    cout << "   ÉÌÆ·±àºÅ    ÉÌÆ·Ãû³Æ   ÖÖÀà   ¿â´æÊıÁ¿   ¼Û¸ñ/µ¥Î»" ;
     goto_xy(10,13);
-    int lie=14;
+    int print_line=14;
     for (const auto &tmp_goods: goods) {
-        goto_xy(10,lie);
+        goto_xy(10, print_line);
         cout << j++ << ".";
         customGoodsPrint(tmp_goods);
         lie++;
-    } // æœªåŒ…å«â€œå•†å“è¿›ä»·â€ã€â€œé˜ˆå€¼æé†’â€å’Œâ€œå¤‡æ³¨â€
+    } // Î´°üº¬¡°ÉÌÆ·½ø¼Û¡±¡¢¡°ãĞÖµÌáĞÑ¡±ºÍ¡°±¸×¢¡±
 
-    goto_xy(10,lie);
+
+    goto_xy(10, print_line);
     cout << "==============================================" << endl;
 
+
     goto_xy(10,lie+1);
-    cout << "è¯·è¾“å…¥è¦è´­ä¹°çš„å•†å“ç¼–å·ï¼ˆæ— åˆ™è¯·è¾“å…¥0ï¼‰ï¼š";
-    // è¾“å…¥è´­ä¹°å•†å“ç¼–å·
+    cout << "ÇëÊäÈëÒª¹ºÂòµÄÉÌÆ·±àºÅ£¨ÎŞÔòÇëÊäÈë0£©£º";
+    // ÊäÈë¹ºÂòÉÌÆ·±àºÅ
+
     int id, i;
     cin >> id;
     if (id != 0) {
@@ -167,14 +170,15 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
             if (goods[i].id == id)
                 break;
     } else {
-        goto_xy(10, lie + 2);
+        goto_xy(10, print_line + 2);
         return;
     }
 
     Goods buy_goods = goods[i];
     char buy_choice;
+
     goto_xy(10,lie+2);
-    cout << "æ˜¯å¦ç¡®è®¤åŠ å…¥è´­ç‰©è½¦ï¼Ÿï¼ˆè¯·è¾“å…¥y/nï¼‰ï¼š";
+    cout << "ÊÇ·ñÈ·ÈÏ¼ÓÈë¹ºÎï³µ£¿£¨ÇëÊäÈëy/n£©£º";
     cin >> buy_choice;
     customTrade(buy_goods, goods, market, buy_choice);
 }
@@ -184,25 +188,25 @@ void Display::customSearch(vector<Goods> &goods, vector<Bills> &market) {
     string s;
     Goods find_goods;
 
-    // è¯¢é—®å®¢æˆ·è¦æœç´¢çš„å†…å®¹
+    // Ñ¯ÎÊ¿Í»§ÒªËÑË÷µÄÄÚÈİ
     goto_xy(10,10);
-    cout << "è¯·è¾“å…¥è¦æœç´¢çš„å•†å“åç§°æˆ–ç¼–å·ï¼š";
+    cout << "ÇëÊäÈëÒªËÑË÷µÄÉÌÆ·Ãû³Æ»ò±àºÅ£º";
     cin >> s;
 
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
         goto_xy(10,11);
-        cout << "å•†å“ç¼–å·    å•†å“åç§°   ç§ç±»   åº“å­˜æ•°é‡   ä»·æ ¼/å•ä½";
+        cout << "ÉÌÆ·±àºÅ    ÉÌÆ·Ãû³Æ   ÖÖÀà   ¿â´æÊıÁ¿   ¼Û¸ñ/µ¥Î»";
         goto_xy(10,12);
         customGoodsPrint(find_goods);
         char buy_choice;
         goto_xy(10,13);
-        cout << "æ˜¯å¦ç¡®è®¤åŠ å…¥è´­ç‰©è½¦ï¼Ÿï¼ˆè¯·è¾“å…¥y/nï¼‰ï¼š";
+        cout << "ÊÇ·ñÈ·ÈÏ¼ÓÈë¹ºÎï³µ£¿£¨ÇëÊäÈëy/n£©£º";
         cin >> buy_choice;
         customTrade(find_goods, goods, market, buy_choice);
     } else {
         goto_xy(10,11);
-        cout << "æŸ¥æ‰¾çš„å•†å“ä¸å­˜åœ¨ï¼å³å°†è¿”å›ä¸Šä¸€çº§..." << endl;
+        cout << "²éÕÒµÄÉÌÆ·²»´æÔÚ£¡¼´½«·µ»ØÉÏÒ»¼¶..." << endl;
     }
 }
 
@@ -210,9 +214,9 @@ void Display::customMarket(vector<Bills> &market) {
     cls();
     int j = 1;
     goto_xy(0,10);
-    cout << "æ‚¨çš„è´­ç‰©è½¦å†…å®¹ï¼š" ;
+    cout << "ÄúµÄ¹ºÎï³µÄÚÈİ£º" ;
     goto_xy(0,11);
-    cout << "   å•†å“ç¼–å·    å•†å“åç§°   ç§ç±»   æ•°é‡   ä»·æ ¼/å•ä½   æ€»ä»·" << endl;
+    cout << "   ÉÌÆ·±àºÅ    ÉÌÆ·Ãû³Æ   ÖÖÀà   ÊıÁ¿   ¼Û¸ñ/µ¥Î»   ×Ü¼Û" << endl;
     int lie2=12;
     for (const auto &tmp_market: market) {
         goto_xy(0,lie2);
@@ -231,19 +235,19 @@ void goodsPrint(Goods goods) {
 
 void Display::keeperMenu() {
     goto_xy(10,12);
-    cout << "1.åº“å­˜è¯¦æƒ…" << endl;
+    cout << "1.¿â´æÏêÇé" << endl;
     goto_xy(10,13);
-    cout << "2.æœç´¢å•†å“" << endl;
+    cout << "2.ËÑË÷ÉÌÆ·" << endl;
     goto_xy(10,14);
-    cout << "3.ç¼–è¾‘å•†å“" << endl;
+    cout << "3.±à¼­ÉÌÆ·" << endl;
     goto_xy(10,15);
-    cout << "4.æ·»åŠ å•†å“" << endl;
+    cout << "4.Ìí¼ÓÉÌÆ·" << endl;
     goto_xy(10,16);
-    cout << "5.åˆ é™¤å•†å“" << endl;
+    cout << "5.É¾³ıÉÌÆ·" << endl;
     goto_xy(10,17);
-    cout << "6.ä¿®æ”¹å¯†ç " << endl;
+    cout << "6.ĞŞ¸ÄÃÜÂë" << endl;
     goto_xy(10,18);
-    cout << "0.é€€å‡º" << endl;
+    cout << "0.ÍË³ö" << endl;
 }
 
 void Display::keeperSearch(vector<Goods> &goods) {
@@ -251,22 +255,22 @@ void Display::keeperSearch(vector<Goods> &goods) {
     string s;
     Goods find_goods;
 
-    // è¯¢é—®å®¢æˆ·è¦æœç´¢çš„å†…å®¹
+    // Ñ¯ÎÊ¿Í»§ÒªËÑË÷µÄÄÚÈİ
     goto_xy(10,10);
-    cout << "è¯·è¾“å…¥è¦æœç´¢çš„å•†å“åç§°æˆ–ç¼–å·ï¼š";
+    cout << "ÇëÊäÈëÒªËÑË÷µÄÉÌÆ·Ãû³Æ»ò±àºÅ£º";
     cin >> s;
 
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
         goto_xy(10,10);
-        cout << "ç¼–å·     åç§°     ç§ç±»     æ•°é‡     è¿›ä»·     å”®ä»·     å•ä½     æé†’é˜ˆå€¼" << endl;
+        cout << "±àºÅ     Ãû³Æ     ÖÖÀà     ÊıÁ¿     ½ø¼Û     ÊÛ¼Û     µ¥Î»     ÌáĞÑãĞÖµ" << endl;
         goto_xy(10,11);
         goodsPrint(find_goods);
         goto_xy(10,12);
         pause();
     } else {
         goto_xy(10,11);
-        cout << "æŸ¥æ‰¾çš„å•†å“ä¸å­˜åœ¨ï¼å³å°†è¿”å›ä¸Šä¸€çº§...";
+        cout << "²éÕÒµÄÉÌÆ·²»´æÔÚ£¡¼´½«·µ»ØÉÏÒ»¼¶...";
         goto_xy(10,12);
         pause();
     }
@@ -274,12 +278,12 @@ void Display::keeperSearch(vector<Goods> &goods) {
 
 void Display::keeperLimit(vector<Goods> &goods) {
     goto_xy(10,10);
-    cout << "è¡¥è´§é€šçŸ¥ï¼š" << endl;
+    cout << "²¹»õÍ¨Öª£º" << endl;
     int j = 1;
     for (auto &igoods: goods) {
         if (igoods.quantity <= igoods.lessLimit) {
-            cout << j++ << ".å•†å“ " << igoods.name << " (ç¼–å· " << igoods.id << " ï¼‰" << "æ•°é‡ä½äºè®¾ç½®é˜ˆå€¼ï¼ˆ"
-                 << igoods.lessLimit << "ï¼‰ï¼Œå½“å‰åº“å­˜ä¸ºï¼š" << igoods.quantity << "ï¼Œè¯·åŠæ—¶è¡¥è´§ã€‚" << endl;
+            cout << j++ << ".ÉÌÆ· " << igoods.name << " (±àºÅ " << igoods.id << " £©" << "ÊıÁ¿µÍÓÚÉèÖÃãĞÖµ£¨"
+                 << igoods.lessLimit << "£©£¬µ±Ç°¿â´æÎª£º" << igoods.quantity << "£¬Çë¼°Ê±²¹»õ¡£" << endl;
         }
     }
 }
@@ -289,22 +293,22 @@ void Display::goods_data(vector<Goods> &goods) {
     int maxPage = goods.size() / 10 + (goods.size() % 10 > 0);
 
     while (pageNumber) {
-        // è®¡ç®—èµ·å§‹å’Œç»“æŸ
+        // ¼ÆËãÆğÊ¼ºÍ½áÊø
         cls();
         int startIndex = (pageNumber - 1) * pageSize;
         int endIndex = pageNumber * pageSize;
         goto_xy(10,10);
-        cout << "å•†å“è¯¦æƒ…é¡µé¢" << endl;
+        cout << "ÉÌÆ·ÏêÇéÒ³Ãæ" << endl;
         goto_xy(10,11);
-        cout << "å½“å‰é¡µæ•°ï¼š ç¬¬ " << pageNumber << " é¡µ" << endl;
+        cout << "µ±Ç°Ò³Êı£º µÚ " << pageNumber << " Ò³" << endl;
 
         goto_xy(10,12);
         cout << "=====================================================================" << endl;
         goto_xy(10,13);
-        cout << "     ç¼–å·    åç§°     ç§ç±»     æ•°é‡    è¿›ä»·    å”®ä»·    å•ä½     æé†’é˜ˆå€¼" << endl;
+        cout << "     ±àºÅ    Ãû³Æ     ÖÖÀà     ÊıÁ¿    ½ø¼Û    ÊÛ¼Û    µ¥Î»     ÌáĞÑãĞÖµ" << endl;
         int lie3=14;
         for (int j = startIndex, i = startIndex; j < endIndex && i < goods.size(); i++, j++) {
-            // æ‰“å°å½“å‰é”€å”®è®°å½•çš„ä¿¡æ¯
+            // ´òÓ¡µ±Ç°ÏúÊÛ¼ÇÂ¼µÄĞÅÏ¢
             goto_xy(10,lie3);
             goodsPrint(goods[i]);
             lie3++;
@@ -313,15 +317,15 @@ void Display::goods_data(vector<Goods> &goods) {
         cout << "=====================================================================" << endl;
 
         goto_xy(10,lie3+1);
-        cout << "æœ€å¤§é¡µæ•°ï¼š" << maxPage << endl;
+        cout << "×î´óÒ³Êı£º" << maxPage << endl;
         goto_xy(10,lie3+2);
-        cout << "è¯·è¾“å…¥æŸ¥çœ‹é¡µæ•°ï¼ˆ0é€€å‡ºï¼‰ï¼š";
+        cout << "ÇëÊäÈë²é¿´Ò³Êı£¨0ÍË³ö£©£º";
         cin >> pageNumber;
         if (pageNumber > maxPage) {
-            cout << "é¡µæ•°å¤§äºæœ€å¤§é¡µæ•°ï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+            cout << "Ò³Êı´óÓÚ×î´óÒ³Êı£¡ÇëÖØĞÂÊäÈë£º";
             cin >> pageNumber;
         } else if (pageNumber < 0) {
-            cout << "è¾“å…¥é¡µæ•°åº”å¤§äº0ï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+            cout << "ÊäÈëÒ³ÊıÓ¦´óÓÚ0£¡ÇëÖØĞÂÊäÈë£º";
             cin >> pageNumber;
         }
     }
@@ -334,30 +338,30 @@ void Display::goods_edit(vector<Goods> &goods) {
     Goods find_goods;
 
     goto_xy(10,10);
-    cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„å•†å“åç§°æˆ–ç¼–å·æ¥è¿›è¡Œæœç´¢ï¼Œè¾“å…¥0é€€å‡ºï¼š";
+    cout << "ÇëÊäÈëÒªĞŞ¸ÄµÄÉÌÆ·Ãû³Æ»ò±àºÅÀ´½øĞĞËÑË÷£¬ÊäÈë0ÍË³ö£º";
     cin >> s;
     if (s == "0")
         return;
     Goods::search(goods, s, find_goods);
     if (find_goods.id != -1) {
         goto_xy(10,12);
-        cout << "1.ç¼–å·   2.åç§°   3.ç§ç±»   4.æ•°é‡   5.è¿›ä»·   6.å”®ä»·   7.å•ä½   8.æé†’é˜ˆå€¼" << endl;
+        cout << "1.±àºÅ   2.Ãû³Æ   3.ÖÖÀà   4.ÊıÁ¿   5.½ø¼Û   6.ÊÛ¼Û   7.µ¥Î»   8.ÌáĞÑãĞÖµ" << endl;
         goto_xy(10,13);
         goodsPrint(find_goods);
     } else {
         goto_xy(10,12);
-        cout << "è¦ä¿®æ”¹çš„å•†å“ä¸å­˜åœ¨ï¼å³å°†è¿”å›ä¸Šä¸€çº§...";
+        cout << "ÒªĞŞ¸ÄµÄÉÌÆ·²»´æÔÚ£¡¼´½«·µ»ØÉÏÒ»¼¶...";
         goto_xy(10,13);
         pause();
         return;
     }
 
     goto_xy(10,15);
-    cout << "è¯·æŒ‡å®šè¦ä¿®æ”¹çš„å•†å“ä¿¡æ¯å¯¹åº”çš„æ•°å­—ï¼š";
+    cout << "ÇëÖ¸¶¨ÒªĞŞ¸ÄµÄÉÌÆ·ĞÅÏ¢¶ÔÓ¦µÄÊı×Ö£º";
     int kind;
     cin >> kind;
 
-    // å®‰å…¨æ£€æŸ¥
+    // °²È«¼ì²é
     if (kind >= 1 && kind <= 8) {
         int i;
         for (i = 0; i < goods.size(); i++)
@@ -365,14 +369,14 @@ void Display::goods_edit(vector<Goods> &goods) {
                 break;
         string new_value;
         goto_xy(10,16);
-        cout << "è¯·è¾“å…¥æ–°çš„å•†å“ä¿¡æ¯ï¼š";
-        cin >> new_value; // è¾“å…¥æ•°æ®çš„å®‰å…¨æ£€æŸ¥æ²¡åš
+        cout << "ÇëÊäÈëĞÂµÄÉÌÆ·ĞÅÏ¢£º";
+        cin >> new_value; // ÊäÈëÊı¾İµÄ°²È«¼ì²éÃ»×ö
         Goods::edit(goods, i, kind, new_value);
         cls();
         goto_xy(10,10);
-        cout << "ä¿®æ”¹å®Œæˆï¼Œç»“æœå¦‚ä¸‹ï¼š" << endl;
+        cout << "ĞŞ¸ÄÍê³É£¬½á¹ûÈçÏÂ£º" << endl;
         goto_xy(10,11);
-        cout << "ç¼–å·     åç§°     ç§ç±»     æ•°é‡     è¿›ä»·     å”®ä»·     å•ä½     æé†’é˜ˆå€¼" << endl;
+        cout << "±àºÅ     Ãû³Æ     ÖÖÀà     ÊıÁ¿     ½ø¼Û     ÊÛ¼Û     µ¥Î»     ÌáĞÑãĞÖµ" << endl;
         goto_xy(10,12);
         goodsPrint(goods[i]);
         goto_xy(10,13);
@@ -380,7 +384,7 @@ void Display::goods_edit(vector<Goods> &goods) {
         return;
     } else {
         goto_xy(10,17);
-        cout << "è¾“å…¥æ•°å­—æ— æ•ˆï¼Œç¨‹åºå³å°†è¿”å›...";
+        cout << "ÊäÈëÊı×ÖÎŞĞ§£¬³ÌĞò¼´½«·µ»Ø...";
         goto_xy(10,18);
         pause();
         return;
@@ -389,26 +393,26 @@ void Display::goods_edit(vector<Goods> &goods) {
 
 void Display::cashierMenu() {
     goto_xy(10,10);
-    cout << "1.æ·»åŠ é”€å”®å•†å“" << endl;
+    cout << "1.Ìí¼ÓÏúÊÛÉÌÆ·" << endl;
     goto_xy(10,11);
-    cout << "2.é”€å”®å•†å“æ“ä½œ" << endl;
+    cout << "2.ÏúÊÛÉÌÆ·²Ù×÷" << endl;
     goto_xy(10,12);
-    cout << "3.æŸ¥çœ‹é”€å”®è®°å½•" << endl;
+    cout << "3.²é¿´ÏúÊÛ¼ÇÂ¼" << endl;
     goto_xy(10,13);
-    cout << "4.ä¿®æ”¹å¯†ç " << endl;
+    cout << "4.ĞŞ¸ÄÃÜÂë" << endl;
     goto_xy(10,14);
-    cout << "0.é€€å‡º" << endl;
+    cout << "0.ÍË³ö" << endl;
     goto_xy(10,15);
-    cout <<"æ‚¨çš„é€‰æ‹©ï¼š";
+    cout <<"ÄúµÄÑ¡Ôñ£º";
 }
 
 void Display::cashierMarket(vector<Bills> &market) {
     cls();
 
     goto_xy(60,10);
-    cout << "è´­ç‰©è½¦ä¸­çš„å†…å®¹ï¼š" << endl;
+    cout << "¹ºÎï³µÖĞµÄÄÚÈİ£º" << endl;
     goto_xy(60,10);
-    cout << "   å•†å“ç¼–å·    å•†å“åç§°   ç§ç±»   æ•°é‡   ä»·æ ¼/å•ä½   æ€»ä»·" << endl;
+    cout << "   ÉÌÆ·±àºÅ    ÉÌÆ·Ãû³Æ   ÖÖÀà   ÊıÁ¿   ¼Û¸ñ/µ¥Î»   ×Ü¼Û" << endl;
     int chapai=11;
     for (const auto &bill: market) {
         goto_xy(60,chapai);
@@ -420,23 +424,23 @@ void Display::cashierMarket(vector<Bills> &market) {
 void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
 
     int j = 1;
-    // æ˜¾ç¤ºå•†å“ç›®å½•
+    // ÏÔÊ¾ÉÌÆ·Ä¿Â¼
     goto_xy(10,9);
-    cout << "ä»¥ä¸‹æ˜¯æ‰€æœ‰å•†å“ç›®å½•ï¼š" << endl;
+    cout << "ÒÔÏÂÊÇËùÓĞÉÌÆ·Ä¿Â¼£º" << endl;
     int hang7=11;
     goto_xy(10,10);
-    cout << "   å•†å“ç¼–å·    å•†å“åç§°   ç§ç±»   åº“å­˜æ•°é‡   ä»·æ ¼/å•ä½" << endl;
+    cout << "   ÉÌÆ·±àºÅ    ÉÌÆ·Ãû³Æ   ÖÖÀà   ¿â´æÊıÁ¿   ¼Û¸ñ/µ¥Î»" << endl;
     for (const auto &tmp_goods: goods) {
         goto_xy(10,hang7);
         cout << j++ << ".";
         goto_xy(10,hang7);
         customGoodsPrint(tmp_goods);
         hang7++;
-    } // æœªåŒ…å«â€œå•†å“è¿›ä»·â€ã€â€œé˜ˆå€¼æé†’â€å’Œâ€œå¤‡æ³¨â€
+    } // Î´°üº¬¡°ÉÌÆ·½ø¼Û¡±¡¢¡°ãĞÖµÌáĞÑ¡±ºÍ¡°±¸×¢¡±
 
     goto_xy(10,hang7);
-    cout << "è¯·è¾“å…¥è¦é”€å”®çš„å•†å“ç¼–å·ï¼ˆæ— åˆ™è¯·è¾“å…¥0ï¼‰ï¼š";
-    // è¾“å…¥è´­ä¹°å•†å“ç¼–å·
+    cout << "ÇëÊäÈëÒªÏúÊÛµÄÉÌÆ·±àºÅ£¨ÎŞÔòÇëÊäÈë0£©£º";
+    // ÊäÈë¹ºÂòÉÌÆ·±àºÅ
     int id, i;
     cin >> id;
     if (id != 0) {
@@ -453,104 +457,104 @@ void Display::cashierTrade(vector<Goods> &goods, vector<Bills> &market) {
     new_bills.id = goods[i].id;
     for (auto &tmp_market: market)
         if (new_bills.id == tmp_market.id) {
-            cout << "å•†å“å·²å­˜åœ¨ï¼Œå³å°†è·³è½¬ä¿®æ”¹..." << endl;
+            cout << "ÉÌÆ·ÒÑ´æÔÚ£¬¼´½«Ìø×ªĞŞ¸Ä..." << endl;
             pause();
             Display::customMarketEdit(goods, market, tmp_market.id);
             return;
         }
 
     goto_xy(10,hang7+1);
-    cout << "è¯·è¾“å…¥è´­ä¹°æ•°é‡ï¼š";
+    cout << "ÇëÊäÈë¹ºÂòÊıÁ¿£º";
     cin >> new_bills.quantity;
-    // å¯¹é¡¾å®¢è¾“å…¥çš„å•†å“æ•°é‡è¿›è¡Œæ£€æŸ¥
+    // ¶Ô¹Ë¿ÍÊäÈëµÄÉÌÆ·ÊıÁ¿½øĞĞ¼ì²é
     while (new_bills.quantity <= 0) {
         goto_xy(10,hang7+2);
-        cout << "å•†å“æ•°é‡ä¸èƒ½ä¸ºè´Ÿæ•°æˆ–é›¶ã€‚";
+        cout << "ÉÌÆ·ÊıÁ¿²»ÄÜÎª¸ºÊı»òÁã¡£";
         goto_xy(10,hang7+3);
-        cout <<"è¯·é‡æ–°è¾“å…¥ï¼š ";
+        cout <<"ÇëÖØĞÂÊäÈë£º ";
         cin >> new_bills.quantity;
     }
-    // æ£€æŸ¥å•†å“æ•°é‡æ˜¯å¦è¶…è¿‡äº†åº“å­˜
+    // ¼ì²éÉÌÆ·ÊıÁ¿ÊÇ·ñ³¬¹ıÁË¿â´æ
     while (new_bills.quantity > goods[i].lessLimit) {
         goto_xy(10,hang7+2);
-        cout << "è´­ç‰©è½¦ä¸­çš„å•†å“æ•°é‡è¶…è¿‡äº†åº“å­˜ã€‚" << endl;
+        cout << "¹ºÎï³µÖĞµÄÉÌÆ·ÊıÁ¿³¬¹ıÁË¿â´æ¡£" << endl;
         goto_xy(10,hang7+3);
-        cout <<"è¯·é‡æ–°è¾“å…¥ï¼š ";
+        cout <<"ÇëÖØĞÂÊäÈë£º ";
         cin >> new_bills.quantity;
     }
-    // äº§ç”Ÿé”€å”®è®°å½•
+    // ²úÉúÏúÊÛ¼ÇÂ¼
     new_bills.name = goods[i].name;
     new_bills.species = goods[i].species;
     new_bills.sellPrice = goods[i].sellPrice;
-    new_bills.price = new_bills.sellPrice * new_bills.quantity;  // è®¡ç®—æ€»ä»·
-    new_bills.profit = new_bills.price - (goods[i].purchasePrice * new_bills.quantity); // è®¡ç®—åˆ©æ¶¦
+    new_bills.price = new_bills.sellPrice * new_bills.quantity;  // ¼ÆËã×Ü¼Û
+    new_bills.profit = new_bills.price - (goods[i].purchasePrice * new_bills.quantity); // ¼ÆËãÀûÈó
     new_bills.measure = goods[i].measure;
 
-    // é”€å”®è®°å½•æ¨å…¥è´­ç‰©è½¦
+    // ÏúÊÛ¼ÇÂ¼ÍÆÈë¹ºÎï³µ
     market.push_back(new_bills);
-    std::cout << "æ·»åŠ æˆåŠŸï¼" << std::endl;
+    std::cout << "Ìí¼Ó³É¹¦£¡" << std::endl;
 }
 
 void Display::adminMenu() {
     goto_xy(10,10);
-    cout << "1.ç”¨æˆ·æ“ä½œ";
+    cout << "1.ÓÃ»§²Ù×÷";
     goto_xy(10,11);
-    cout << "2.è´§ç‰©æ“ä½œ";
+    cout << "2.»õÎï²Ù×÷";
     goto_xy(10,12);
-    cout << "3.é”€å”®è®°å½•";
+    cout << "3.ÏúÊÛ¼ÇÂ¼";
     goto_xy(10,13);
-    cout << "4.ä¿®æ”¹å¯†ç ";
+    cout << "4.ĞŞ¸ÄÃÜÂë";
     goto_xy(10,14);
-    cout << "0.é€€å‡º" << endl;
+    cout << "0.ÍË³ö" << endl;
     goto_xy(10,15);
-    cout <<"è¯·é€‰æ‹©(è¾“å…¥0-4):";
+    cout <<"ÇëÑ¡Ôñ(ÊäÈë0-4):";
 }
 
 void usersMenuPrint(vector<Users> &users) {
-    // éå†æŒ‡å®šèŒƒå›´å†…çš„ç”¨æˆ·ä¿¡æ¯
+    // ±éÀúÖ¸¶¨·¶Î§ÄÚµÄÓÃ»§ĞÅÏ¢
     goto_xy(10,10);
     cout << "======================================" << endl;
     goto_xy(10,11);
-    cout << "     å§“å          id            æƒé™" << endl;
+    cout << "     ĞÕÃû          id            È¨ÏŞ" << endl;
     int lie5=12;
     for (auto &user: users) {
-        // æ‰“å°å½“å‰ç”¨æˆ·çš„å§“åå’ŒID
+        // ´òÓ¡µ±Ç°ÓÃ»§µÄĞÕÃûºÍID
         goto_xy(10,lie5);
         cout << setw(9) << user.name << setw(14) << user.id << "       ";
         lie5++;
         switch (user.level) {
             case 0:
-                cout << "    é¡¾å®¢" << endl;
+                cout << "    ¹Ë¿Í" << endl;
                 break;
             case 1:
-                cout << "ä»“åº“ç®¡ç†å‘˜" << endl;
+                cout << "²Ö¿â¹ÜÀíÔ±" << endl;
                 break;
             case 2:
-                cout << "   æ”¶é“¶å‘˜" << endl;
+                cout << "   ÊÕÒøÔ±" << endl;
                 break;
             case 3:
-                cout << "   ç®¡ç†å‘˜" << endl;
+                cout << "   ¹ÜÀíÔ±" << endl;
                 break;
         }
     }
 
-// æ˜¾ç¤ºç®¡ç†å‘˜æŸ¥çœ‹ç”¨æˆ·ä¿¡æ¯çš„ç•Œé¢
+// ÏÔÊ¾¹ÜÀíÔ±²é¿´ÓÃ»§ĞÅÏ¢µÄ½çÃæ
     goto_xy(70,10);
-    cout << "å…¶ä»–é€‰é¡¹ï¼š";
+    cout << "ÆäËûÑ¡Ïî£º";
     goto_xy(70,11);
-    cout << "1. åˆ›å»ºç”¨æˆ·";
+    cout << "1. ´´½¨ÓÃ»§";
     goto_xy(70,12);
-    cout << "2. ç¼–è¾‘ç”¨æˆ·";
+    cout << "2. ±à¼­ÓÃ»§";
     goto_xy(70,13);
-    cout << "3. åˆ é™¤ç”¨æˆ·";
+    cout << "3. É¾³ıÓÃ»§";
     goto_xy(70,14);
-    cout << "0. è¿”å›";
+    cout << "0. ·µ»Ø";
     goto_xy(70,15);
-    cout <<"æ‚¨çš„é€‰æ‹©ï¼š" ;
+    cout <<"ÄúµÄÑ¡Ôñ£º" ;
 
 }
 
-void Display:: adminUsers(vector<Users> &users, Users user) {//ç®¡ç†å‘˜ç”¨æˆ·æ“ä½œ
+void Display:: adminUsers(vector<Users> &users, Users user) {//¹ÜÀíÔ±ÓÃ»§²Ù×÷
 
     int choice = 1;
     string verify_pwd;
@@ -562,13 +566,13 @@ void Display:: adminUsers(vector<Users> &users, Users user) {//ç®¡ç†å‘˜ç”¨æˆ·æ“
             case 1: {
                 Users::add(users, 3);
                 break;
-            } // åˆ›å»ºç”¨æˆ·
+            } // ´´½¨ÓÃ»§
             case 2: {
                 int kind;
                 int i;
                 string id, new_value;
                 goto_xy(10,18);
-                cout << "è¯·è¾“å…¥ä¿®æ”¹çš„ç”¨æˆ·id:";
+                cout << "ÇëÊäÈëĞŞ¸ÄµÄÓÃ»§id:";
                 cin >> id;
                 bool cond = false;
 
@@ -580,43 +584,43 @@ void Display:: adminUsers(vector<Users> &users, Users user) {//ç®¡ç†å‘˜ç”¨æˆ·æ“
 
                 if (cond == false) {
                     goto_xy(10,19);
-                    cout << "ç”¨æˆ·idé”™è¯¯ï¼" << endl;
+                    cout << "ÓÃ»§id´íÎó£¡" << endl;
                     goto_xy(10,20);
                     pause();
                     break;
                 }
                 goto_xy(10,19);
-                cout << "è¯·è¾“å…¥ä¿®æ”¹çš„æ•°æ®ç±»å‹ï¼ˆ1.å§“åï¼Œ2.idï¼Œ3.å¯†ç ï¼Œ4.æƒé™ï¼Œ0.é€€å‡ºï¼‰ï¼š";
+                cout << "ÇëÊäÈëĞŞ¸ÄµÄÊı¾İÀàĞÍ£¨1.ĞÕÃû£¬2.id£¬3.ÃÜÂë£¬4.È¨ÏŞ£¬0.ÍË³ö£©£º";
                 cin >> kind;
                 if (kind == 1 || kind == 2 || kind == 3 || kind == 4) {
                     goto_xy(10,20);
-                    cout << "è¯·è¾“å…¥æ–°çš„å€¼ï¼š";
+                    cout << "ÇëÊäÈëĞÂµÄÖµ£º";
                     cin >> new_value;
                     Users::edit(users, i, kind, new_value);
                     break;
                 }
                 break;
-            } // ç¼–è¾‘ç”¨æˆ·
+            } // ±à¼­ÓÃ»§
             case 3: {
                 goto_xy(10,18);
-                cout << "è¯·è¾“å…¥æ‚¨çš„å¯†ç ä»¥ç¡®è®¤èº«ä»½ï¼š";
+                cout << "ÇëÊäÈëÄúµÄÃÜÂëÒÔÈ·ÈÏÉí·İ£º";
                 cin >> verify_pwd;
                 if (verify_pwd == user.pwd) {
                     Users::del(users);
                     break;
                 } else {
                     goto_xy(10,19);
-                    cout << "å¯†ç é”™è¯¯ï¼Œç¨‹åºå³å°†è¿”å›...";
+                    cout << "ÃÜÂë´íÎó£¬³ÌĞò¼´½«·µ»Ø...";
                     goto_xy(10,20);
                     pause();
                     break;
                 }
-            } // åˆ é™¤ç”¨æˆ·
+            } // É¾³ıÓÃ»§
             case 0:
                 break;
             default:
                 goto_xy(10,19);
-                cout << "è¾“å…¥å€¼æ— æ•ˆï¼è¯·é‡æ–°è¾“å…¥ï¼š";
+                cout << "ÊäÈëÖµÎŞĞ§£¡ÇëÖØĞÂÊäÈë£º";
                 cin >> choice;
         }
     }
@@ -625,15 +629,15 @@ void Display:: adminUsers(vector<Users> &users, Users user) {//ç®¡ç†å‘˜ç”¨æˆ·æ“
 void Display::adminGoodsMenu() {
     cls();
     goto_xy(10,10);
-    cout << "1.åº“å­˜è¯¦æƒ…" << endl;
+    cout << "1.¿â´æÏêÇé" << endl;
     goto_xy(10,11);
-    cout << "2.ç¼–è¾‘å•†å“" << endl;
+    cout << "2.±à¼­ÉÌÆ·" << endl;
     goto_xy(10,12);
-    cout << "3.æ·»åŠ å•†å“" << endl;
+    cout << "3.Ìí¼ÓÉÌÆ·" << endl;
     goto_xy(10,13);
-    cout << "4.åˆ é™¤å•†å“" << endl;
+    cout << "4.É¾³ıÉÌÆ·" << endl;
     goto_xy(10,14);
-    cout << "0.é€€å‡º" << endl;
+    cout << "0.ÍË³ö" << endl;
     goto_xy(10,15);
-    cout <<"è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š ";
+    cout <<"ÇëÊäÈëÄúµÄÑ¡Ôñ£º ";
 }
