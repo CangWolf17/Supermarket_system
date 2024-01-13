@@ -151,7 +151,7 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
         goto_xy(10, print_line);
         cout << j++ << ".";
         customGoodsPrint(tmp_goods);
-        lie++;
+        print_line++;
     } // 未包含“商品进价”、“阈值提醒”和“备注”
 
 
@@ -159,7 +159,7 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     cout << "==============================================" << endl;
 
 
-    goto_xy(10,lie+1);
+    goto_xy(10,print_line+1);
     cout << "请输入要购买的商品编号（无则请输入0）：";
     // 输入购买商品编号
 
@@ -177,7 +177,7 @@ void Display::customGoodsData(vector<Goods> &goods, vector<Bills> &market) {
     Goods buy_goods = goods[i];
     char buy_choice;
 
-    goto_xy(10,lie+2);
+    goto_xy(10,print_line+2);
     cout << "是否确认加入购物车？（请输入y/n）：";
     cin >> buy_choice;
     customTrade(buy_goods, goods, market, buy_choice);
@@ -217,12 +217,12 @@ void Display::customMarket(vector<Bills> &market) {
     cout << "您的购物车内容：" ;
     goto_xy(0,11);
     cout << "   商品编号    商品名称   种类   数量   价格/单位   总价" << endl;
-    int lie2=12;
+    int print_line2=12;
     for (const auto &tmp_market: market) {
-        goto_xy(0,lie2);
+        goto_xy(0,print_line2);
         cout << j++ << ".";
         marketPrint(tmp_market);
-        lie2++;
+        print_line2++;
     }
 }
 
@@ -306,19 +306,19 @@ void Display::goods_data(vector<Goods> &goods) {
         cout << "=====================================================================" << endl;
         goto_xy(10,13);
         cout << "     编号    名称     种类     数量    进价    售价    单位     提醒阈值" << endl;
-        int lie3=14;
+        int print_line3=14;
         for (int j = startIndex, i = startIndex; j < endIndex && i < goods.size(); i++, j++) {
             // 打印当前销售记录的信息
-            goto_xy(10,lie3);
+            goto_xy(10,print_line3);
             goodsPrint(goods[i]);
-            lie3++;
+            print_line3++;
         }
-        goto_xy(10,lie3);
+        goto_xy(10,print_line3);
         cout << "=====================================================================" << endl;
 
-        goto_xy(10,lie3+1);
+        goto_xy(10,print_line3+1);
         cout << "最大页数：" << maxPage << endl;
-        goto_xy(10,lie3+2);
+        goto_xy(10,print_line3+2);
         cout << "请输入查看页数（0退出）：";
         cin >> pageNumber;
         if (pageNumber > maxPage) {
@@ -516,12 +516,12 @@ void usersMenuPrint(vector<Users> &users) {
     cout << "======================================" << endl;
     goto_xy(10,11);
     cout << "     姓名          id            权限" << endl;
-    int lie5=12;
+    int print_line5=12;
     for (auto &user: users) {
         // 打印当前用户的姓名和ID
-        goto_xy(10,lie5);
+        goto_xy(10,print_line5);
         cout << setw(9) << user.name << setw(14) << user.id << "       ";
-        lie5++;
+        print_line5++;
         switch (user.level) {
             case 0:
                 cout << "    顾客" << endl;
